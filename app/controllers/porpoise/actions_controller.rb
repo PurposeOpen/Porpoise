@@ -300,5 +300,12 @@ module Porpoise
     rescue ActiveResource::ClientError => error
       error.response.code.to_i == 406 ? render(:page_not_available) : raise(error)
     end
+
+    def get_member_info
+      request_url = "#{Platform.base_uri}movements/#{Platform.movement_id}/members/member_info.json?email=#{params[:member_info][:email]}"
+      result = open_on_platform(request_url)
+      JSON.parse(result.as_json.first)
+    end
+
   end
 end
