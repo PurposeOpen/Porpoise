@@ -1,0 +1,35 @@
+<div id="return-from-paypal-interstitial">
+  <article class="interstitial-no-js">
+    <header>
+      <%= raw t('actions.donations.interstitial_form_header') %>
+    </header>
+
+    <%= raw t('actions.donations.interstitial_form_body') %>
+
+    <%= form_tag complete_paypal_donation_action_path(I18n.locale, @id), :method => :put, :id => "complete_paypal_donation_form" do %>
+      <%= hidden_field_tag("token", @token) %>
+      <%= hidden_field_tag("PayerID", @PayerID) %>
+      <%= hidden_field_tag("currency", @currency) %>
+      <%= hidden_field_tag("amount", @amount) %>
+      <%= hidden_field_tag("country_iso", @country_iso) %>
+      <%= hidden_field_tag("postcode", @postcode) %>
+      <%= hidden_field_tag("order_id", @order_id) %>
+      <%= hidden_field_tag("classification", @classification) %>
+      <%= hidden_field_tag("t", @t) %>
+      <%= submit_tag t('continue'), :id => "complete_paypal_donation_button" %>
+    <% end %>
+  </article>
+
+  <article class="interstitial hidden">
+    <header>
+      <%= raw t('actions.donations.interstitial_header') %>
+    </header>
+
+    <%= raw t('actions.donations.interstitial_body') %>
+    
+    <div id='spinner'>
+    </div>
+
+  </article>
+
+</div>

@@ -1,0 +1,77 @@
+/*
+** Boxes
+*/
+
+.box {
+  border: 1px solid #e8e8e8;
+  background-color: white;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+.box p {
+  padding: 10px 15px 10px 15px;
+}
+
+.grey_background {
+  background-color: #F4F4F4;
+  min-height: 20px;
+}
+
+.margin_20 {
+  margin-top: 20px;
+}
+
+hr {
+  background-image: image-url("stripe_dark_thick.png");
+  background-repeat: repeat-x;
+  margin: 0 10px;
+  height: 5px;
+}
+
+.dark-stripe {
+  background-image: image-url("stripe_dark_thick.png");
+  background-repeat: repeat-x;
+  background-position: top left;
+  height: 5px;
+  margin-top: -5px;
+  position: relative;
+  clear: both;
+}
+
+.dark-stripe.non_transparent {
+  background-color: white;
+}
+
+.dark-stripe.seperator {
+  margin-bottom: 20px;
+}
+
+.dark-stripe.top_separator {
+  margin-top: 10px;
+}
+
+.dark-stripe-thin {
+  background-image: image-url("stripe_dark_thin.png");
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  height: 2px;
+}
+
+.dark-stripe-inset {
+  background-image: image-url("stripe_dark_thick.png");
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  height: 5px;
+  margin: 0px 12px;
+}
+
+.dark-stripe-internal {
+  background-image: image-url("stripe_dark_thick.png");
+  background-repeat: repeat-x;
+  background-position: top left;
+  height: 5px;
+}

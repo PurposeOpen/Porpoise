@@ -1,0 +1,277 @@
+@import "../vars_and_mixins";
+
+.section_actions {
+
+  .action_form_wrapper {
+    @include form_block();
+  }
+
+  .error_messages {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: $movement-error-color;
+    padding: 20px;
+    margin: 0 23px 0 14px;
+  }
+
+  #action_form .error_messages {
+    padding: 0 0 20px;
+    margin: 0;
+  }
+
+  #action_form,
+  #unsubscribe_form,
+  #paypal_donation_form {
+    @include clearfix;
+
+    h1 {
+      padding: 0;
+      border: 0;
+    }
+
+    input {
+      width: $field-width;
+      height: $field-height;
+      padding: $field-padding $field-padding $field-padding 4px;
+      &[type='checkbox'],
+      &[type='radio'] {
+        width: auto;
+      }
+    }
+
+    select {
+      border: 1px solid gray;
+      box-sizing: border-box;
+      height: 23px;
+      width: $select-box-width;
+    }
+
+    textarea {
+      width: $textarea_width;
+      display: block;
+      margin-right: 10px;
+    }
+
+    .selectBox, {
+      width: $select-box-width;
+      height: $field-height + 2 * $field-padding + 2 * $field-border-width;
+
+      .selectBox-label {
+        font-style: italic;
+        color: #777;
+      }
+      .selectBox-label.content-selected {
+        color: inherit;
+        font-style: inherit;
+      }
+    }
+
+    legend {
+      font-family: proxima-nova-condensed-1,proxima-nova-condensed-2;
+      font-size: 18px;
+      color: #454343;
+      font-style: italic;
+      float: left;
+      padding-bottom: 18px;
+    }
+
+    .field_wrapper {
+      float: left;
+      width: $field-wrapper-width;
+      min-height: 45px;
+      margin-bottom: 1px;
+      position: relative;
+      &.email {
+        float: none;
+      }
+      &.comment {
+        clear: both;
+        width: $large-field-wrapper-width;
+      }
+      label {
+        visibility: hidden;
+        font-style: italic;
+        color: #777;
+        display: block;
+        &.simple-label {
+          visibility: visible;
+          display: inline-block;
+        }
+        &.cc-me {
+          vertical-align: super;
+        }
+        &.validation_message {
+          visibility: visible;
+          display: none;
+        }
+        &:hover {
+          cursor: default;
+        }
+      }
+    }
+
+    #required {
+      float: right;
+      font-size: 10px;
+      margin: 7px 22px 0px 0px;
+    }
+
+    #optin div {
+      width: 50%;
+      float: left;
+      color: #5e5e5e;
+    }
+
+    #optin {
+      position: absolute;
+      bottom: 21px;
+      left: 20px;
+      width: 206px;
+      font-size: 10px;
+    }
+
+    #action_submit {
+      position: absolute;
+      bottom: 21px;
+      right: 0px;
+      border: 0px solid black;
+      
+      @include member_action_submit($margin: 28px 22px 0px 0px);
+      &:hover {
+        @include member_action_button_hover;
+      }
+    }
+
+    #unsubscribe_submit{
+      @include member_action_submit($margin: 10px 20px 0 0);
+      &:hover {
+        @include member_action_button_hover;
+      }
+      border: 0px solid black;
+      float: left;
+    }
+  }
+  
+  #comments {
+    display: none;
+    border: 1px solid #F0F0F0;
+    margin: 22px 23px 25px 14px;
+    h4 {
+      height: 30px;
+      font-family: proxima-nova-condensed-1,proxima-nova-condensed-2;
+      font-size: 18px;
+      font-style: italic;
+      color: #797270;
+      font-weight: normal;
+      padding: 12px 0px 0px 20px;
+      text-transform: uppercase;
+    }
+    ul {
+      margin: 0px;
+    }
+    li {
+      list-style-type: none;
+      padding: 16px 20px 15px 20px;
+      color: #3d3d3d;
+      line-height: 1.5em;
+    }
+    li.even {
+      background-image: image-url("stripe_med.png");
+      background-repeat: repeat-x repeat-y;
+      border-top: 1px solid white;
+      border-bottom: 1px solid white;
+    }
+    li.odd {
+      background-image: image-url("stripe_light.png");
+      background-repeat: repeat-x repeat-y;
+      border-top: 1px solid #EFEFEF;
+      border-bottom: 1px solid #EFEFEF;
+    }
+    li .comment_wrapper {
+      float: left;
+      width: 322px;
+    }
+    li .flag {
+      float: left;
+      margin-right: 16px;
+    }
+    li .comment_wrapper p.member {
+      margin-left: 40px;
+    }
+  }
+  
+  .email_targets {
+    .targets-container {
+      width: 390px;
+      display: table;
+      margin-bottom: 10px;
+      $line-height-for-targets: 20px;
+
+      .target-emails-to {
+        font-family: proxima-nova-condensed-1,proxima-nova-condensed-2;
+        font-style: italic;
+        text-transform: uppercase;
+        font-size: 22px;
+        color: #545454;
+        line-height: $line-height-for-targets;
+        display: table-cell;
+        width: 50px;
+      }
+      .targets {
+        font-size: 14px;
+        line-height: $line-height-for-targets;
+        border-bottom: 1px solid rgba(black, 0.2);
+        padding: 0 0 1px 3px;
+        display: table-cell;
+      }
+    }
+
+    .field_wrapper.subject,
+    .field_wrapper.body,
+    .field_wrapper.email {
+      width: $large-field-wrapper-width;
+      clear: both;
+    }
+
+    .field_wrapper.email {
+      margin-top: 15px;
+    }
+
+    input#member_info_email,
+    input#action_info_subject {
+      width: $large-field-width;
+    }
+
+    textarea#action_info_body {
+      height: 90px;
+    }
+  }
+
+  #explanatory_text {
+    display: none;
+  }
+}
+
+#unsubscribe_form{
+  margin-left: 20px;
+
+  .email_label_text {
+    margin: 10px 0;
+  }
+
+  .changed_mind{
+    margin-top: 17px;
+    font-size: 10px;
+  }
+}
+
+.lt-ie9 {
+  .section_actions #action_form,
+  .section_donation_actions #new_donation {
+    input {
+      padding-left: 4px;
+      padding-top: 5px;
+      height: 18px;
+    }
+  }
+}

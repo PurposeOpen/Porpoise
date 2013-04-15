@@ -1,0 +1,64 @@
+<% show_all_required_fields = true unless local_assigns[:show_all_required_fields].nil? %>
+<% fields_group_classes = show_all_required_fields ? '' : 'toggleable_field hidden' %>
+<% fields_should_be_disabled = !show_all_required_fields %>
+
+<%= hidden_field_tag "t", params[:t] %>
+
+<div class="clear"></div>
+
+<%= labeled_field_group action_content, :email do |is_required| %>
+  <%= f.text_field :email, :type => 'email', :required => is_required, :title => t('validations.email_required'),
+      :data => { :validation => {
+        :messages => { :email => t('validations.email_invalid') }
+      }.to_json } %>
+  <%= f.label :email, t('fields.email') %>
+<% end %>
+
+<%= labeled_field_group action_content, :first_name, :class => fields_group_classes do |is_required| %>
+  <%= f.text_field :first_name, :disabled => fields_should_be_disabled, :title => "#{t('validations.first_name')}" %>
+  <%= f.label :first_name, t('fields.first_name') %>
+<% end %>
+
+<%= labeled_field_group action_content, :last_name, :class => fields_group_classes do |is_required| %>
+  <%= f.text_field :last_name, :disabled => fields_should_be_disabled, :title => "#{t('validations.last_name')}" %>
+  <%= f.label :last_name, t('fields.last_name') %>
+<% end %>
+
+<%= labeled_field_group action_content, :country, :class => fields_group_classes do |is_required| %>
+  <%= f.country_select 'country_iso', {:placeholder => t('fields.country')}, :class => "country-select", :disabled => fields_should_be_disabled, :title => "#{t('validations.country_required')}" %>
+<% end %>
+
+<%= labeled_field_group action_content, :postcode, :class => fields_group_classes do |is_required| %>
+  <%= f.text_field :postcode, :disabled => fields_should_be_disabled, :title => "#{t('validations.post_code_required')}" %>
+  <%= f.label :postcode, t('fields.zipcode') %>
+<% end %>
+
+<%= labeled_field_group action_content, :suburb, :class => fields_group_classes do |is_required| %>
+  <%= f.text_field :suburb, :disabled => fields_should_be_disabled %>
+  <%= f.label :suburb, t('fields.city') %>
+<% end %>
+
+<%= labeled_field_group action_content, :street_address, :class => fields_group_classes do |is_required| %>
+  <%= f.text_field :street_address, :disabled => fields_should_be_disabled %>
+  <%= f.label :street_address, t('fields.street_address') %>
+<% end %>
+
+<%= labeled_field_group action_content, :mobile_number, :class => fields_group_classes do |is_required| %>
+  <%= f.text_field :mobile_number, :type => 'tel', :pattern => '^[0-9\s\+\-\(\)]*$',
+      :disabled => fields_should_be_disabled,
+      :data => { :validation => {
+        :patternAttribute => true,
+        :messages => { :patternAttribute => t('validations.mobile_invalid') }
+      }.to_json } %>
+  <%= f.label :mobile_number, t('fields.mobile') %>
+<% end %>
+
+<%= labeled_field_group action_content, :home_number, :class => fields_group_classes do |is_required| %>
+  <%= f.text_field :home_number, :type => 'tel', :pattern => '^[0-9\s\+\-\(\)]*$',
+      :disabled => fields_should_be_disabled,
+      :data => { :validation => {
+        :patternAttribute => true,
+        :messages => { :patternAttribute => t('validations.mobile_invalid') }
+      }.to_json } %>
+  <%= f.label :home_number, t('fields.phone') %>
+<% end %>

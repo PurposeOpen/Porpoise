@@ -1,0 +1,19 @@
+<div id="<%= "#{@page.name.parameterize}-content-page" %>">
+  <%= render :partial => 'shared/social_links' %>
+
+  <% @page.header_content_modules.each do |header_module| %>
+    <%= header_module.title.try(:html_safe) %>
+    <%= header_module.content.try(:html_safe) %>
+  <% end %>
+
+  <% @page.main_content_modules.each do |main_module| %>
+    <%= main_module.title.try(:html_safe) %>
+    <%= main_module.content.try(:html_safe) %>
+    <div class="dark-stripe seperator">&nbsp;</div>
+  <% end %>
+
+  <% @page.sidebar_content_modules.each do |sidebar_module| %>
+    <%= sidebar_module.title.try(:html_safe) %>
+    <%= sidebar_module.content.try(:html_safe) %>
+  <% end %>
+</div>

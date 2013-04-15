@@ -1,0 +1,187 @@
+@import "../vars_and_mixins";
+
+/* Dropdown control */
+.selectBox-dropdown {
+	width: 210px; /* width = (desired width) - padding-right */
+	height: 28px;
+	padding-right: 40px;
+	position: relative;
+/*	border: solid 1px #BBB;*/
+	line-height: 1.5;
+	text-decoration: none;
+	color: $off_black;
+	outline: none;
+	vertical-align: middle;
+	background: white;
+/*	background: -moz-linear-gradient(top, #F8F8F8 1%, #E1E1E1 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #F8F8F8), color-stop(100%, #E1E1E1));
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F8F8F8', endColorstr='#E1E1E1', GradientType=0);*/
+	-moz-box-shadow: 0px 3px 4px rgba(0,0,0,0.12);
+	-webkit-box-shadow: 0px 3px 4px rgba(0,0,0,0.12);
+	box-shadow: 0px 3px 4px rgba(0,0,0,0.12);
+/*	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;*/
+	display: inline-block;
+	cursor: default;
+}
+
+#donation_amount .selectBox-dropdown,
+.section_donation_actions #new_donation .form_select.expiration_date .selectBox-dropdown,
+#card_types .selectBox-dropdown,
+#paypal_donation_popup .selectBox-dropdown {
+	-moz-box-shadow: 1px 2px 6px 2px rgba(0,0,0,0.12);
+	-webkit-box-shadow: 1px 2px 6px 2px rgba(0,0,0,0.12);
+	box-shadow: 1px 2px 6px 2px rgba(0,0,0,0.12);
+}
+
+.section_donation_actions #new_donation .form_select.expiration_date .selectBox-dropdown {
+	width: 50px;
+}
+
+.selectBox-dropdown:focus,
+.selectBox-dropdown:focus .selectBox-arrow {
+	border-color: #666;
+}
+
+.selectBox-dropdown.selectBox-menuShowing {
+	-moz-border-radius-bottomleft: 0;
+	-moz-border-radius-bottomright: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.selectBox-dropdown .selectBox-label {
+	width: 100%;
+	padding: 6px 6px;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+
+#new_donation #member_info .selectBox-dropdown .selectBox-label {
+	padding: 0.4em 0.6em;	
+}
+#donation_amount .selectBox-dropdown .selectBox-label,
+#card_types .selectBox-dropdown .selectBox-label {
+	padding: 0.4em 1em;
+}
+#new_donation .form_select.expiration_date .selectBox-dropdown .selectBox-label {
+	padding: 0.4em 2em;
+}
+
+.selectBox-dropdown .selectBox-arrow {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 23px;
+	height: 100%;
+	background: image-url('jquery.selectBox-arrow.gif') 50% center no-repeat;
+}
+
+
+/* Dropdown menu */
+.selectBox-dropdown-menu {
+	position: absolute;
+	z-index: 99999;
+	max-height: 200px;
+	/*border: solid 1px #BBB;*/ /* should be the same border width as .selectBox-dropdown */
+	background: #FFF;
+	-moz-box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+	-webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+	overflow: auto;
+}
+
+
+/* Inline control */
+.selectBox-inline {
+	width: 250px;
+	outline: none;
+	border: solid 1px #BBB;
+	background: #FFF;
+	display: inline-block;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	overflow: auto;
+}
+
+.selectBox-inline:focus {
+	border-color: #666;
+}
+
+
+/* Options */
+.selectBox-options,
+.selectBox-options LI,
+.selectBox-options LI A {
+	list-style: none;
+	display: block;
+	cursor: default;
+	padding: 0;
+	margin: 0;
+}
+
+.selectBox-options LI A {
+	line-height: 1.5;
+	padding: 0 .5em;
+	white-space: nowrap;
+	overflow: hidden;
+	background: 6px center no-repeat;
+}
+
+.selectBox-options LI.selectBox-hover A {
+	background-color: #EEE;
+}
+
+.selectBox-options LI.selectBox-disabled A {
+	color: #888;
+	background-color: transparent;
+}
+
+.selectBox-options LI.selectBox-selected A {
+	background-color: #C8DEF4;
+}
+
+.selectBox-options .selectBox-optgroup {
+	color: #666;
+	background: #EEE;
+	font-weight: bold;
+	line-height: 1.5;
+	padding: 0 .3em;
+	white-space: nowrap;
+}
+
+
+/* Disabled state */
+.selectBox.selectBox-disabled {
+	color: #888 !important;
+}
+
+.selectBox-dropdown.selectBox-disabled .selectBox-arrow {
+	opacity: .5;
+	filter: alpha(opacity=50);
+	border-color: #666;
+}
+
+.selectBox-inline.selectBox-disabled {
+	color: #888 !important;
+}
+
+.selectBox-inline.selectBox-disabled .selectBox-options A {
+	background-color: transparent !important;
+}
+
+
+/* IE */
+.lt-ie9 .selectBox-dropdown,
+.lt-ie9 .selectBox-options {
+	border: solid 1px #BBB;
+}
+.lt-ie9 .selectBox-dropdown {
+	height: 26px;
+}

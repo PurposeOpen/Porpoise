@@ -1,0 +1,122 @@
+/*
+** Languauges
+*/
+#languages {
+  clear: both;
+  height: 20px;
+  min-width: 990px;
+  font-size: 12px;
+}
+
+#languages ul {
+  background: #2e2e2e;
+  float: right;
+  list-style-type: none;
+  margin: 0;
+  padding: 3px 0 3px 0;
+  /*height: 20px;*/
+/*  margin-right: 25px;*/
+  text-transform: uppercase;
+  box-shadow: -3px 3px 7px 2px rgba(0,0,0,0.35);
+  -moz-box-shadow: -3px 3px 7px 2px rgba(0,0,0,0.35);
+  -webkit-box-shadow: -3px 3px 7px 2px rgba(0,0,0,0.35);
+}
+
+#languages ul li {
+  color: #ffba00;
+  font-weight: normal;
+  display: inline;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#languages ul li.languages_spacer {
+  padding-left: 0px;
+  padding-right: 0px;
+  color: #ffffff;
+}
+
+#languages ul li.languages_left_spacer {
+  /*background: #ec2955;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 4px;
+  padding-right: 0px;*/
+}
+
+#languages ul li a {
+  color: #ffffff;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+#languages ul li:hover,
+#languages ul li a:hover {
+  color: #ffba00;
+}
+
+/*
+** Logo
+*/
+
+#logo {
+  float: left;
+}
+
+/*
+** Menu
+*/
+header nav {
+  background-image: image-url('nav_bknd.png');
+  background-repeat: repeat-x;
+  padding: 26px 0px;
+  height: 92px;
+  min-width: 990px;
+}
+
+header nav ul {
+  float: right;
+  list-style-type: none;
+  height: 42px;
+}
+
+header nav ul li {
+  float: left;
+	height: 40px;
+	border-right: 1px solid #646464;
+}
+
+header nav ul li a,
+header nav ul li a:visited {
+  background-image: image-url('nav_mid.png');
+  background-repeat: repeat-x;
+  display: block;
+  height: 20px;
+  padding: 10px 15px;
+  color: white;
+  font-family: "league-gothic-1","league-gothic-2",sans-serif;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 20px;
+}
+
+header nav ul li a:hover {
+  background-image: image-url('nav_mid.png');
+  background-position:   0px -42px;
+  color: #eb2954;
+}
+
+header nav ul li a:active,
+header nav ul li a.active {
+  color: #fdc53d;
+}
+
+
+header nav ul li.donate {
+  background-image: image-url('nav_donate_start.png');
+}
+
+header nav ul li.donate a {
+  background-image: image-url('nav_donate_mid.png');
+}

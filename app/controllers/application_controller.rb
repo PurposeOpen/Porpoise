@@ -1,0 +1,3 @@
+class ApplicationController < PorpoiseApplicationController
+
+end

@@ -1,0 +1,6 @@
+<div id="goal_ask">
+  <%= raw t(message,
+            :counter => number_with_delimiter(counter, :locale => I18n.locale),
+            :goal => number_with_delimiter(goal, :locale => I18n.locale),
+            :scope => "action_taken.#{action_module}") %>
+</div>

@@ -1,0 +1,43 @@
+/**
+ * Home page twitter 
+ **/
+#twitter h3 a {
+  font-family: "league-gothic-1","league-gothic-2",sans-serif;
+  font-size: 28px; 
+  color: #eb2954;
+  padding: 14px 0px 12px 18px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#twitter h3 a:hover {
+	color: #F55175;
+}
+
+#twitter ul {
+	min-height: 54px;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 60px;
+  background-image: image-url("icon_twitter_main.png");
+  background-repeat: no-repeat;
+  background-position: 5px 5px;
+  margin: 10px;
+}
+
+#twitter a.follow {
+  font-family: "league-gothic-1","league-gothic-2",sans-serif;
+  font-size: 18px; 
+  color: #eb2954;
+  font-style: italic; 
+  text-transform: uppercase;
+  text-decoration: none;
+  display: block;
+  clear: both;
+  text-align: right;
+  padding: 10px 20px;
+}
+
+#twitter a.follow:hover{
+	color: #F55175;
+}

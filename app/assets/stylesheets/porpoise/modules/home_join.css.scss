@@ -1,0 +1,68 @@
+@import "../vars_and_mixins";
+
+#homepage_join {
+	p {
+  	font-size: 18px;
+		strong {
+		  font-size: 20px;
+		  text-transform: uppercase;
+		}
+	}
+	
+	.form {
+		#remote_join {
+      float: right;
+			margin-bottom: 10px;
+			margin-right: 15px;
+			@include label_overlay;
+			label.field_name {
+				font-size: 16px;
+			}
+			input[type=email],
+			input[type=text] {
+			  width: 263px;
+			  height: 36px;
+				padding-left: 7px;
+				line-height: 36px;
+			  font-size: 16px;
+			  border: 1px solid #eb2954;
+			  background: rgb(234,234,234);
+			  background: -moz-linear-gradient(top, rgba(234,234,234,1) 0%, rgba(255,255,255,1) 25%);
+			  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(234,234,234,1)), color-stop(25%,rgba(255,255,255,1)));
+			  background: -webkit-linear-gradient(top, rgba(234,234,234,1) 0%,rgba(255,255,255,1) 25%);
+			  background: -o-linear-gradient(top, rgba(234,234,234,1) 0%,rgba(255,255,255,1) 25%);
+			  background: -ms-linear-gradient(top, rgba(234,234,234,1) 0%,rgba(255,255,255,1) 25%);
+			  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#ffffff',GradientType=0 );
+			  background: linear-gradient(top, rgba(234,234,234,1) 0%,rgba(255,255,255,1) 25%);
+			}
+			input[type=submit] {
+			  @include pink_button;
+			  border-radius: auto;
+  			border-top-right-radius: 2px;
+  			border-bottom-right-radius: 2px;
+			}
+			span.error {
+				display: block;
+				color: $movement-error-color;
+			}
+		}
+	}
+}
+
+.ie7 #homepage_join .form #remote_join {
+	label.field_name {
+		top: 2px;
+		left: 53px;
+		padding-right: 2px;
+	}
+}
+
+.ie8,
+.ie9 {
+	#homepage_join .form #remote_join {
+		label.field_name {
+			left: 51px;
+		}
+	}
+}
+

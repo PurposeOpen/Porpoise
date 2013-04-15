@@ -1,0 +1,214 @@
+# Sample localization file for French. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+fr:
+  or: OU
+  please_wait: Please wait...
+  languages:
+    english: English
+    spanish: Español
+    french: Français
+    portuguese-brazil: Português
+  home: "Accueil"
+  follow_us: 'Suivez-nous'
+  have_joined_the_movement: '<span style="font-size:15px">font partie du mouvement</span>'
+  page_not_available: "<p>This petition is not available in your language.</p><p>Check out the <a href='/fr'>home page</a> for other ways to act."
+  links:
+    facebook: '//www.facebook.com/testmovementFR'
+    twitter: '//twitter.com/#!/testmovement_fr'
+    youtube: '//www.youtube.com/user/testmovementorg'
+  fields:
+    first_name: 'Prénom'
+    last_name: 'Nom'
+    full_name: 'Prénom et Nom'
+    email: 'Email'
+    country: 'Pays'
+    phone: 'Téléphone'
+    zipcode: 'Code postal'
+    comment: 'Commentaire'
+  petitions:
+    character_counter:
+      200_characters: '200 caractères'
+      one_character_warning: "Plus qu'un caractère !"
+      over_character_limit: 'Les commentaires ne doivent pas dépasser 200 caractères !'
+    show_join:
+      have_joined: '<span style="font-size:15px">font partie</span>'
+      the_movement: '<span style="font-size:15px">du mouvement</span>'
+      required_fields: 'champs obligatoires'
+      join_comment_label: "Dites-nous pourquoi vous rejoignez All Out (optionnel)"
+      optin: 'testmovement.org protége votre vie <a href="/fr/privacy" target="_blank">vie privée</a> et vous tiendra au courant des suites de cette campagne ainsi que des nouveaux appels'
+    show:
+      help_reach_goal: 'Aidez-nous à atteindre les %{goal} signatures'
+      optin: 'testmovement.org protége votre vie <a href="/fr/privacy" target="_blank">vie privée</a> et vous tiendra au courant des suites de cette campagne ainsi que des nouveaux appels'
+      comment_description: "%{name}, %{country}, il y a  %{time}"
+      goal: 'OBJECTIF'
+      people_support_this_campaign: '%{number_of_member_actions} personnes soutiennent cette action.'
+      help_us_get_to: 'Aidez-nous à atteindre les %{goal} personnes.'
+      sign_the_petition: 'SIGNEZ LA PÉTITION'
+      required_fields: 'CHAMPS OBLIGATOIRES'
+  actions:
+    comments_feed:
+      why_taking: 'Ce que disent les membres'
+      from: 'de'
+    show:
+      taf:
+        fb_button_text: 'Partager'
+        fb_button_title: 'Facebook'
+        twitter_button_text: 'Tweeter'
+        twitter_button_title: 'Twitter'
+        email_button_text: 'Envoyez par e-mail'
+        email_button_title: 'E-mail'
+    email_targets:
+      to: "À :"
+      subject: "Objet"
+      body: "Message :"
+      send_me_a_copy: "Envoyez-moi une copie de ce message :"
+    donations:
+      donation_message: 'Don de %{amount} à %{movement_name} :'
+      monthly_donation_message: 'Mensuel don de %{amount} à %{movement_name}.'
+      donation_amount: 'Montant'
+      payment: 'Paiement'
+      suggested_amount_other: 'Autre'
+      name_on_card: 'Nom du titulaire de la carte de crédit'
+      card_number: 'Numéro de carte de crédit'
+      card_type: 'Type de carte'
+      expiration_date: "Date d'expiration"
+      card_cvv2: 'Code de sécurité'
+      cvv2_hint: '3 ou 4 chiffres au dos de votre carte'
+      pay_through_paypal_express: Faire un don via
+      interstitial_form_header: 'On y est presque !'
+      interstitial_form_body: "Cliquez sur le bouton pour faire votre don. Veuillez patienter quelques secondes pour que votre paiement soit envoyé. <br/>Vous serez redirigé automatiquement."
+      interstitial_header: "Veuillez patienter …"
+      interstitial_body: "Merci de votre don à All Out ! <br/>Vous allez être redirigé."
+      cancel: "Annuler"
+      year: 'AA'
+      month: 'MM'
+      currencies:
+        eur: 'Euros (EUR)'
+        gbp: 'Livres sterlings (GBP)'
+        usd: 'Dollars américains (USD)'
+        cad: 'Dollars canadiens (CAD)'
+        aud: 'Dollars australiens (AUD)'
+        brl: 'Reais (BRL)'
+        jpy: "Japon - Yen (JPY)"
+        nzd: "Nouvelle-Zélande - Dollar néo-zélandais (NZD)"
+        chf: "Suisse - Franc suisse (CHF)"
+        hkd: "Hong Kong - Dollar de Hong Kong (HKD)"
+        sgd: "Singapour - Dollar de Singapour (SGD)"
+        sek: "Suède - Couronne suédoise (SEK)"
+        dkk: "Danemark - Couronne danoise (DKK)"
+        pln: "Pologne - Zloty (PLN)"
+        nok: "Norvège - Couronne norvégienne (NOK)"
+        huf: "Hongrie - Forint (HUF)"
+        czk: "République tchèque - Couronne tchèque (CZK)"
+        ils: "Israël - Shekel (ILS)"
+        mxn: "Mexique - Peso mexicain (MXN)"
+        myr: "Malaisie - Ringgit (MYR)"
+        php: "Philippines - Peso philippin (PHP)"
+        twd: "Taïwan - Dollar de Taïwan (TWD)"
+        thb: "Thaïlande - Baht (THB)"
+        try: "Turquie - Livre turque (TRY)"
+  pages:
+    index:
+      join_us: 'Rejoignez-nous'
+      take_action: "Passez à l'action >"
+      action_member: '%{name}, %{country}'
+      action_join:  'font partie du mouvement'
+      action_signed: 'a signé %{petition}'
+      action_ago: 'il y a %{time}'
+      twitter_account: 'testmovement_fr'
+    about:
+      about: "À propos"
+      fact_1:
+        top: "Dans"
+        number: "76"
+        right: "pays, être LGBT est un crime"
+      fact_2:
+        top: "Dans"
+        number: '10'
+        right: "être gay est passible d'emprisonnement ou de la peine de mort"
+      fact_3:
+        top: "Toutes les"
+        number: "16"
+        right: "heures, une personne transgenre est assassinée"
+      fact_4:
+        top: "Seuls"
+        number: '10'
+        right: "pays au monde autorisent le mariage gay"
+      why_go_testmovement: "POURQUOI MAINTENANT"
+      read_more: "Lire la suite"
+      what_we_do: 'CE QUE NOUS FAISONS'
+      our_campaigns: "Nos campagnes"
+      press_releases: "Communiqués de presse"
+      back_to_top: "Revenir en haut"
+    partners:
+      partners: "Partenaires"
+      featured_partners: "Partenaires en vedette"
+      other_partners: "Partenaires Mondiaux"
+  layouts:
+    application:
+      contact_us: 'Contactez-nous'
+      about: 'À propos'
+      privacy: 'Politique de confidentialité'
+      jobs: 'Emplois'
+      partners: 'Partenaires'
+      campaigns: 'Campagnes'
+      donate: 'Donations'
+  validations:
+    first_name: "Merci d'indiquer votre prénom"
+    last_name: "Merci d'indiquer votre nom"
+    email_required: "Merci d'indiquer votre email"
+    email_invalid: "Cet email n'est pas valide"
+    country_required: "Merci d'indiquer votre pays"
+    post_code_required: "Merci d'indiquer votre code postal"
+    currency_required: "Merci d'indiquer la devise de votre choix"
+    amount_required: "Merci d'indiquer un montant"
+    name_on_card_required: "Merci d'indiquer le nom du titulaire de la carte de crédit"
+    card_type_required: "Merci d'indiquer le type de carte utilisé"
+    card_number_required: "Merci de fournir votre numéro de carte"
+    card_number_invalid: "Le numéro de votre carte est invalide"
+    cvv2_required: "Merci d'indiquer le code de sécurité"
+    cvv2_not_a_number: "Le code de sécurité pour votre carte n'est pas un nombre"
+    cc_month_required: "Merci d'indiquer le mois"
+    cc_year_required: "Merci d'indiquer l'année"
+    characters_left: "caractères restants"
+    email_subject_required: "Merci de préciser l'objet"
+    email_body_required: "L'email est vide !"
+  errors:
+    duplicate_action_taken_error: "Toutes nos excuses ! Il semble que vous avez déjà fait cette action."
+    credit_card_donation_error: "Une erreur s'est produite et votre don n'a pas été fait : merci de vérifier vos informations de carte bancaire et d'essayer à nouveau."
+    paypal_initialization_error: "Une erreur s'est produite lors de la transaction avec Paypal et votre don n'a pas été fait : merci d'essayer à nouveau."
+    donation_information_error: "Une erreur s'est produite et votre don n'a pas été fait : merci de vérifier vos informations et d'essayer à nouveau."
+  action_taken:
+    PetitionModule:
+      message_before_threshold_reached: "Help us reach our goal of %{goal}"
+      steps_taken: '%{counter} people support this campaign. Help us get to %{goal}'
+      goal_reached: '%{counter} petitions signed. Thank you for your support'
+      goal: 'GOAL'
+    EmailTargetsModule:
+      message_before_threshold_reached: "Help us reach our goal of %{goal}"
+      steps_taken: '%{counter} people have sent emails. Help us get to %{goal}'
+      goal_reached: '%{counter} people have sent emails. Thank you for your support'
+      goal: 'GOAL'
+    DonationModule:
+      message_before_threshold_reached: "Help us reach %{goal}"
+      steps_taken: 'Help us reach %{goal}'
+      goal_reached: ''
+      goal: 'GOAL'
+    NonTaxDeductibleDonationModule:
+      message_before_threshold_reached: "Help us reach %{goal}"
+      steps_taken: 'Help us reach %{goal}'
+      goal_reached: ''
+      goal: 'GOAL'
+    TaxDeductibleDonationModule:
+      message_before_threshold_reached: "Help us reach %{goal}"
+      steps_taken: 'Help us reach %{goal}'
+      goal_reached: ''
+      goal: 'GOAL'
+  number:
+    format:
+      delimiter: .
+      precision: 3
+      separator: ! ','
+      significant: false
+      strip_insignificant_zeros: false

@@ -1,0 +1,245 @@
+@import "../vars_and_mixins";
+
+/*
+** Carousel
+*/
+
+
+#header_bg {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  z-index: -3;
+  height: 730px;
+	min-width: 990px;
+}
+
+#default_bg {
+  background-image: image-url("header_agora.jpg");
+  height: 300px;
+}
+
+#header_mask {
+  position: absolute;
+  top: 50px;
+  height: 300px;
+  right: 0px;
+  left: 0px;
+  background-image: image-url("bg_angle.png");
+  background-position: 50% 0%;
+  z-index: -2;
+	min-width: 990px;
+}
+
+/* mask is lower on home page */
+body.section_home.action_index #header_mask {
+  top: 430px;
+}
+
+#carousel {
+  height: 730px;
+}
+
+#carousel .item {
+  height: 730px;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+	display: none;
+}
+
+#carousel .item .bg_wrapper {
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  height: 730px;
+  min-width: 960px;
+	overflow: hidden;
+}
+
+#carousel .item .bg {
+  height: 730px;
+  min-width: 1088px;
+	overflow: hidden;
+}
+
+#default_bg {
+  min-width: 960px;
+}
+
+#callout_boxes .item {
+	display: none;
+}
+
+#callout_boxes .item .callout {
+  position: absolute;
+  bottom: 131px;
+  left: 580px;
+  width: 328px;
+  height: 243px;
+  color: white;
+  background-image: image-url("mod_slideshow.png");
+	z-index: 1000;
+}
+
+#callout_boxes .item .callout .title {
+  margin-top: 20px;
+	width: 396px;
+}
+
+#callout_boxes .item .callout .title a {
+  font-size: 38px;
+  font-family: "league-gothic-1","league-gothic-2",sans-serif;
+  letter-spacing: 2px;
+  font-weight: normal;
+  text-transform: uppercase;
+  color: white;
+	text-decoration: none;
+}
+
+#callout_boxes .item .callout .title a span {
+  display: inline-block;
+  background-image: image-url("slideshow_title_mid.png");
+	background-repeat: repeat-x;
+	background-color: transparent;
+	height: 54px;
+  margin-bottom: -4px;
+  padding: 4px 14px 0px 13px;
+}
+
+#callout_boxes .item .callout .title span.line1 {
+  left: -20px;
+}
+
+#callout_boxes .item .callout .title span.line1,
+#callout_boxes .item .callout .title span.line2 {
+  position: relative;
+}
+
+#callout_boxes .item .callout .title span.line2 {
+  left: 22px;
+	top: 4px;
+}
+
+#callout_boxes .item .callout .title span.start {
+  margin: 0;
+  padding: 0;
+  width: 10px;
+  height: 54px;
+  background-image: image-url("slideshow_title_start.png");
+  background-color: transparent;
+  position: absolute;
+  left: -10px;
+  top: 0px;
+}
+
+#callout_boxes .item .callout .title span.end {
+  margin: 0;
+  padding: 0;
+  width: 17px;
+  height: 54px;
+  background-image: image-url("slideshow_title_end.png");
+  background-color: transparent;
+  position: absolute;
+  right: -17px;
+  top: 0px;
+}
+
+#callout_boxes .item .callout .description {
+  padding: 11px 22px;
+  font-size: 14px;
+  height: 74px;
+}
+
+#callout_boxes .item .callout .action {
+	position: absolute;
+	top: 212px;
+	text-align: center;
+	z-index: 10000;
+	width: 100%;
+}
+
+#callout_boxes .item .callout .action .callout_button_text {
+	margin-top: -6px;
+}
+
+#carousel_control_holder {
+	position: absolute;
+	top: -77px;
+	right: 15px;
+	z-index: 999999;
+}
+
+#carousel_controls {
+	float: right;
+}
+
+#carousel_controls #previous {
+	background-image: image-url("slideshow_previous.png");
+	height: 36px;
+	width: 30px;
+	float: left;
+}
+
+#carousel_controls #next {
+	background-image: image-url("slideshow_next.png");
+	height: 36px;
+	width: 30px;
+	float: left;
+}
+
+#carousel_controls .control {
+	background-image: image-url("slideshow_dot.png");
+	height: 32px;
+	width: 32px;
+	float: left;
+	margin-top: 3px;
+}
+
+
+.clean-shadow {
+    text-shadow: 10px 10px 10px rgba(0,0,0,0.3);
+}
+
+.clean-box-shadow {
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.35);
+    -moz-box-shadow: 5px 5px 0px rgba(0,0,0,0.35);
+    -webkit-box-shadow: 5px 5px 0px rgba(0,0,0,0.35);
+}
+
+.soft-shadow {
+    text-shadow: 0px 4px 5px rgba(0,0,0,0.75);
+}
+
+.soft-box-shadow {
+  @include soft_box_shadow();
+}
+
+
+#callout_boxes .item .callout .action a {
+  display: inline-block;
+  text-transform: uppercase;
+  font-family: "league-gothic-1","league-gothic-2",sans-serif;
+  font-size: 32px;
+  font-style: italic;
+	letter-spacing: 1px;
+  text-decoration: none;
+  color: white;
+  background-image: image-url("bttn_mid.png");
+  background-repeat: repeat-x;
+  background-position: top left;
+  height: 21px;
+  /*width: 168px;*/
+  margin-top: 9px;
+  padding: 10px 20px 10px 15px;
+  border: 1px solid #e12a53;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+
+#callout_boxes .item .callout .action a:hover {
+  background-position: 0px -41px;
+}

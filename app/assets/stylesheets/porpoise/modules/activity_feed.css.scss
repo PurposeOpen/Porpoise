@@ -1,0 +1,52 @@
+/**
+ * Recent member actions
+ **/
+ul#recent_actions {
+  list-style-type: none;
+  margin: 0;
+	height: 340px;
+	overflow: hidden;
+}
+
+ul#recent_actions li {
+  padding: 8px 10px;
+  font-size: 11px;
+  height: 52px;
+}
+
+ul#recent_actions li .summary {
+  padding-left: 5px;
+  .timestamp {
+    padding: 0;
+  }
+}
+
+ul#recent_actions li .flag {
+  float: left;
+  margin: 10px 10px 10px 0px;
+}
+
+ul#recent_actions li a {
+  color: #eb2954;
+	text-decoration: none;
+}
+
+ul#recent_actions li.generated {
+	display:none;
+}
+
+ul#recent_actions li.bg-med-stripe {
+	background-image: image-url("stripe_med.png");
+	background-repeat: repeat-both;
+}
+
+/*
+** Animated comment feed
+*/
+
+#comments li.visible {
+	display: list-item;
+}
+#comments div.comments {
+	overflow: hidden;
+}

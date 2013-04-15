@@ -1,0 +1,70 @@
+<!--[if IE 7 ]> <style type="text/css">
+#about_belowfold_wrapper .description a.more div .down_arrow { display: inline; }
+div a.top div.up_arrow { display: inline; }
+</style> <![endif]-->
+
+<%= render :partial => 'shared/social_links' %>
+
+<div id="about-wrapper" class="grid_12 soft-box-shadow">
+  <a name='top' id="top"></a>
+  <div class="breadcrumbs grid_12">
+    <a href=<%= "/?locale=#{I18n.locale}" %>>Home</a> /
+    <span id='current'>About</span>
+  </div>
+  <div class="clear"></div>
+  <div id="join-video" class="grid_7 alpha">
+    <iframe width="560" height="315" src= "//www.youtube.com/embed/Q9KTIkuh6Dw" frameborder="0" allowfullscreen=""></iframe>
+  </div>
+  <div id="join-caption" class="grid_5 omega">
+    <div class="counter_text"><%= raw @movement.banner_text %></div>
+    <div class="clear"></div>
+    <div class="dark-stripe-thin"></div>
+    <div class="clear"></div>
+    <div id="about_join" class="grid_5">
+      <div id='join_message'>
+        <% @page.header_content_modules.each do |header_module| %>
+          <%= header_module.title.try(:html_safe) %>
+          <%= header_module.content.try(:html_safe) %>
+        <% end %>
+      </div>
+      <div class="clear"></div>
+      <%= render :partial => "members/join_movement_form" %>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="dark-stripe grid_12 alpha"></div>
+</div>
+
+<% @page.main_content_modules.each do |main_module| %>
+  <%= main_module.title.try(:html_safe) %>
+  <%= main_module.content.try(:html_safe) %>
+<% end %>
+
+<% if @page.featured_contents.attributes["PressReleases"].present? %>
+  <div id='press_releases' class='grid_12 soft-box-shadow'>
+    <a name='press'></a>
+    <h2>Press Releases</h2>
+    <div class='dark-stripe'></div>
+    <div id='collection'>
+      <% @page.featured_contents.attributes["PressReleases"].each_with_index do |press_release, index| %>
+        <div class='release'>
+          <a href='#' class="accordion"><div class="expand_button <%= (index == 0) ? 'close' : 'expand' %>"></div></a>
+          <h3>
+            <div class='dateline'><%= press_release.date.to_date.to_s %> &nbsp; |</div>
+            <div class='title'><%= link_to press_release.title, '#' %></div>
+          </h3>
+          <div class='clear'></div>
+          <div class="release_body <%= 'hidden_initially' unless index == 0 %>">
+            <p><%= press_release.description.html_safe %></p>
+            <p><a href="<%= press_release.url %>"><%= press_release.button_text %></a></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% @page.sidebar_content_modules.each do |sidebar_module| %>
+  <%= sidebar_module.title.try(:html_safe) %>
+  <%= sidebar_module.content.try(:html_safe) %>
+<% end %>

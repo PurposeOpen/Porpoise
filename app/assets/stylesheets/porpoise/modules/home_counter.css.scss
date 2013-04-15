@@ -1,0 +1,22 @@
+/*
+** Home page counter
+*/
+#activity .member_count {
+  display: block;
+  font-style: normal;
+  font-size: 68px;
+  font-family: "league-gothic-1","league-gothic-2",sans-serif;
+  text-align: center;
+  color: #5d5d5d;
+  text-shadow: 0px -1px 0px #bbbbbb;
+  margin-top: 15px;
+}
+
+#activity .counter_text {
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: center;
+  color: #7d7d7d;
+  font-size: 14px;
+  margin-bottom: 24px;
+}

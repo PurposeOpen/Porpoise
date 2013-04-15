@@ -1,0 +1,56 @@
+/*
+** Footer
+*/
+
+footer {
+  background-color: #4b4b4b;
+  clear: both;
+  color: #9f9d9d;
+  padding: 15px 0px;
+  font-size: 16px;
+  font-family: proxima-nova-condensed-1, proxima-nova-condensed-2;
+	margin-top: 50px;
+	min-width: 990px;
+}
+
+footer nav ul li {
+  display: inline; 
+  border-right: 1px solid #fff;
+  padding: 0px 18px;
+}
+
+footer nav ul li.first {
+  padding-left: 0px;
+}
+
+footer nav ul li.last {
+  border: none;
+}
+
+footer nav ul li a,
+footer nav ul li a:visited
+{
+  color: white;
+  text-decoration: none;
+}
+
+footer nav ul li a:hover {
+  color: #9f9d9d;
+}
+
+html, body {
+  height: 100%;
+}
+.wrapper {
+  min-height: 778px;
+  height: auto !important;
+  height: 778px;
+  margin: 0 auto -4em;
+}
+.push {
+  height: 4em;
+}
+
+.additional_footer div{
+  margin: 10px 0 10px 0;
+}

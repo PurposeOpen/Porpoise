@@ -1,0 +1,197 @@
+/*
+** Actions/Donations
+*/
+@import "../vars_and_mixins";
+
+.section_actions {
+
+  #header_container {
+    min-height: 57px;
+    padding: 20px 0px 0px 20px;
+  }
+
+  #main_and_side_wrapper {
+    @include clearfix;
+    border-top: 1px solid #E5E3E2;
+  }
+
+  $main_module_width: 470px;
+  $main_module_margin_left: 20px;
+
+  .main_module {
+    img {
+      margin-left: -($main_module_margin_left);
+    }
+
+    $media_caption_padding: 13px;
+    .media_caption {
+      width: $main_module_width - 2 * $media_caption_padding;
+      background-image: image-url("stripe_med.png");
+      background-repeat: repeat-x repeat-y;
+      padding: 4px $media_caption_padding 4px $media_caption_padding;
+      margin: -3px 0 25px;
+      margin-left: -($main_module_margin_left);
+      font-size: 10px;
+    }
+    .main_module_content {
+      margin: 0 10px 20px $main_module_margin_left;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+
+
+.section_actions header nav ul,
+.section_tafs header nav ul,
+.section_donation_actions header nav ul {
+  display: none;
+}
+
+.section_actions h1,
+#petition_taf_header h1,
+.section_donation_actions h1 {
+  @include clearfix;
+  background: #F4F4F4;
+  font-family: "league-gothic-1","league-gothic-2",sans-serif;
+  font-size: 32px;
+  font-style: italic;
+  font-weight: normal;
+  text-transform: uppercase;
+  color: #eb2954;
+  position: relative;
+}
+.section_actions h1 span,
+#petition_taf_header h1 span,
+.section_donation_actions h1 span {
+  margin-left: 9px;
+}
+.section_actions h1 div,
+#petition_taf_header h1 div,
+.section_donation_actions h1 div {
+  position: absolute;
+  bottom: 8px;
+  width: 928px;
+}
+
+.section_actions section.grid_12,
+.section_donation_actions section.grid_12,
+.petition_taf {
+  background: white;
+  padding-bottom: 50px;
+  margin-bottom: 50px;
+}
+
+#petition_counter {
+  padding: 0px 10px 10px 20px;
+  margin-bottom: 12px;
+  color: white;
+  font-size: 18px;
+  position: relative;
+  clear: both;
+
+  #a_start{
+    background-image: image-url("counter_A_start.png");
+    width:10px;
+    height: 34px;
+    float: left;
+    position: relative;
+    z-index: 999;
+  }
+
+  #a_mid{
+    background-image: image-url("counter_A_mid.png");
+    height: 31px;
+    padding: 3px 0px 0px 0px;
+    float: left;
+    text-align: right;
+    position: relative;
+    z-index: 999;
+  }
+  #joint{
+    background-image: image-url("counter_joint.png");
+    width:10px;
+    height: 34px;
+    float: left;
+    position: relative;
+    z-index: 999;
+  }
+  #b_mid{
+    background-image: image-url("counter_B_mid.png");
+    height: 34px;
+    position: absolute;
+    z-index: 1;
+    left: 20px;
+    width: 431px;
+  }
+  #b_end{
+    background-image: image-url("counter_B_end.png");
+    width:10px;
+    height: 34px;
+    position: absolute;
+    left: 450px;
+    z-index: 1;
+  }
+  #goal {
+    color: #5F5F5F;
+    position: absolute;
+    font-size: 9px;
+    right: 10px;
+    top: 37px;
+  }
+}
+#goal_ask {
+  margin: 15px 0px 32px 20px;
+  font-size: 18px;
+  font-family: proxima-nova-condensed-1,proxima-nova-condensed-2;
+  color: #595959;
+}
+.section_actions section.description,
+.section_donation_actions section.description,
+.petition_taf section.description {
+  color: #444;
+  margin: 0px 10px 20px 20px;
+}
+.section_actions section.action,
+.section_donation_actions section.action {
+  color: #595959;
+  font-size: 14px;
+  margin: 18px 23px 0px 14px;
+  padding: 20px;
+  border: 1px solid #F0F0F0;
+}
+
+.action_form_wrapper h2,
+.section_actions section.action h2,
+.section_donation_actions section.action h2 {
+  font-family: proxima-nova-condensed-1,proxima-nova-condensed-2;
+  font-size: 22px;
+  text-transform: uppercase;
+  font-style: italic;
+  color: #545454;
+  margin-bottom: 15px;
+}
+.section_actions section.action h2 em,
+.section_donation_actions section.action h2 em {
+  font-style: italic;
+}
+
+#disabled_content {
+  background-image: image-url("stripe_med.png");
+  background-repeat: repeat-x repeat-y;
+  font-family: proxima-nova-condensed-1,proxima-nova-condensed-2;
+  font-size: 21px;
+  font-style: italic;
+  text-transform: uppercase;
+  border: 1px solid #E9718D;
+  margin: 22px 23px 25px 14px;
+  padding: 16px 20px 15px 20px;
+}
+
+div#striped{
+  background-image: image-url("stripe_med.png");
+  background-color: #F1F1F1;
+}
+

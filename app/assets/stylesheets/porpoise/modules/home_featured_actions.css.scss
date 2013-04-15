@@ -1,0 +1,222 @@
+#featured .action {
+  position: relative;
+  margin-bottom: 13px;
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 396px;
+    background-image: image-url("stripe_dark_thin.png");
+    background-repeat: repeat-x;
+    height: 2px;
+  }
+
+  &:first-child:before {
+    display: none;
+  }
+
+  figure.image {
+    float: left;
+    background-image: image-url("stripe_med.png");
+    
+    img {
+      height: 175px;
+      width: 311px;
+    }
+
+    figcaption {
+      padding: 5px;
+      font-size: 10px;
+      color: #444;
+    }
+  }
+  
+  .excerpt {
+    float: right;
+    width: 326px;
+    padding: 20px 40px 30px 30px;
+    font-size: 14px;
+    color: #444;
+
+    p.description {
+      padding: 0;
+    }
+
+    h1.title {
+      font-size: 28px;
+      font-family: "league-gothic-1","league-gothic-2",sans-serif;
+      font-weight: normal;
+      text-transform: uppercase;
+      position: relative;
+      left: -57px;
+      
+      span {
+        display: inline-block;
+        background-color: #E5F6F7;
+        margin-bottom: 12px;  
+        padding: 1px 10px 0 12px;
+        height: 32px;
+        line-height: 33px;
+        position: relative;
+        &:first-child {
+          left: -14px;
+          top: 4px;
+        }
+        &:after {
+          content: "";
+          display: block;
+          background-image: image-url("hp_campaign_angle.png");
+          width: 13px;
+          height: 33px;
+          position: absolute;
+          top: 0px;
+          right: -13px;
+        }
+      }
+      
+      a {
+        color: #00c0ca;
+        text-decoration: none;
+      }
+    }
+  }
+
+  a.take-action {
+    display: block;
+    clear: both ;
+    font-family: "league-gothic-1","league-gothic-2",sans-serif;
+    font-size: 30px;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-style: italic;
+    color: #eb2954;
+    text-align: right;
+    margin-right: 20px;
+    position:relative;
+    bottom: 0px;
+    right: 10px;
+
+    &:hover {
+      color:  #F55175;
+    }
+  }
+}
+
+// #featured .action {
+//   margin-bottom: 13px;
+//   position: relative;
+//   zoom: 1;
+// }
+
+// #featured .action .title a,
+// #featured .action .title a:visited {
+//   display: block;
+//   font-size: 28px;
+//   font-family: "league-gothic-1","league-gothic-2",sans-serif;
+//   font-weight: normal;
+//   text-transform: uppercase;
+//   text-decoration: none;
+//   color: #00c0ca;
+//   margin-bottom: 10px;
+// }
+
+// #featured .action .title a span {
+// display: inline-block;
+// background-color: #E5F6F7;
+// padding-left: 12px;
+// padding-top: 1px;
+// height: 32px;
+// line-height: 33px;
+// padding-right: 10px;
+// }
+
+// #featured .action .title a span.end {
+// background-image: image-url("hp_campaign_angle.png");
+// width: 13px;
+// height: 33px;
+// padding: 0px;
+// position: absolute;
+// right: -12px;
+// top: 0px;
+// }
+
+// #featured .action .title a span.line1 {
+// position: relative;
+// left: -71px;
+// top: 4px;
+// }
+
+// #featured .action .title a span.line2 {
+//   position: relative;
+//   margin-top: 10px;
+//   left: -57px;
+// }
+
+// #featured .action .image {
+//   float: left; 
+//   width: 311px;
+// }
+
+// #featured .action .image img {
+//   height: 175px;
+//   width: 311px;
+// }
+
+// #featured .action .image p {
+//   padding: 5px;
+//   width: 301px;
+//   font-size: 10px;
+//   color: #444;
+// }
+
+// #featured .action .description {
+// float: right;
+// width: 326px;
+// padding: 20px 40px 30px 30px;
+// font-size: 14px;
+// color: #444;
+// }
+
+// #featured .action div.thin_top_stripe {
+//   background-image: image-url("stripe_dark_thin.png");
+//   background-repeat: repeat-x;
+//   height: 2px;
+// }
+
+// #featured .action a.take-action {
+//   display: block;
+//   font-family: "league-gothic-1","league-gothic-2",sans-serif;
+//   font-size: 30px;
+//   font-weight: normal;
+//   text-transform: uppercase;
+//   text-decoration: none;
+//   font-style: italic;
+//   color: #eb2954;
+//   text-align: right;
+//   margin-right: 20px;
+//   position:relative;
+//   bottom: 0px;
+//   right: 10px;
+// }
+
+// #featured .action a:hover.take-action {
+//   color:  #F55175;
+// }
+
+// #featured .action a:hover.take-action {
+//   color:  #F55175;
+// }
+
+// .unavailable {
+//     font-family: "league-gothic-1","league-gothic-2",sans-serif;
+//     font-size: 30px;
+//     font-weight: normal;
+//     text-transform: uppercase;
+//     text-decoration: none;
+//     font-style: italic;
+//   height: 600px;
+// }

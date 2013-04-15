@@ -1,0 +1,95 @@
+<% content_for :header do %>
+  <!-- mobile CSS - Trilogy addition -->
+  <%= javascript_include_tag "layout-taf.js" %>
+  <!-- /Mobile Javascript - Trilogy addition -->
+ <% end %> 
+
+<% options = content_module.options %>
+
+<section id="taf">
+	<div id='taf_options' class='soft-box-shadow' data-share-url=<%= shares_url %>  data-page-id=<%= @action_content.attributes['id'] %> <%= user_id_from_session  %>>
+	  <h2><%= raw options.headline %></h2>
+	  <div class="taf_message">
+	    <%= raw options.message %>
+	  </div>
+		<div class='clear'></div>
+
+		<div class='stripe_thick_horizontal'></div>
+		<div class='social_holder'>
+			<% if options.facebook_enabled == '1' %>
+			  <h3><%= t('actions.show.taf.fb_button_title')%></h3>
+			  <div class='info' id='facebook_info'>
+					<div class='preview'>
+						<%= image_tag options.facebook_image_url, :size => "58x58" %>
+						<div id='facebook_text'><%= options.facebook_title %></div>
+						<div class='clear'></div>
+					</div>
+			  </div>
+
+			  <div id='facebook_share_count'><%= share_count(@action_content, 'facebook') %></div>
+
+			  <div class='clear'></div>
+				<div id='fb_share_button'>
+				  <a id="fb_share_this" href="<%= fb_share_url(options.facebook_title, options.share_url) %>" target="_blank">
+						<div id='fb_share_button_start'></div>
+						<div id='fb_share_button_text'><%= t('actions.show.taf.fb_button_text') %></div>
+						<div id='fb_share_button_end'></div>
+					</a>
+				</div>
+				<div class='clear'></div>
+			  <script src="//static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+		  <% end %>
+		</div>
+
+		<div class='stripe_thick_vertical'></div>
+
+		<div class='social_holder'>
+			<% if options.twitter_enabled == '1' %>
+		  	<h3><%= t('actions.show.taf.twitter_button_title')%></h3>
+			  <div class='info' id='twitter_info'>
+					<div class='preview'>
+						<div id='twitter_text'><%= options.tweet %></div>
+					</div>
+			  </div>
+
+			  <div id='twitter_share_count'><%= share_count(@action_content, 'twitter') %></div>
+
+			  <div class='clear'></div>
+				<div id='twitter_share_button_holder'>
+					<%= form_tag("//twitter.com/share", :method => :get, :id => "twitter_share_form", :target => "_blank") do %>
+				    <%= hidden_field_tag('url', options.share_url) %>
+				    <%= hidden_field_tag("text", options.tweet) %>
+
+						<div id='twitter_share_button_start'></div>
+				    <%= submit_tag(t('actions.show.taf.twitter_button_text'), :id => "twitter_submit_button") %> 
+						<div id='twitter_share_button_end'></div>
+				  <% end %>
+				</div>
+			<% end %>
+		</div>
+
+		<div class='clear'></div>
+		<div class='stripe_thick_horizontal'></div>
+
+		<div id='email_holder'>
+			<% if options.email_enabled == '1' %>
+			  <h3><%= t('actions.show.taf.email_button_title')%></h3>
+				<a id='email_link' href="mailto:?subject=<%= URI.encode(options.email_subject) %>&body=<%= URI.encode(options.email_body.gsub(/\r/, '')) %>" target='_blank'>
+					<div id='email_share_button_start'></div>
+					<div id='email_share_button_text'><%= t('actions.show.taf.email_button_text') %></div>
+					<div id='email_share_button_end'></div>
+				</a>
+
+				<div id='email_share_count'><%= share_count(@action_content, 'email') %></div>
+
+				<div id='email_text'>
+				  <textarea id="email_message"><%= options.email_body %></textarea>
+			  </div>
+			<% end %>	
+	  </div>
+
+	  <div class='clear'></div>
+	  <div class='stripe_thick_bottom_light'></div>
+
+	</div>
+</section>

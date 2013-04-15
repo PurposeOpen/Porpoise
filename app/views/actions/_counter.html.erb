@@ -1,0 +1,16 @@
+<% if counter %>
+  <div id="petition_counter">
+    <div id='a_start'></div>
+    <div id='a_mid'><%= number_with_delimiter counter %></div>
+    <div id='joint'></div>
+    <div id='b_mid'></div>
+    <div id='b_end'></div>
+
+    <% if goal %>
+      <div id='goal'><%= t(:goal, :scope => "action_taken.#{action_module}") %>: <%= number_with_delimiter goal %></div>
+      <span id='action_count' class='hidden'><%= counter %></span>
+      <span id='goal_number' class='hidden'><%= goal %></span>
+    <% end %>
+  </div>
+  <div class='clear'></div>
+<% end %>

@@ -1,0 +1,20 @@
+.ie7 #member_action_comment_length_message_holder {
+	margin-top: -15px;
+}
+
+.ie7 #join_and_join_taf #form_holder #form_fields #join_button_start {
+	background-image: none;
+}
+.ie7 #join_and_join_taf #form_holder #form_fields #join_button_end {
+	background-image: none;
+}
+.ie7 #join_and_join_taf #form_holder #form_fields #join_submit {
+	margin-right: -33px;
+}
+
+.ie7 #action_form label.validation_message {
+	width: auto;
+}
+.ie7 #join_and_join_taf #action_form label.validation_message {
+	height: 20px;
+}

@@ -1,0 +1,89 @@
+<% content_for :facebook_meta do %>
+    <meta property="og:title" content="<%= @action_content.facebook_title -%>"/>
+    <meta property="og:image" content="<%= @action_content.facebook_image_url -%>"/>
+    <meta property="og:description" content="<%= @action_content.facebook_description -%>"/>
+    <meta property="og:type" content="cause"/>
+    <meta property="og:url" content="<%= request.url %>"/>
+<% end %>
+
+<% content_for :header do %>
+  <!-- mobile CSS - Trilogy addition -->
+  <%= stylesheet_link_tag 'porpoise/handheld', :media => "screen and (max-width: 600px), only screen and (max-device-width: 600px)" %>
+  <!-- /mobile CSS - Trilogy addition -->
+
+  <!-- Mobile Meta Tags - Trilogy addition -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta http-equiv="cleartype" content="on">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- /Mobile Meta Tags - Trilogy addition -->
+
+  <!-- Mobile Javascript - Trilogy addition -->
+  <%= javascript_include_tag "libs/breakpoint.js" %>
+  <%= javascript_include_tag "libs/tinynav-ti.js" %>
+  <!-- /Mobile Javascript - Trilogy addition -->
+<% end %>
+
+<div class="action_page_content<%= @action_content.is_join_page ? ' join_action' : ''%>">
+  <div id="server_js_data">
+    <span id="url_for_member_fields">
+    </span>
+  </div>
+
+  <section class='grid_12 soft-box-shadow'>
+
+    <% if @action_content.header_content_modules.present? %>
+      <div id="header_container" class="grey_background">
+        <% @action_content.header_content_modules.each do |header_module| %>
+          <h1><%= raw header_module.content %></h1>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="dark-stripe"></div>
+
+    <div id="main_and_side_wrapper">
+      <div id="main_container" class="grid_6 alpha">
+        <% if @action_content.is_join_page %>
+          <div id="description">
+            <div id="member_count"><%= @action_content.member_count %></div>
+            <div id="member_count_description">
+                <p><%= raw t 'petitions.show_join.have_joined' %></p>
+                <p><%= raw t 'petitions.show_join.the_movement' %></p>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div id="stripe_thin"></div>
+        <% end %>
+
+        <% @action_content.main_content_modules.each_with_index do |main_module, index| %>
+            <section class="media_wrapper main_module">
+              <div class="main_module_title"><%= raw main_module.title %></div>
+              <div class="main_module_content"><%= raw main_module.content %></div>
+            </section>
+            <%= render('counter_for_module', action_content: @action_content) if index == 0 %>
+        <% end %>
+      </div>
+
+      <div id="side_container" class="grid_6 omega <%= "margin_20" if @action_content.is_join_page %>">
+        <% @action_content.sidebar_content_modules.each do |content_module| %>
+            <%= render_partial_for(content_module, @member) %>
+        <% end %>
+
+        <%= render :partial => 'actions/comments_feed' %>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<%= content_for :additional_js do %>
+  <!-- Mobile Javascript - Trilogy addition -->
+  <%= javascript_include_tag "libs/mobile.js" %>
+  <script type="text/javascript">
+    MBP.scaleFix();
+    MBP.hideUrlBarOnLoad();
+  </script>
+  <!-- /Mobile Javascript - Trilogy addition -->
+<% end %>

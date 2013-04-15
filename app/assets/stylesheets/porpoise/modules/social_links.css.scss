@@ -1,0 +1,56 @@
+/*
+** Social links, footer and side
+*/
+.facebook,
+.twitter,
+.youtube,
+.tumblr{
+	display: inline-block;
+  text-indent: -4000px;
+  width: 23px;
+  height: 25px;
+}
+
+.facebook {
+  background-image: image-url('icon_facebook.png');
+}
+.twitter {
+  background-image: image-url("icon_twitter.png");
+}
+.youtube {
+  background-image: image-url("icon_youtube.png");
+}
+.tumblr {
+  background-image: image-url("icon_tumblr.png");
+}
+
+.social a:hover {
+  background-position: 0px 25px;
+}
+
+/* for footer */
+footer .social {
+  color: #9F9D9D;
+	float: right;
+}
+
+footer .social a {
+  margin-left: 10px;
+  position: relative;
+  top: -5px;
+  width: 23px;
+  height: 25px;
+}
+
+/* for home page */
+#social {
+	position: absolute;
+	right: -23px;
+	top: 40px;
+	width: 23px;
+}
+
+#social a {
+  margin-bottom: 7px;
+	display: block;
+}

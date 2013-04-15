@@ -1,0 +1,37 @@
+@import "../vars_and_mixins";
+
+#return-from-paypal-interstitial {
+  background: white;
+  position: relative;
+  article.interstitial,
+  article.interstitial-no-js {
+    padding: 30px;
+    text-align: center;
+    header {
+      position: inherit;
+      margin-bottom: 10px;
+      font-size: 28px;
+      font-family: "league-gothic-1","league-gothic-2",sans-serif;
+      font-weight: normal;
+      font-style: italic;
+      text-transform: uppercase;
+    }
+    p {
+      font-family: "proxima-nova-1","proxima-nova-2",sans-serif;
+      font-size: 18px;
+    }
+    form {
+      margin-top: 20px;
+      #complete_paypal_donation_button {
+        @include pink_button;
+      }
+    }
+    #spinner {
+      width: 66px;
+      height: 66px;
+      margin: 30px auto 0px auto;
+      background-image: image-url("spinner.gif");
+      background-repeat: no-repeat;
+    }
+  }
+}

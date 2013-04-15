@@ -1,0 +1,50 @@
+<div id='paypal_overlay_mask'>
+  <section id='paypal_donation_popup'>
+    <%= form_for 'paypal_donation', :url => setup_paypal_donation_action_path(I18n.locale.to_s), :html => {:id => 'paypal_donation_form'} do |f| %>
+      <fieldset>
+        <legend><h2>Donate via PayPal</h2></legend>
+        <%= hidden_field_tag "t", params[:t] %>
+        <%= hidden_field_tag "paypal_donation[classification]",
+            content_module.classification if content_module.respond_to? :classification %>
+
+        <%= field_tag :country_iso do %>
+          <%= f.country_select 'country_iso', {:placeholder => t('fields.country')}, :class => "country-select", :title => "#{t('validations.country_required')}", :required => true %>
+        <% end %>
+        <%= labeled_field_group @action_content, :postcode do %>
+          <%= f.text_field :postcode, :required => true, :title => "#{t('validations.post_code_required')}" %>
+          <%= f.label :postcode, t('fields.zipcode') %>
+        <% end %>
+
+        <%= field_tag :currency do %>
+          <%= f.select(:currency, options_for_currency_select(content_module), {},
+              {:required => true, :title => t('validations.currency')}) %>
+        <% end %>
+
+        <% content_module.options.suggested_amounts.attributes.each do |currency_code, amounts| %>
+          <% default_amount = content_module.options.default_amount.attributes[currency_code] %>
+          <% currency = Money::Currency.new(currency_code) %>
+          <div class="suggested_amounts_wrapper amounts_for_currency_<%= currency_code %>">
+            <% amounts.split(",").each do |amount| %>
+              <span class="suggested_amount">
+                <%= radio_button_tag "paypal_donation[amount_for_#{currency_code}]", amount, (amount == default_amount) %>
+                <%= label_tag "paypal_donation[amount_for_#{currency_code}]_#{amount}", Money.from_numeric(amount.to_f, currency).format(:no_cents_if_whole => true), :class => "label_for_radio" %>
+              </span>
+            <% end %>
+            <span class="suggested_amount_other">
+              <%= label_tag "paypal_donation[amount_for_#{currency_code}]_other", :class => "label_for_radio" do %>
+                <%= radio_button_tag "paypal_donation[amount_for_#{currency_code}]", "other" %>
+                <%= t('actions.donations.suggested_amount_other') %>
+                <%= currency.symbol %>
+                <%= text_field_tag "paypal_donation[other_amount_for_#{currency_code}]", '', :type => "number", :step => "0.01", :min => "0.01" %>
+              <% end %>
+            </span>
+          </div>
+        <% end %>
+      </fieldset>
+      <fieldset class="actions">
+        <%= f.submit content_module.options.button_text, :id => "paypal_donate_button", :disable_with => t('please_wait') %>
+        <%= link_to t('actions.donations.cancel'), '#', :class => 'cancel' %>
+      </fieldset>
+    <% end %>
+  </section>
+</div>

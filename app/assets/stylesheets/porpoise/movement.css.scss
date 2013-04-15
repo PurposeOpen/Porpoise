@@ -1,0 +1,100 @@
+@import "vars_and_mixins";
+
+body {
+/*  background-image: image-url(/assets/main_diag.png);
+  background-repeat: repeat-both;*/
+  background-color: #e9e9e9;
+  font-family: "proxima-nova-1","proxima-nova-2",sans-serif;
+}
+
+.hidden {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
+  & label,
+  & input,
+  & select {
+    display: none !important;
+  }
+}
+
+/* prevent flash of unstyled text (FOUT) in Firefox with TypeKit fonts */
+.wf-loading {
+  visibility: hidden;
+}
+
+header {
+  position:absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+}
+
+/*
+** Main
+*/
+
+#main {
+  margin-top: 126px;
+  position: relative;
+}
+
+body.section_home.action_index #main {
+  margin-top: 507px;
+}
+
+.logo {
+  display: inline-block;
+  float: left;
+  height: 91px;
+  width: 364px;
+}
+
+/* Bug Hacks */
+
+/* This is needed for a bug in selectBox that will prevent the correct positioning in IE if a border isn't declared */
+.selectBox-dropdown 
+{
+	border : 0px solid black;
+}
+
+#server_js_data {
+  display: none;
+}
+
+/* Autocomplete Textbox */
+.ui-autocomplete {
+  padding: 0;
+  list-style: none;
+  background-color: #fff;
+  width: 218px;
+  border: 1px solid #B0BECA;
+  max-height: 350px;
+  overflow-y: scroll;
+}
+.ui-autocomplete .ui-menu-item a {
+  border-top: 1px solid #B0BECA;
+  display: block;
+  padding: 4px 6px;
+  color: #353D44;
+  cursor: pointer;
+}
+.ui-autocomplete .ui-menu-item:first-child a {
+  border-top: none;
+}
+.ui-autocomplete .ui-menu-item a.ui-state-hover {
+  background-color: #D5E5F4;
+  color: #161A1C;
+}
+
+.page_not_available {
+  @include soft_box_shadow();
+  background-color: white;
+  height: 500px;
+  font-size: 25px;
+  padding: 30px 0 0 30px;
+  font-weight: bold;
+  font-style: italic;
+}

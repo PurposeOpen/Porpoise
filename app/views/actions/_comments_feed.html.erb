@@ -1,0 +1,24 @@
+<% with_petition_module(@action_content.sidebar_content_modules) do |petition_module| %>
+  <% if comments_enabled?(petition_module) %>
+    <section id='comments' class='soft-box-shadow' data-feed-path="<%= activity_path(:locale => I18n.locale.to_s, :format => 'json', :module_id => petition_module.id, :type => 'comments') %>">
+      <h4><%= t('.why_taking') %></h4>
+      <div class='dark-stripe-thin'></div>
+      <div class="comments">
+        <ul>
+          <script type="text/template" id="recent_comment_template">
+            <li class='odd'>
+              <div class='flag {{country_iso}}'></div>
+              <div class='comment_wrapper'>
+                <p class="comment">{{comment}}</p>
+                <p class="member">{{first_name}}{{#country}} <%= t('.from') %> {{country}}{{/country}} {{timestamp_in_words}}</p>
+              </div>
+              <div class='clear'></div>
+            </li>
+          </script>
+        </ul>
+      </div>
+
+      <div class='dark-stripe'></div>
+    </section>
+  <% end %>
+<% end %>

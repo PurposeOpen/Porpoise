@@ -1,0 +1,7 @@
+<% counter_module = get_counter_module(action_content.sidebar_content_modules) %>
+<% if counter_module %>
+ <% if display_counter_for?(counter_module) %>
+   <%= render_counter_for counter_module %>
+ <% end %>
+  <%= render_counter_statement_for counter_module %>
+<% end %>

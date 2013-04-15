@@ -1,0 +1,28 @@
+<div id='striped' class='action_form_wrapper action'>
+  <h2><%= raw content_module.title %></h2>
+  <% if content_module.options.join_statement.present? %>
+    <span class="statement"><%= raw content_module.options.join_statement %></span>
+  <% end %>
+
+  <%= render :partial => "form_errors" %>
+
+  <%= form_for @member, :as => "member_info", :url => take_action_action_path(I18n.locale.to_s), :method => :post,
+        :html => {:id => 'action_form', :class => 'petition'} do |f| %>
+    <%= render :partial => "actions/action_form/user_details", :locals => { :action_content => @action_content,
+      :content_module => content_module, :show_all_required_fields => true, :f => f } %>
+
+    <% if comments_enabled?(content_module) %>
+      <%= fields_for :action_info do |ai| %>
+        <p class='field_wrapper comment'>
+          <%= ai.label :comment, content_module.options.comment_label, :class => 'simple-label' %>
+          <%= ai.text_area :comment, :maxlength => 200, :rows => 4, :placeholder => content_module.options.comment_text %>
+          <span class='counter' id='member_action_comment_length_message'><%= t('validations.characters_left') %></span>
+        </p>
+      <% end %>
+    <% end %>
+
+    <p id="optin"><%= raw t('petitions.show.optin') %></p>
+
+    <%= f.submit content_module.options.button_text, :id => "action_submit" %>
+  <% end %>
+</div>

@@ -1,0 +1,219 @@
+$off_black: #5D5D5D;
+$mint_green: #00C3BC;
+$movement-error-color: #EB2954;
+
+$field-wrapper-width: 206px;
+$field-width: 180px;
+$field-height: 23px;
+$field-border-width: 2px;
+$field-padding: 1px;
+
+$select-box-width: 148px;
+
+$textarea_width: 390px;
+
+$large-field-wrapper-width: 412px;
+$large-field-width: 386px;
+
+@mixin clearfix() {
+  &:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+@mixin no_error_borders_for_radio_buttons($id) {
+	.amount_button.error,
+	#{$id}.error {
+		border: none;
+	}
+}
+
+@mixin share_count($top, $right) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  width: 41px;
+  height: 31px;
+  padding: 2px 0px 0px 7px;
+  background-image: image-url('counter_mini.png');
+  text-align: center;
+  font-family: "league-gothic-1","league-gothic-2",sans-serif;
+  font-size: 20px;
+  color: $mint_green;
+}
+
+@mixin form_block($background-color: #F3F3F3) {
+  margin: 0px 23px 0px 14px;
+  font-size: 12px;
+  height: auto;
+  position: relative;
+  background: $background-color;
+  padding: 23px 0px 68px 20px;
+}
+
+@mixin soft_box_shadow() {
+  -webkit-box-shadow: 0px 3px 4px rgba(0,0,0,0.12);
+     -moz-box-shadow: 0px 3px 4px rgba(0,0,0,0.12);
+          box-shadow: 0px 3px 4px rgba(0,0,0,0.12);
+  background-color: #fff;
+  zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=135, Strength=3);
+}
+
+@mixin donate_button {
+	height: 39px;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	border: none;
+	&.en {
+		@include en_donate_button;
+	}
+	&.es {
+		@include es_donate_button;
+	}
+	&.fr {
+		@include fr_donate_button;
+	}
+	&.pt {
+		@include pt_donate_button;
+	}
+	&:hover {
+		@include hover_donate_button;
+	}
+}
+
+@mixin donation_other_amount_input_dimensions {
+	width: 44px;
+	height: 12px;
+}
+
+@mixin label_overlay {
+	.field_wrapper {
+		label {
+		  visibility: hidden;
+			font-style: italic;
+			color: #777;
+			&:hover {
+				cursor: default;
+			}
+		}
+	}
+}
+
+@mixin field_wrapper_and_label {
+	.field_wrapper {
+	  position: relative;
+	  label {
+	    position: absolute;
+	    top: 8px;
+	    left: 7px;
+	  }
+	  &.form_select label {
+	    z-index: 1;
+	  }
+	}
+}
+
+@mixin member_action_button_hover {
+	background-position: 0px -41px;
+  &[disabled] {
+    background-position: 0px 0px;
+    cursor: default;
+  }
+}
+
+@mixin member_action_submit($margin) {
+  background-image: image-url("bttn_mid.png");
+  background-repeat: repeat-x;
+  height: 41px;
+  width: auto;
+  margin: $margin;
+  padding: 0px 15px 0px 11px;
+  float: right;
+  border: 0px solid #FFFFFF; /* ie will ignore a background image unless it has a border */
+  color: white;
+  font-family: "league-gothic-1","league-gothic-2",sans-serif;
+  font-size: 30px;
+  font-style: italic;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+
+  &[disabled] {
+    background-image: image-url("bttn_mid_disabled.png");
+    cursor: default;
+  }
+}
+
+@mixin taf_section_alignment {
+	display: inline;
+  float: left;
+  margin-top: 23px;
+}
+
+@mixin taf_options_section {
+	@include taf_section_alignment;
+	font-size: 14px;
+	width: 560px;
+	background-color: #F1F1F1;
+	background-image: image-url("stripe_med.png");
+	background-repeat: repeat-x repeat-y;
+	height: auto;
+	padding-bottom: 20px;
+	position: relative;
+	h2 {
+	  font-family: proxima-nova-condensed-1,proxima-nova-condensed-2;
+	  font-size: 22px;
+	  font-weight: bold;
+	  font-style: italic;
+	  text-transform: uppercase;
+	  float: left;
+	}
+}
+
+@mixin en_donate_button {
+	background-image: image-url("donate_en.png");
+	width: 89px;
+}
+
+@mixin es_donate_button {
+	background-image: image-url("donate_es.png");
+	width: 87px;
+}
+
+@mixin fr_donate_button {
+	background-image: image-url("donate_fr.png");
+	width: 143px;
+}
+
+@mixin pt_donate_button {
+	background-image: image-url("donate_pt.png");
+	width: 73px;
+}
+
+@mixin hover_donate_button {
+	background-position: 0px -38px;
+}
+
+@mixin pink_button {
+  border: 1px solid #eb2954;
+  background: #eb2954 image-url("bttn_mid.png") repeat-x top left;
+  height: 40px;
+  text-transform: uppercase;
+  font-family: "league-gothic-1","league-gothic-2",sans-serif;
+  font-size: 25px;
+  font-style: italic;
+  color: white;
+  left: -3px;
+  border-radius: 2px;
+  letter-spacing: 1px;
+  width: auto;
+  padding: 0px 12px;
+  margin-left: -4px;
+  &:hover:hover {
+    background-position: 0px -41px;
+  }
+}

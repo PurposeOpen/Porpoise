@@ -1,0 +1,55 @@
+<% content_for :carousel_header, render(:partial => 'home/carousel_header') %>
+<% content_for :carousel, render(:partial => 'home/carousel') %>
+<%= render :partial => 'shared/social_links' %>
+
+<div class="grid_9">
+  <div class="box bg-stripe" id="homepage_join">
+    <p>
+      <strong><%= @movement.join_headline %></strong><br>
+      <%= @movement.join_message %>
+    </p>
+    <div class="form field_wrapper">
+      <%= render :partial => "members/join_movement_form" %>
+    </div>
+    <div class="dark-stripe"></div>
+  </div>
+
+  <% if @movement.featured_contents.attributes["FeaturedActions"].present? %>
+    <div class="box" id="featured">
+      <% @movement.featured_contents.attributes["FeaturedActions"].each do |featured_action| %>
+        <div class="action">
+          <figure class="image"><%= featured_action.image.html_safe %></figure>
+          <div class="excerpt">
+            <h1 class="title"><a href="<%= featured_action.url %>"><%= featured_action.title.html_safe %></a></h1>
+            <p class="description"><%= featured_action.description.html_safe %></p>
+          </div>
+          <a class="take-action" href="<%= featured_action.url %>"><%= featured_action.button_text %></a>
+        </div>
+      <% end %>
+      <div class="dark-stripe"></div>
+    </div>
+  <% end %>
+</div>
+<div class="grid_3">
+  <div class="box" id="activity">
+    <div class="bg-stripe" style="padding-top: 8px;">
+      <div class="dark-stripe-inset"></div>
+      <div class="counter_text"><%= raw @movement.banner_text %></div>
+      <div class="dark-stripe-thin"></div>
+    </div>
+
+    <ul id="recent_actions" data-feed-path="<%= activity_path(:locale => I18n.locale.to_s, :format => 'json') %>">
+      <script type="text/template" id="recent_action_template">
+        <li class="recent_action">
+          <div class="flag {{country_iso}}"></div>
+          <div class="summary">
+            <span class="message">{{{html}}}</span>
+            <p class="timestamp">{{{timestamp_in_words}}}</p>
+          </div>
+        </li>
+      </script>
+    </ul>
+
+
+  </div>
+<div class="clear"></div>

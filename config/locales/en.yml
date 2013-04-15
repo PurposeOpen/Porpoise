@@ -1,0 +1,212 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  or: OR
+  please_wait: Please wait...
+  languages:
+    english: English
+    spanish: Español
+    french: Français
+    portuguese-brazil: Português
+  home: 'Home'
+  follow_us: 'Follow us'
+  have_joined_the_movement: "have joined the movement"
+  continue: 'Continue'
+  page_not_available: "<p>This petition is not available in your language.</p><p>Check out the <a href='/en'>home page</a> for other ways to act."
+  links:
+    facebook: '//www.facebook.com/testmovementOrg?ref=ts'
+    twitter: '//twitter.com/#!/testmovement'
+    youtube: '//www.youtube.com/user/testmovementorg'
+  fields:
+    first_name: 'First Name'
+    last_name: 'Last Name'
+    full_name: 'Full Name'
+    email: 'Email'
+    country: 'Country'
+    phone: 'Phone'
+    mobile: 'Mobile Phone'
+    zipcode: 'Post Code'
+    comment: 'Comment'
+    privacy: 'Privacy'
+    city: 'City'
+  petitions:
+    character_counter:
+      200_characters: '200 Characters'
+      one_character_warning: 'Only 1 Character left!'
+      over_character_limit: 'Comment must be 200 characters or less!'
+    show_join:
+      have_joined: 'have joined'
+      the_movement: 'the movement'
+      required_fields: 'required fields'
+      join_comment_label: "Tell us why you're going going all out (optional)"
+      optin: 'We will protect your <a href="/privacy" target="_blank">privacy</a> and keep you up-to-date on our campaigns.'
+    show:
+      help_reach_goal: 'Help us reach our goal of %{goal} signatures'
+      optin: 'We will protect your <a href="/privacy" target="_blank">privacy</a> and keep you up-to-date on our campaigns.'
+      comment_description: "%{name} from %{country} %{time} ago"
+      goal: 'GOAL'
+      people_support_this_campaign: '%{number_of_member_actions} people support this campaign.'
+      help_us_get_to: 'Help us get to %{goal}.'
+      sign_the_petition: 'SIGN THE PETITION'
+      required_fields: 'REQUIRED FIELDS'
+  actions:
+    your_information: 'Your Information'
+    comments_feed:
+      why_taking: 'Why people are taking this action'
+      from: 'from'
+    show:
+      taf:
+        fb_button_text: 'Share'
+        fb_button_title: 'Facebook'
+        twitter_button_text: 'TWEET IT'
+        twitter_button_title: 'TWITTER'
+        email_button_text: 'EMAIL YOUR FRIENDS'
+        email_button_title: 'EMAIL'
+    email_targets:
+      to: 'TO:'
+      subject: 'Subject'
+      body: 'Body'
+      send_me_a_copy: 'Send me a copy of this e-mail'
+    donations:
+      donation_message: 'Donation of %{amount} to %{movement_name}.'
+      monthly_donation_message: 'Monthly donation of %{amount} to %{movement_name}.'
+      donation_amount: 'Donation Amount'
+      payment: 'Payment'
+      suggested_amount_other: 'Other'
+      name_on_card: 'Name on card'
+      card_number: 'Card Number'
+      card_type: 'Card Type'
+      expiration_date: 'Expiration Date'
+      card_cvv2: 'CVV2'
+      cvv2_hint: '3 or 4-digit code on back of card'
+      pay_through_paypal_express: Make your donation via
+      interstitial_form_header: You're almost done!
+      interstitial_form_body: Press the button to complete your donation. Please wait while your payment is processed.<br/>You will be automatically redirected.
+      interstitial_header: Please wait...
+      interstitial_body: Thanks for your donation. Please wait while your payment is processed.<br/>You will be automatically redirected.
+      cancel: 'Cancel'
+      year: 'YY'
+      month: 'MM'
+      currencies:
+        eur: 'Euros (EUR)'
+        gbp: 'British Pounds (GBP)'
+        usd: 'US Dollars (USD)'
+        cad: 'Canadian Dollars (CAD)'
+        aud: 'Australian Dollars (AUD)'
+        brl: 'Brazilian Reals (BRL)'
+        jpy: 'Japanese Yen (JPY)'
+        nzd: 'New Zealand Dollar (NZD)'
+        chf: 'Swiss Franc (CHF)'
+        hkd: 'Hong Kong Dollar (HKD)'
+        sgd: 'Singapore Dollar (SGD)'
+        sek: 'Swedish Krona (SEK)'
+        dkk: 'Danish Krone (DKK)'
+        pln: 'Polish Złoty (PLN)'
+        nok: 'Norwegian Krone (NOK)'
+        huf: 'Hungarian Forint (HUF)'
+        czk: 'Czech Koruna (CZK)'
+        ils: 'Israeli New Sheqel (ILS)'
+        mxn: 'Mexican Peso (MXN)'
+        myr: 'Malaysian Ringgit (MYR)'
+        php: 'Philippine Peso (PHP)'
+        twd: 'New Taiwan Dollar (TWD)'
+        thb: 'Thai Baht (THB)'
+        try: 'Turkish Lira (TRY)'
+  pages:
+    index:
+      join_us: "Join"
+      take_action: 'Take Action >'
+      action_member: '%{name} from %{country}'
+      action_join: 'joined the Movement'
+      action_signed: 'signed %{petition}'
+      action_ago: '%{time} ago'
+      twitter_account: 'testmovement'
+    about:
+      about: "About"
+      fact_1:
+        top: "In"
+        number: "76"
+        right: "countries being LGBT is a crime"
+      fact_2:
+        top: "In"
+        number: '10'
+        right: "it is legal grounds for life imprisonment or execution"
+      fact_3:
+        top: "Every"
+        number: "16"
+        right: "hours, one transgender person is murdered"
+      fact_4:
+        top: "Only"
+        number: '10'
+        right: "countries in the world recognize marriage equality"
+      why_go_testmovement: "Why it's Time to go All Out"
+      read_more: "Read More"
+      what_we_do: "What We Do"
+      our_campaigns: "Our Campaigns"
+      press_releases: "Press Releases"
+      back_to_top: "Back to top"
+    partners:
+      partners: "Partners"
+      featured_partners: "Featured Partners"
+      other_partners: "Global Partners"
+  layouts:
+    application:
+      contact_us: 'Contact Us'
+      about: 'About'
+      privacy: 'Privacy Policy'
+      jobs: 'Join Our Team'
+      partners: 'Partners'
+      campaigns: 'Campaigns'
+      donate: 'Donate'
+  validations:
+    first_name: 'First name is required'
+    last_name: 'Last name is required'
+    email_required: 'Email is required'
+    email_invalid: 'Email is invalid'
+    country_required: 'Country is required'
+    post_code_required: 'Post Code is required'
+    currency_required: 'Currency is required'
+    amount_required: 'Amount is required'
+    name_on_card_required: 'Name on card is required'
+    card_type_required: 'Card type is required'
+    card_number_required: 'Card Number is required'
+    card_number_invalid: 'Card Number is invalid'
+    cvv2_required: 'CVV2 is required'
+    cvv2_not_a_number: 'CVV2 is not a number'
+    cc_month_required: 'Month required'
+    cc_year_required: 'Year required'
+    characters_left: 'characters left'
+    email_subject_required: 'Subject is required'
+    email_body_required: 'Email body is required'
+  errors:
+    duplicate_action_taken_error: "We're sorry but it seems like you've already taken this action!"
+    credit_card_donation_error: 'An error occurred processing your donation; please re-check your credit card information and try again.'
+    paypal_initialization_error: 'Error initializing transaction with paypal, please retry'
+    donation_information_error: 'An error occurred processing your donation; please re-check your donation information and try again'
+  action_taken:
+    PetitionModule:
+      message_before_threshold_reached: "Help us reach our goal"
+      steps_taken: '%{counter} people support this campaign. Help us get to %{goal}'
+      goal_reached: '%{counter} petitions signed. Thank you for your support'
+      goal: 'GOAL'
+    EmailTargetsModule:
+      message_before_threshold_reached: "Help us reach our goal of %{goal}"
+      steps_taken: '%{counter} people have sent emails. Help us get to %{goal}'
+      goal_reached: '%{counter} people have sent emails. Thank you for your support'
+      goal: 'GOAL'
+    DonationModule:
+      message_before_threshold_reached: "Help us reach our goal"
+      steps_taken: 'Help us reach our goal'
+      goal_reached: ''
+      goal: 'GOAL'
+    NonTaxDeductibleDonationModule:
+      message_before_threshold_reached: 'Help us reach our goal'
+      steps_taken: 'Help us reach our goal'
+      goal_reached: ''
+      goal: 'GOAL'
+    TaxDeductibleDonationModule:
+      message_before_threshold_reached: 'Help us reach our goal'
+      steps_taken: 'Help us reach our goal'
+      goal_reached: ''
+      goal: 'GOAL'

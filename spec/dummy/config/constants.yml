@@ -1,0 +1,23 @@
+# Enter your per-environment constants below
+
+development: &default
+  action_caching_expiration: <%= 5.minutes %>
+  google_tracking_id: <%= ENV["GOOGLE_TRACKING_ID"] %>
+  homepage_error_url: "http://platform-production.s3.amazonaws.com/testmovement-homepage-error.html"
+  error_url: "http://platform-production.s3.amazonaws.com/testmovement-error.html"
+  page_not_found_url: "http://platform-production.s3.amazonaws.com/testmovement-page-not-found.html"
+  web_timeout: 200
+production:
+  <<: *default
+  web_timeout: 90
+
+staging:
+  <<: *default
+  web_timeout: 90
+
+test:
+  <<: *default
+  platform_base_uri:  "http://example.com/api/"
+  movement_id: "testmovement"
+  auth_password: "testmovement"
+  web_timeout: 90

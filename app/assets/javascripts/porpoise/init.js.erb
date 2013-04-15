@@ -1,0 +1,106 @@
+$AO = {
+  common:{
+    init:function () {
+
+      var common_methods = $AO.methods.common;
+
+      /* default background */
+      $('#default_bg').each(function () {
+        common_methods.bgStretch($(this));
+        common_methods.bgOverlay($(this));
+      });
+
+      /* funky hack for background strips AND background color */
+      $('.bg-stripe').each(function () {
+        common_methods.boxOverlay($(this));
+      });
+
+      /* drop shadows for all boxes */
+      $('.box').each(function () {
+        $(this).addClass('soft-box-shadow');
+      });
+
+      $('.field_wrapper label')
+          .not('[for="action_info_comment"], .simple-label, .label_for_radio, .validation_message')
+          .fancyLabels();
+    }
+  },
+
+  methods:{
+
+    common:{
+
+      bgStretch:function (e) {
+        e.find('*').css({'zIndex':3}).each(function () {
+          if ($(this).css('position') == null)
+            $(this).css({'position':'relative'});
+
+        });
+        e.css({'overflow':'hidden', 'position':'relative'});
+        var containerWidth = e.innerWidth();
+        var bgimgurl = e.css('backgroundImage').replace(/url\(|\)|"|'/g, "");
+        var img = $('<img src="' + bgimgurl + '" width="100%" />').css({'position':'absolute', 'left':0, 'top':0, 'zIndex':1});
+        e.css({'background':'transparent'}).append(img);
+      },
+
+      bgOverlay:function (e) {
+        e.css({'position':'relative'});
+        var overlay = $('<div></div>');
+        overlay.css({'left':0, 'top':0, 'right':0, 'bottom':0, 'position':'absolute', 'zIndex':2, 'background-image':'url(<%= asset_path "slideshow_diag.png" %>)', 'background-repeat':'repeat-both'});
+        e.append(overlay);
+      },
+
+      boxOverlay:function (e) {
+        e.find('*').not('#homepage_join form input').not('#homepage_join form #remote_join_submit').css({'zIndex':3, 'position':'relative'});
+        e.css({'position':'relative'});
+        var overlay = $('<div></div>');
+        overlay.css({'left':0, 'top':-4, 'right':0, 'bottom':0, 'position':'absolute', 'zIndex':2, 'background-image':'url(<%= asset_path "stripe_med.png"%>)', 'background-repeat':'repeat-both'});
+        e.append(overlay);
+      }
+
+    },
+
+    actionCounter: function() {
+      var complete = $('#petition_counter #a_mid');
+      var initial_complete_width = $('#petition_counter #a_mid').width();
+      var complete_count = parseInt($('#action_count').text());
+      var goal = parseInt($('#goal_number').text());
+      var progress;
+
+      if(complete_count > goal) {
+        progress = 1;
+      } else {
+        progress = complete_count/goal;
+      }
+      var complete_width = Math.floor(404 * progress);
+      if(complete_width > initial_complete_width) {
+        complete.animate({width: complete_width}, 1750);
+      };
+    }
+  }
+};
+
+$UTIL = {
+  exec:function (controller, action) {
+    var ns = $AO,
+        action = ( action === undefined ) ? "init" : action;
+
+    if (controller !== "" && ns[controller] && typeof ns[controller][action] == "function") {
+      ns[controller][action]();
+    }
+  },
+
+  init:function () {
+    var body = $('body'),
+        controller = body.attr('data-controller'),
+        action = body.attr('data-action'),
+        resource_type = body.attr('data-resource-type');
+
+    $UTIL.exec("common");
+    $UTIL.exec(controller);
+    $UTIL.exec(controller, action);
+    $UTIL.exec(controller, action + '_' + resource_type);
+  }
+};
+
+$().ready($UTIL.init);

@@ -1,0 +1,12 @@
+<% if @movement.featured_contents.attributes["Carousel"].present? %>
+  <% carousel_items = @movement.featured_contents.attributes["Carousel"] %>
+  <div id="carousel">
+    <% carousel_items.each_with_index do |item, item_count| %>
+      <div class="item item<%= item_count %>">
+        <div class="bg_wrapper">
+          <div class="bg" style="background-image: url(<%= item.image(:huge) %>)"></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

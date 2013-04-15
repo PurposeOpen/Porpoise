@@ -1,0 +1,46 @@
+<section class="action soft-box-shadow">
+  <h2><%= raw content_module.title %></h2>
+  <%= raw content_module.content %>
+</section>
+
+<section>
+
+  <%= form_for @member, :as => "member_info", :url => take_action_action_path(I18n.locale.to_s), :method => :post,
+        :html => {:id => 'action_form', :class => 'email_targets action_form_wrapper soft-box-shadow'} do |f| %>
+    <%= render :partial => "form_errors" %>
+    <div class="targets-container">
+      <span class="target-emails-to"><%= t('actions.email_targets.to') %></span>
+      <div class="targets">
+        <% content_module.options.targets_names.each do |target| %>
+          <div class="target-name"><%= target %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <%= fields_for "action_info" do |fe| %>
+      <%= field_tag :subject do %>
+        <%= fe.text_field :subject, :required => true, :value => content_module.options.default_subject, :disabled => email_editing_disabled?(content_module), :title => "#{t('validations.email_subject_required')}" %>
+        <%= fe.label :subject, t('actions.email_targets.subject') %>
+      <% end %>
+
+      <%= field_tag :body do %>
+        <%= fe.text_area :body, :required => true, :value => content_module.options.default_body, :disabled => email_editing_disabled?(content_module), :title => "#{t('validations.email_body_required')}" %>
+        <%= fe.label :body, t('actions.email_targets.body') %>
+      <% end %>
+    <% end %>
+
+    <%= render :partial => "actions/action_form/user_details", :locals => { :action_content => @action_content,
+        :content_module => content_module, :f => f } %>
+
+    <%= fields_for "action_info" do |fe| %>
+      <%= field_tag :cc_me do %>
+        <%= fe.check_box :cc_me, :checked => true %>
+        <%= fe.label :cc_me, t('actions.email_targets.send_me_a_copy'), :class => "simple-label cc-me" %>
+      <% end %>
+    <% end %>
+
+    <p id="optin"><%= raw t('petitions.show.optin') %></p>
+
+    <%= f.submit content_module.options.button_text, :id => "action_submit" %>
+  <% end %>
+</section>

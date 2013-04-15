@@ -1,0 +1,11 @@
+<div class="form field_wrapper">
+  <%= form_for @member, :as => "member_info", :url => members_path(:locale => params[:locale]), :html => { :id => "remote_join" } do |f| %>
+    <%= f.text_field :email, :type => 'email', :required => true, :title => t('validations.email_required'),
+        :data => { :validation => {
+          :messages => { :email => t('validations.email_invalid') }
+        }.to_json } %>
+    <%= f.label :email, t('fields.email'), :class => 'field_name' %>
+
+    <%= f.submit t('pages.index.join_us') %>
+  <% end %>
+</div>

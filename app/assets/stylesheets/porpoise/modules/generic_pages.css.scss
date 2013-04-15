@@ -1,0 +1,53 @@
+/*
+** Generic pages
+*/
+#generic {
+	background: white;
+	position: relative;
+}
+#generic h1 {
+	font-family: "league-gothic-1","league-gothic-2",sans-serif;
+	font-size: 32px;
+	font-style: italic;
+	font-weight: normal;
+	color: #EB2954;
+	background-image: image-url("stripe_med.png");
+	background-repeat: repeat-x repeat-y;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 936px;
+	height: 58px;
+	padding: 40px 0px 0px 24px;
+	border-bottom: 1px solid #ebeaea;
+	text-transform: uppercase;
+}
+#generic .dark-stripe-inset {
+	position: absolute;
+	top: 82px;
+	width: 935px;
+}
+#generic #content {
+	padding: 113px 150px 140px 123px;
+}
+#generic #content h2,
+#generic #content h3 {
+  font-family: proxima-nova-condensed-1,proxima-nova-condensed-2;
+	font-size: 18px;
+	line-height: 18px;
+	text-transform: uppercase;
+	font-weight: normal;
+	color: #4b4b4b;
+	margin-top: 43px;
+}
+#generic #content p {
+	font-size: 13px;
+	line-height: 18px;
+	margin: 10px 0px 10px 0px;
+	color: #595959;
+}
+#generic .breadcrumbs {
+	position: absolute;
+	z-index: 1;
+	top: -4px;
+}

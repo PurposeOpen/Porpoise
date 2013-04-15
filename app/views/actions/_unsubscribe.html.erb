@@ -1,0 +1,15 @@
+<section>
+  <%= form_for 'member_info', :as => "member_info", :url => take_action_action_path(I18n.locale.to_s), :method => :post,
+               :html => {:id => 'action_form', :class => 'petition action_form_wrapper soft-box-shadow'} do |f| %>
+      <%= labeled_field_group @member, :email do %>
+          <%= f.text_field :email, :type => 'email', :required => true, :autofocus => true, :value => params['email'], :title => t('validations.email_required'),
+                           :data => { :validation => {
+                                   :messages => { :email => t('validations.email_invalid') }
+                           }.to_json } %>
+          <%= f.label :email, t('fields.email') %>
+      <% end %>
+
+
+      <%= f.submit content_module.options.button_text, :id => "action_submit" %>
+  <% end %>
+</section>

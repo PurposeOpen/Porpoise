@@ -1,0 +1,457 @@
+﻿* { 
+    float:none !important;
+}
+
+body {
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    min-width:100% !important;
+    width:100% !important;
+    background-color: #ffffff;
+}
+
+header, #header_bg, #header_mask, #languages, #default_bg, .container_12 .grid_12, .container_12 .grid_6 {
+    min-width:100% !important;
+    width:100% !important;
+}
+
+header {
+    position: relative !important;
+}
+.logo {
+    background-position: -365px -46px !important;
+    background-repeat: none;
+    width: 167px;
+    height: 50px;
+}
+
+#header_bg, #header_mask, .media_caption, #petition_counter, #comments, header nav, footer, .dark-stripe {
+    display: none;
+}
+
+img, embed, object, video, iframe {
+    max-width: 100%;
+    _width: 100%; /* for IE6 */
+}
+
+.wrapper {
+    min-height: 0;
+}
+.media_wrapper iframe {
+    width: 100% !important;
+}
+
+.tinynav { 
+    display: block;
+    position: absolute;
+    top: 18px;
+    right: 10px;
+    z-index: 1000;
+}
+
+header > #languages > ul { display: none }
+header > #languages { height: 0 }
+
+#main .grid_12 h1 {
+    padding-left: 0;
+    padding-top: 4px;
+    line-height: 1;
+    border: none;
+}
+
+.section_actions .main_module .main_module_content {
+    margin-bottom: 0;
+}
+
+#goal_ask {
+    margin: 0 0 1em 0;
+    text-align: center;
+}
+
+.container_12 {
+    width: 100%;
+    margin: 2px 0 0 0;
+    padding: 0;
+    border-top: 2px solid #f6f7f8;
+}
+
+.media_wrapper {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.media_wrapper > img {
+    max-width: 75%;
+}
+
+.grid_6.omega {
+    width: 100%;
+    margin: 0;
+}
+
+#explanatory_text {
+    display: block !important;
+    padding-bottom: 20px;
+}
+
+.action-button-container {
+    text-align: center;
+    width: 100%;
+}
+
+.action-button {
+    background-image: image-url("bttn_mid.png");
+    background-repeat: repeat-x;
+    height: 41px;
+    width: 90%;
+    margin: 0 auto;
+    border: 0;
+    padding: 0px 15px 0px 11px;
+    font-family: "league-gothic-1","league-gothic-2", sans-serif;
+    font-size: 30px;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    -webkit-appearance: none;
+    border-radius: 1px;
+}
+
+body > header {
+    position: relative;
+}
+
+header, #languages, #logo {
+    background-color: #f6f7f8;
+}
+
+#logo {
+    height: 60px;
+    margin: 0;
+    position: relative;
+    
+}
+
+#logo a {
+    width: 200px;
+    height: 60px;
+    background-position: 10px 8px;
+    background-color: #f6f7f8;
+}
+
+#logo a.en {
+    background-image: image-url('logo_mobile-en.png') !important;
+}
+#logo a.es {
+    background-image: image-url('logo_mobile-es.png') !important;
+}
+#logo a.fr {
+    background-image: image-url('logo_mobile-fr.png') !important;
+}
+#logo a.pt {
+    background-image: image-url('logo_mobile-pt.png') !important;
+}
+
+#main {
+    margin-top: 2px;
+    padding: 0 3%;
+}
+
+#goal_ask {
+    color: #22bac2;
+}
+
+.action-more {
+    display: none;
+}
+
+.action-read-more {
+    padding-top: 5px;
+    height: 18px;
+}
+
+.action-read-more-button {
+    height: 18px;
+    padding-right: 20px;
+    text-align: right;
+    font-size: 11px;
+    line-height: 19px;
+    font-weight: bold;
+    font-style: italic;
+    color: #d85166;
+    background: image-url('button-read_more.png') no-repeat right center;
+    -webkit-background-size: 76px 18px;
+    cursor: pointer;
+}
+
+.action-back-button {
+    height: 15px;
+    width: 50px;
+    padding-left: 3%;
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 19px;
+    font-weight: bold;
+    font-style: italic;
+    color: #d85166;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.unavailable {
+    border: none !important;
+    box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    height: 100%;
+    width: 100%;
+}
+
+.unavailable p {
+    padding: 10px 0;
+}
+/* TAF */
+.petition_taf #taf_options .taf_message, #taf_options h3, .petition_taf #taf_options .social_holder #facebook_info, .petition_taf #taf_options .social_holder #twitter_info, .petition_taf #taf_options .stripe_thick_vertical, .petition_taf #taf_options #email_holder img#email_shares, .petition_taf #taf_options #email_holder div#email_shares_count, .petition_taf #taf_options #email_holder #email_text, #fb_share_this #fb_share_button_start, #taf_options .social_holder #fb-share-this #fb_share_button_end, #taf_options .social_holder #twitter_share_button_start, #taf_options .social_holder #twitter_share_button_end, #taf_options #email_holder #email_share_button_start, #taf_options #email_holder #email_share_button_end, #taf_options .stripe_thick_horizontal, .petition_taf .stripe_thick_bottom_light, #copy_email, .zclip {
+    display: none;
+}
+#taf_options .social_holder #twitter_info {
+    display: none;
+}
+.petition_taf #taf_options, .petition_taf #taf_options h2, .petition_taf #taf_options .taf_message, #taf_options .social_holder #twitter_share_form #twitter_submit_button {
+    width: 100%;
+}
+
+#taf_options .social_holder #twitter_share_form{
+    width: 100%;
+}
+#taf_options .social_holder #fb-share-this {
+    width: 95%;
+}
+
+.petition_taf #taf_options h2 {
+    border: none;
+    padding: 0;
+}
+
+.petition_taf #taf_options #email_holder #email_link {
+    margin: 0;
+}
+
+#taf_options {
+    .social_holder #fb_share_button, .social_holder #twitter_share_button_holder, #email_holder #email_button_holder {
+        position: relative;
+        background-image: image-url("bttn_TAF_mid.png");
+        width: 80%;
+        padding: 0;
+        margin: 8px auto;
+        bottom: 0;
+        -webkit-appearance: none;
+        border-radius: 1px;
+    }
+}
+
+#taf_options .social_holder #fb_share_button a, 
+#taf_options .social_holder #twitter_share_button_holder input[type=submit], 
+#taf_options #email_holder #email_button_holder a {
+    width: 100% !important;
+}
+
+#taf #taf_options {
+    #goal_ask, #goal_ask_bottom_border {
+        padding-top: 1em;
+        background: transparent image-url('stripe_dark_thin.png') repeat-x;
+    }
+}
+
+.section_actions .grid_12 #header_container {
+    background-color: white !important;
+    padding: 0;
+    h1 {
+        background-color: white !important;
+        padding-bottom: 0px;
+        height: 100%;
+    }
+}
+.section_actions #action_form .field_wrapper, .section_actions #paypal_donation_form .field_wrapper {
+    width: 92%;
+}
+.section_actions #action_form input, .section_actions #paypal_donation_form input {
+    width: 97%;  
+}
+.section_actions #action_form .field_wrapper.comment, .section_actions #paypal_donation_form .field_wrapper.comment {
+    width: 92%;
+}
+.section_actions #action_form textarea, .section_actions #paypal_donation_form textarea {
+    width: 97%;  
+}
+.section_actions #action_form #optin, .section_actions #paypal_donation_form #optin {
+     width: 92%;
+}
+.action-button {
+    margin-bottom: 15px;
+}
+#member_action_submit_wrap {
+    height: 35px;
+}
+.section_actions #action_form #action_submit, .section_actions #paypal_donation_form #action_submit {
+    position: relative;
+    width: 92%;
+}
+#header_bg, #header_mask, .media_caption, #petition_counter, header nav, footer, .dark-stripe {
+     display: none !important;
+}
+#comments {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    &> * {
+        display: none;
+    }
+}
+.section_actions #main_and_side_wrapper {
+    border: 0;
+}
+
+#taf_options {
+    width:95%;
+    background-color:#fff;
+    background-image:none;
+}
+
+#taf_options h2
+{
+    width:auto;
+}
+
+#taf_options .taf_message
+{
+    display:none;
+    padding-top:10px;
+}
+
+#taf_options #email_holder #email_text {
+    display: none;
+}
+
+#taf_options #email_holder #email_share_count {
+    display: none;
+}
+
+#taf_options .social_holder #facebook_share_count, #taf_options .social_holder #twitter_share_count {
+    display: none;
+}
+
+#taf_options { 
+    .social_holder, #email_holder {
+        height: 100% !important;
+        padding: 0;
+        text-align: center;
+        width: 100% !important;
+    }
+}
+
+#taf_options .stripe_thick_vertical {
+    display: none;
+}
+
+#taf_options .social_holder .info .preview {
+    display: none;
+}
+
+.stripe_thick_bottom_light {
+    display: none;
+}
+
+.soft-box-shadow {
+    background-color: #FFFFFF;
+    box-shadow: none;
+}
+
+#taf_options {
+    width: 100%;
+    background-color:#fff;
+    background-image:none;
+    height: auto;
+}
+
+#taf_options .taf_message
+{
+    display:none;
+    padding-top:10px;
+}
+
+#taf_options #email_holder #email_text {
+    display: none;
+}
+
+#taf_options #email_holder #email_share_count {
+    display: none;
+}
+
+#taf_options .social_holder #facebook_share_count, #taf_options .social_holder #twitter_share_count {
+    display: none;
+}
+
+#taf_options .stripe_thick_vertical {
+    display: none;
+}
+
+#taf_options .social_holder .info .preview {
+    display: none;
+}
+
+#taf_options .social_holder #fb_share_this #fb_share_button_start {
+    display: none;
+}
+
+#taf_options .social_holder #fb_share_this #fb_share_button_end {
+    display: none;
+}
+
+#taf_options #email_holder #email_link {
+    margin: 0;
+}
+
+.stripe_thick_bottom_light {
+    display: none;
+}
+
+#taf_options h2 {
+    background: none;
+    border: 0 none;
+    color: #5B5B5B;
+    margin: 0 0 25px 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* iPhone 4, Opera Mobile 11 and other high pixel ratio devices ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min-device-pixel-ratio: 1.5) {
+    /* Heading kerning pairs and ligatures */
+    h1, h2, h3 { text-rendering: optimizeLegibility; }
+
+    #logo a {
+        background-size: 170px 37px;
+    }
+    
+    #logo a.en {
+        background-image: image-url('logo_mobile-en@2x.png') !important;
+    }
+    #logo a.es {
+        background-image: image-url('logo_mobile-es@2x.png') !important;
+    }
+    #logo a.fr {
+        background-image: image-url('logo_mobile-fr@2x.png') !important;
+    }
+    #logo a.pt {
+        background-image: image-url('logo_mobile-pt@2x.png') !important;
+    }
+
+    .action-read-more-button {
+        background: image-url('button-read_more@2x.png') no-repeat right center;
+        background-size: 76px 18px;
+    }
+}

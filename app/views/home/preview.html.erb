@@ -1,0 +1,9 @@
+<%= javascript_include_tag "libs/jquery.blockUI.js" %>
+<script type="text/javascript">
+    $.blockUI({
+        message:null,
+        overlayCSS:{cursor:"default", opacity: "0"}
+    });
+</script>
+
+<%= render :template => "home/index" %>

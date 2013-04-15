@@ -1,0 +1,2 @@
+class PaymentNotificationsController < Porpoise::PaymentNotificationsController
+end

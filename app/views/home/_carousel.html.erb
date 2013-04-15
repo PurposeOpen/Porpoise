@@ -1,0 +1,37 @@
+<% if @movement.featured_contents.attributes["Carousel"].present? %>
+  <% carousel_items = @movement.featured_contents.attributes["Carousel"] %>
+  <div id='carousel_control_holder' class='grid_12'>
+    <div id='carousel_controls'>
+      <a href='#'><div id='previous'></div></a>
+      <% carousel_items.each_with_index do |item, item_count| %>
+        <a href='#'>
+          <div class='control'>
+            <span class='item<%= item_count %>'></span>
+          </div>
+        </a>
+      <% end %>
+      <a href='#'><div id='next'></div></a>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+  <div id='callout_boxes'>
+    <% carousel_items.each_with_index do |item, item_count| %>
+      <div class="item item<%= item_count %>">
+        <div class="container_12" style="position:relative;"> 
+          <div class="callout">
+            <div class="title">
+              <%= link_to raw(item.title), item.url %>
+            </div>
+            <div class="description soft-shadow">
+              <%= raw item.description %>
+            </div>
+            <div class="action">
+              <a href='<%= item.url %>'><div class='callout_button_text'><%= item.button_text %></div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

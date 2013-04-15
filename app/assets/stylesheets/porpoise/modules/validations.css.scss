@@ -1,0 +1,60 @@
+@import "../vars_and_mixins";
+
+#action_form,
+#new_donation,
+#paypal_overlay {
+	span.error_mask {
+		display: none;
+	}
+}
+#action_form input.error,
+#action_form textarea.error,
+#action_form a.error,
+.section_donation_actions #new_donation input.error,
+#paypal_overlay input.error {
+	border: 2px solid $movement-error-color;
+}
+#action_form textarea.error {
+	width: 384px;
+	height: 54px;
+}
+#join_and_join_taf #form_holder #form_fields textarea.error {
+	width: 512px;
+	height: 78px;
+}
+#action_form label.validation_message,
+#action_form span.error,
+#new_donation label.validation_message,
+#paypal_donation_popup span.error {
+	color: $movement-error-color;
+	font-size: 12px;
+}
+#action_form,
+#new_donation,
+#paypal_overlay {
+	label.validation_message {
+		margin-bottom: 8px;
+		width: 180px;
+	}
+}
+#new_donation #expiration_month label.validation_message,
+#new_donation #expiration_year label.validation_message,
+#new_donation #cvv label.validation_message {
+	width: 93px;
+}
+#action_form label#country_validation_message,
+#new_donation label#country_validation_message,
+#new_donation	.selectbox_validation_message,
+#paypal_overlay .form_select label.validation_message {
+	margin-top: 6px;
+	margin-bottom: 13px;
+}
+#paypal_overlay .form_select label.validation_message {
+	display: block;
+}
+#join_and_join_taf #action_form label.validation_message {
+	width: 244px;
+}
+.translation_missing {
+    color: red;
+}

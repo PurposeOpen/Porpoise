@@ -1,0 +1,275 @@
+@import "../vars_and_mixins";
+
+#taf_options {
+	@include taf_options_section;
+	position: relative;
+	width: 431px;
+	margin-left: 15px;
+	height: auto;
+}
+#taf_options .taf_message {
+	background-color: white;
+  margin: 0px;
+  width: 396px;
+  border-left: solid 1px #F0F0F0;
+  border-right: solid 1px #F0F0F0;
+  border-bottom: solid 1px #F0F0F0;
+  color: #5B5B5B;
+  padding: 20px 17px 20px 17px;
+  font-family: proxima-nova-1,proxima-nova-2;
+  font-weight: normal;
+  float: left;
+}
+.star {
+  color: #28C3BB;
+}
+#taf_options .social_holder,
+#taf_options #email_holder {
+  padding: 10px 20px 10px 20px;
+}
+#taf_options .social_holder {
+  float: left;
+  height: 209px;
+  width: 182px;
+  padding-left: 11px;
+	position: relative;
+
+  #facebook_share_count, #twitter_share_count {
+    @include share_count($top: 49px, $right: 10px);
+  }
+}
+
+#taf_options .social_holder h3,
+#taf_options #email_holder h3 {
+    text-transform: uppercase;
+}
+#taf_options #email_holder {
+	position: relative;
+
+  #email_share_count {
+    @include share_count($top: 39px, $right: 84px);
+  }
+}
+#taf_options .stripe_thick_horizontal {
+  background-image: image-url("stripe_light.png");
+  background-repeat: repeat-x;
+	background-color: #d2d2d2;
+  height: 5px;
+}
+#taf_options h3 {
+  font-family: proxima-nova-condensed-1, proxima-nova-condensed-2;
+  font-style: italic;
+  color: #5B5B5B;
+  font-size: 24px;
+  font-weight: normal;
+}
+#taf_options .social_holder .info {
+  background: white;
+  background-image: image-url("stripe_light.png");
+  background-repeat: repeat-x repeat-y;
+	border: 1px solid white;
+	margin-top: 10px;
+}
+#taf_options .social_holder .info .preview {
+	margin: 3px 5px 2px 4px;
+}
+#taf_options .social_holder .info .preview img {
+	margin-right: 5px;
+	float: left;
+}
+#taf_options .social_holder .info .preview div {
+	font-family: arial, sans-serif;
+	font-size: 10px;
+	color: #2E2E2E;
+}
+#taf_options .social_holder #fb_share_this #fb_share_button_start {
+	background-image: image-url("bttn_TAF_start_fb.png");
+	height: 32px;
+	width: 25px;
+	float: left;
+}
+#taf_options .social_holder #fb_share_this #fb_share_button_text {
+	background-image: image-url("bttn_TAF_mid.png");
+	float: left;
+	height: 32px;
+	line-height: 32px;
+	padding: 0px 6px;
+}
+#taf_options .social_holder #fb_share_this #fb_share_button_end {
+	background-image: image-url("bttn_TAF_end.png");
+	height: 32px;
+	width: 10px;
+	float: left;
+}
+#taf_options .social_holder #twitter_share_button_holder {
+	position: absolute;
+	bottom: 24px;
+	height: 32px;
+	width: 191px;
+	text-align: center;
+}
+#taf_options .social_holder #twitter_share_form {
+	display: inline-block;
+}
+#taf_options .social_holder #twitter_share_form #twitter_submit_button {
+	font-family: "league-gothic-1","league-gothic-2",sans-serif;
+	font-size: 22px;
+	font-style: italic;
+	color: white;
+	border: 0px solid black;
+	background-image: image-url("bttn_TAF_mid.png");
+	background-repeat: repeat-x;
+	height: 32px;
+	line-height: 32px;
+	/* padding bottom needed for vertical alignment of text in firefox */
+ 	padding: 0px 4px 1px 5px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	float: left;
+}
+#taf_options .social_holder #twitter_share_button_start {
+	background-image: image-url("bttn_TAF_start_tw.png");
+	height: 32px;
+	width: 32px;
+	float: left;
+}
+#taf_options .social_holder #twitter_share_button_end {
+	background-image: image-url("bttn_TAF_end.png");
+	height: 32px;
+	width: 10px;
+	float: left;
+}
+.ie7 #taf_options .social_holder #twitter_share_button_holder {
+	margin-left: -15px;
+}
+#taf_options #email_holder #email_share_button_start {
+	background-image: image-url("bttn_TAF_start_email.png");
+	height: 32px;
+	width: 32px;
+	float: left;
+}
+#taf_options #email_holder #email_share_button_text {
+	background-image: image-url("bttn_TAF_mid.png");
+	background-repeat: repeat-x;
+	height: 32px;
+	line-height: 32px;
+	padding: 0px 6px 0px 8px;
+	float: left;
+}
+.ie7 #taf_options #email_holder #email_share_button_text {
+	padding: 0px 0px 0px 6px;
+}
+#taf_options #email_holder #email_share_button_end {
+	background-image: image-url("bttn_TAF_end.png");
+	height: 32px;
+	width: 10px;
+	float: left;
+}
+#taf_options .social_holder #fb_share_this:hover,
+#taf_options .social_holder #fb_share_this:hover #fb_share_button_start,
+#taf_options .social_holder #fb_share_this:hover #fb_share_button_text,
+#taf_options .social_holder #fb_share_this:hover #fb_share_button_end,
+#taf_options .social_holder #twitter_share_form:hover #twitter_submit_button,
+#taf_options .social_holder #twitter_share_form:hover #twitter_share_button_start,
+#taf_options .social_holder #twitter_share_form:hover #twitter_share_button_end,
+#taf_options #email_holder #email_link:hover,
+#taf_options #email_holder #email_link:hover #email_share_button_start,
+#taf_options #email_holder #email_link:hover #email_share_button_text,
+#taf_options #email_holder #email_link:hover #email_share_button_end {
+	background-position: 0px -32px;
+}
+#taf_options #email_holder label {
+	color: #808080;
+}
+#taf_options h2 {
+	background: white;
+	width: 413px;
+	margin: 0px;
+	border-top: solid 1px #F0F0F0;
+	border-left: solid 1px #F0F0F0;
+	border-right: solid 1px #F0F0F0;
+	color: #5B5B5B;
+	padding: 20px 0px 0px 17px;
+
+}
+#taf_options .social_holder #facebook_info {
+	width: 139px;
+	height: auto;	
+}
+#taf_options .social_holder #twitter_info {
+	height: auto;
+	width: 139px;
+}
+#taf_options .social_holder .info .preview #facebook_text {
+	width: 66px;
+	float: left;
+}
+#taf_options .stripe_thick_vertical {
+	background-image: image-url("stripe_light.png");
+  background-repeat: repeat-y;
+	background-color: #d2d2d2;
+  width: 5px;
+  float: left;
+	height: 229px;
+}
+#taf_options .social_holder #fb_share_button {
+	position: absolute;
+	height: 32px;
+	text-align: center;
+	bottom: 24px;
+	width: 191px;
+}
+#taf_options .social_holder #fb_share_this {
+	font-family: "league-gothic-1","league-gothic-2",sans-serif;
+	font-size: 22px;
+	font-style: italic;
+	text-decoration: none;
+	color: white;
+	background-repeat: repeat-x;
+	height: 32px;
+	display: inline-block;
+	text-align: center;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+#taf_options #email_holder #email_link {
+	font-family: "league-gothic-1","league-gothic-2",sans-serif;
+	font-size: 22px;
+	font-style: italic;
+	text-decoration: none;
+	color: white;
+	margin-left: 75px;
+	height: 32px;
+	width: 200px;
+	display: inline-block;
+	text-align: center;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+#taf_options #email_holder textarea {
+	height: 120px;
+	width: 384px;
+	margin-top: 3px;
+}
+#taf_options #email_holder #email_text {
+	margin-top: 23px;
+	font-family: arial;
+	font-size: 10px;
+}
+.stripe_thick_bottom_light {
+  background-image: image-url("stripe_light.png");
+	background-color: #d2d2d2;
+  background-repeat: repeat-x;
+  height: 5px;
+  position: absolute;
+	width: 431px;
+	bottom: 1px;
+}
+.preview-warning {
+  font-size: 30px;
+  font-weight: bold;
+  background-color: white;
+}
+.warning-phrase {
+  color: red;
+}

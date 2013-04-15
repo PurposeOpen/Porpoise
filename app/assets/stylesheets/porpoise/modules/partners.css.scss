@@ -1,0 +1,162 @@
+/*
+** Partners
+*/
+
+#partners_wrapper {
+  background-color: #ffffff;
+  position: relative;
+}
+
+#partners_wrapper .breadcrumbs_wrapper {
+    background: image-url("stripe_med.png") repeat scroll 0 0 white;
+}
+
+#partners_wrapper .dark-stripe,
+#other_partners .dark-stripe {
+    bottom: 1px;
+    left: 2px;
+    position: absolute;
+    width: 956px;
+}
+
+#partners_wrapper h2,
+#other_partners h2 {
+    background: image-url("stripe_med.png") repeat 0 0, image-url("stripe_dark_thick.png") repeat-x center 50px;
+    border-bottom: 1px solid white;
+    color: #EB2954;
+    font-family: "league-gothic-1","league-gothic-2",sans-serif;
+    font-size: 26px;
+    font-style: italic;
+    font-weight: normal;
+    padding: 6px 0px 26px 28px;
+    position: relative;
+    text-transform: uppercase;
+}
+
+#other_partners h2 {
+  background: image-url("stripe_med.png") repeat 0 0, image-url("stripe_dark_thick.png") repeat-x center 60px;
+  padding: 18px 0px 26px 28px;
+}
+
+#partners_wrapper h2 div.breadcrumbs {
+    bottom: 59px;
+    font-family: "proxima-nova-1","proxima-nova-2",sans-serif;
+    font-style: normal;
+    left: 17px;
+    position: absolute;
+}
+
+#partners_wrapper h2 .dark-stripe,
+#other_partners h2 .dark-stripe {
+    bottom: 10px;
+    left: 5px;
+    position: absolute;
+    width: 937px;
+}
+
+#featured_partners {
+	padding-top:  20px;
+	padding-bottom: 30px;
+	font-family: proxima-nova-condensed-1,proxima-nova-condensed-2;
+	border-top: 1px solid #F4F4F4;
+}
+
+.featured_partner {
+	float: left;
+	width: 410px;
+	padding:0 35px;
+}
+
+.featured_partner img {
+	margin-left: -5px;
+}
+
+.featured_partner h3 {
+font-family: proxima-nova-condensed-1,proxima-nova-condensed-2;
+text-transform: uppercase;
+font-size: 24px;
+font-weight: normal;
+color: #595959;
+}
+
+.featured_partner p {
+	font-size: 14px;
+	font-family: "proxima-nova-1","proxima-nova-2",sans-serif;
+	color: #595959;
+}
+
+.featured_partner a {
+	text-decoration: none;
+	display:block;
+}
+
+.featured_partner div a {
+	margin-bottom: 10px;
+}
+
+.featured_partner a:hover h3 {
+  color: #eb2954;
+}
+
+.featured_partner div {
+	padding: 0px 20px 0px 11px;
+}
+
+#other_partners {
+  border-bottom: 1px solid #E5E3E2;
+  background: white;
+  padding-bottom: 45px;
+}
+
+#other_partners h2 div{
+  position: absolute;
+  bottom: 2px;
+  width: 932px;
+}
+
+.other_partner {
+	border-right: 1px solid #F4F4F4;
+	border-bottom: 1px solid #F4F4F4;
+	height: 222px;
+	width: 279px;
+	float: left;
+  font-family: proxima-nova-condensed-1,proxima-nova-condensed-2;
+	padding: 20px;
+	color: #595959;
+}
+
+.other_partner img {
+	margin-bottom: 10px;
+}
+
+.other_partner h3 {
+	font-size: 20px;
+	font-weight: 100;
+	text-transform: uppercase;	
+}
+
+.other_partner p {
+	font-family: "proxima-nova-1","proxima-nova-2",sans-serif;
+}
+
+.other_partner a {
+	color: #eb2954;
+}
+
+.other_partner a:hover{
+  color: #eb2954;
+}
+
+#other_partners .row1 {
+	border-top: 1px solid #F4F4F4;
+}
+
+#other_partners .last {
+	border-right: none;
+}
+
+#jobs-content-page #social,
+#partners-content-page #social,
+#privacy-content-page #social {
+	right: -27px;
+}
