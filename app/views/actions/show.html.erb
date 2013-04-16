@@ -28,6 +28,10 @@
 <div class="action_page_content<%= @action_content.is_join_page ? ' join_action' : ''%>">
   <div id="server_js_data">
     <span id="url_for_member_fields">
+      <%= action_member_fields_path(I18n.locale, params[:id]) %>
+    </span>
+    <span id="url_for_member_info">
+      <%= action_member_info_path(I18n.locale, params[:id]) %>
     </span>
   </div>
 
