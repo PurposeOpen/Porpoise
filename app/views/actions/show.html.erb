@@ -20,8 +20,8 @@
   <!-- /Mobile Meta Tags - Trilogy addition -->
 
   <!-- Mobile Javascript - Trilogy addition -->
-  <%= javascript_include_tag "libs/breakpoint.js" %>
-  <%= javascript_include_tag "libs/tinynav-ti.js" %>
+  <%= javascript_include_tag "porpoise/libs/breakpoint.js" %>
+  <%= javascript_include_tag "porpoise/libs/tinynav-ti.js" %>
   <!-- /Mobile Javascript - Trilogy addition -->
 <% end %>
 
@@ -84,7 +84,7 @@
 
 <%= content_for :additional_js do %>
   <!-- Mobile Javascript - Trilogy addition -->
-  <%= javascript_include_tag "libs/mobile.js" %>
+  <%= javascript_include_tag "porpoise/libs/mobile.js" %>
   <script type="text/javascript">
     MBP.scaleFix();
     MBP.hideUrlBarOnLoad();

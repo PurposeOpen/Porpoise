@@ -20,6 +20,8 @@ Rails.application.routes.draw do
         post :donate_with_credit_card
         get :preview
       end
+      get :member_fields
+      get :member_info
     end
     match 'preview' => 'home#preview'
     match ":content_page" => "content_pages#show", :via => :get, :as => :content_page

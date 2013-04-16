@@ -4,9 +4,23 @@ module Porpoise
     
     remote_resource_class Platform::ActionPage
 
+    MEMBER_FIELDS_URI = [Platform.base_uri, "movements/#{Platform.movement_id}/action_pages/"].join(Platform.base_uri.ends_with?("/") ? "" : "/")
+
     def show
       cookies[:user_language] = I18n.locale
       render_action_page
+    end
+
+    def member_fields
+      url = URI.join(MEMBER_FIELDS_URI, "#{params[:action_id]}/member_fields.json?email=#{params[:email]}")
+      response = open_on_platform(url)
+      render :json => JSON.parse(response.as_json.first), :callback => params[:callback]
+    end
+
+    def member_info
+      request_url = "#{Platform.base_uri}movements/#{Platform.movement_id}/members/member_info.json?email=#{params[:email]}"
+      data = JSON.parse(open_on_platform(request_url).as_json.first)
+      render :json => JSON.parse(data.to_json(:only => ['first_name', 'last_name'])), :callback => params[:callback]
     end
 
     def preview
