@@ -1,8 +1,8 @@
 # Porpoise
 
-A client library for the Purpose Platform.
+A client library for the Purpose Platform
 
-## Creating a new movement
+### Creating a new movement
 
 1. create a new rails application for the movement using:
 
@@ -21,10 +21,14 @@ A client library for the Purpose Platform.
 
  The new movement now runs at rails default port 3000. (http://localhost:3000)
 
-## Contributing
+### Contributing
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+### [LICENSE](https://github.com/PurposeOpen/Porpoise/wiki/LICENSE)
+
+### [Wiki](https://github.com/PurposeOpen/Porpoise/wiki)
