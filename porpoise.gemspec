@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["technology@purpose.com"]
   gem.description   = "Purpose Platform client library."
   gem.summary       = "Purpose Platform client library."
-  gem.homepage      = "http://www.purpose.com"
+  gem.homepage      = "https://github.com/PurposeOpen/Porpoise"
 
   gem.files         = `git ls-files`.split($\)
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})

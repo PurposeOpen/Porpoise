@@ -1,7 +1,3 @@
 module Porpoise
-  MAJOR = 1
-  MINOR = 0
-  REVISION = ENV['BUILD_NUMBER'] || 'dev'
-
-  VERSION = "#{MAJOR}.#{MINOR}.#{REVISION}"
+  VERSION = "0.8.0"
 end
