@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'http://gems.purpose.com'
 
 gemspec
 gem 'rails', '3.2.13'

@@ -28,8 +28,7 @@ class ::AppBuilder < Rails::AppBuilder
 
   def add_porpoise
     existing_contents = File.readlines('Gemfile')
-    existing_contents.insert(1, "source 'http://gems.purpose.com'\n")
-    existing_contents << "gem 'porpoise'"
+    existing_contents << "gem 'porpoise', :git => 'git://github.com/PurposeOpen/Porpoise.git', :tag => 'v0.8.0'"
     File.write('Gemfile', existing_contents.join)
   end
 
