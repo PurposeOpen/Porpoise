@@ -16,7 +16,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.add_dependency "activeresource", ">= 3.2.0"
   gem.add_dependency 'app_constants'
-  gem.add_dependency 'purpose_country_select', "~> 0.0.7"
   gem.add_dependency 'rack-timeout'
   gem.add_dependency 'activemerchant', "~> 1.29.3"
   gem.add_dependency 'recurly'

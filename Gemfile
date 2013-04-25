@@ -4,6 +4,7 @@ gemspec
 gem 'rails', '3.2.13'
 gem 'uuid'
 gem 'money'
+gem 'purpose_country_select', :git => 'https://github.com/PurposeOpen/country_select.git'
 
 
 group :development, :test do
