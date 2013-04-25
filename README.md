@@ -2,6 +2,8 @@
 
 A client library for the Purpose Platform
 
+[![Build Status](https://travis-ci.org/PurposeOpen/Porpoise.png?branch=master)](https://travis-ci.org/PurposeOpen/Porpoise)
+
 ### Creating a new movement
 
 1. Create a new rails application for the movement using:
