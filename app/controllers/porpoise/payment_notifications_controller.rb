@@ -88,7 +88,7 @@ module Porpoise
 
     def handle_failed_payment_from_pay_pal(notification)
       subscription_id = notification.params["recurring_payment_id"]
-      donation = Platform::Donation.find(:first, :params => {:subscription_id => subscription_id})
+      donation = Platform::Donation.find_by_subscription_id(subscription_id)
 
       amount_in_cents = (notification.params["amount"] || 0).to_i * 100
 

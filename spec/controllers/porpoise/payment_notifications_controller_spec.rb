@@ -364,7 +364,7 @@ describe PaymentNotificationsController do
           subscription_id = "I-LL3IC9BB711M"
           @request.env['RAW_POST_DATA'] = "payment_cycle=Monthly&txn_type=recurring_payment_skipped&last_name=Doe&next_payment_date=00:00:00 Feb 01, 2013 PST&residence_country=AR&initial_payment_amount=0.00&rp_invoice_id=9944b730-50c6-0130-4651-22000a8eeeec&currency_code=EUR&time_created=00:00:00 Feb 01, 2013 PST&verify_sign=A99UBn.jdKHar60IJmHG2niLzQ4KAM2yA3Y6927Offn329AH3-eeOaKC&period_type= Regular&payer_status=unverified&tax=0.00&first_name=John&receiver_email=admin@allout.org&payer_id=1TLLMJP9PWL0E&product_type=1&shipping=0.00&amount_per_cycle=10.00&profile_status=Active&charset=windows-1252&notify_version=3.7&amount=10.00&outstanding_balance=0.00&recurring_payment_id=#{subscription_id}&product_name=Monthly donation of 10,00 € to AllOut.org&ipn_track_id=a097b45150e33"
 
-          FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/movements/testmovement/donations.json?subscription_id=#{subscription_id}", :body => [{:user => {:email => 'john.doe@example.com'}, :action_page => 'testplan'}].to_json
+          FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/movements/testmovement/donations?subscription_id=#{subscription_id}", :body => {:user => {:email => 'john.doe@example.com'}, :action_page => 'testplan'}.to_json
 
           params = {
               :donation_amount_in_cents => 1000,
