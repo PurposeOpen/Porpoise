@@ -808,15 +808,22 @@ describe ActionsController do
     end
   end
 
-  
+  describe "member_info" do
+    it "should return member's first and last names by email" do
+      FakeWeb.register_uri :get, 'http://testmovement:testmovement@example.com/api/movements/testmovement/members.json?email=john.doe@example.com', :body => { :first_name => 'John', :last_name => 'Doe', :email => 'john.doe@example.com', :country_iso => 'us'}.to_json
 
-     
+      get :member_info, :locale => 'pt', :action_id => 10, :email => 'john.doe@example.com', :callback => 'this_is_the_callback'
 
-  # describe "complete_paypal_donation" do
-  #   before do
-  #     FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/testplan.json?locale=pt", :body => {:id => 'testplan', :title => "Save the Italian-speaking Turtles!", :content => "Save them!"}.to_json
-  #   end      
-  # end
+      response.status.should == 200
+
+      response.body.should match /this_is_the_callback\(.+\)/
+      json = JSON.parse(response.body.match(/this_is_the_callback\((.+)\)/)[1])
+
+      json.length.should == 2
+      json['first_name'].should == 'John'
+      json['last_name'].should == 'Doe'
+    end
+  end
 
   describe "GET preview" do
     it "should return preview for action page which are unpublished" do

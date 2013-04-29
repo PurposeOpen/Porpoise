@@ -18,7 +18,7 @@ module Porpoise
     end
 
     def member_info
-      request_url = "#{Platform.base_uri}movements/#{Platform.movement_id}/members/member_info.json?email=#{params[:email]}"
+      request_url = "#{Platform.base_uri}movements/#{Platform.movement_id}/members.json?email=#{params[:email]}"
       data = JSON.parse(open_on_platform(request_url).as_json.first)
       render :json => JSON.parse(data.to_json(:only => ['first_name', 'last_name'])), :callback => params[:callback]
     end
