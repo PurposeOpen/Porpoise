@@ -1,5 +1,4 @@
 require 'app_constants'
-require 'purpose_country_select'
 require 'rack-timeout'
 require 'open-uri'
 require 'porpoise/engine'

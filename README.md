@@ -17,12 +17,7 @@ A client library for the Purpose Platform
    * Movement specific constants ( _movement_name_, _movement_id_, _movement_password_ ) have to be passed as options.
 
 2. Create your movement in the Platform admin (with the same name you used above)
-3. Add the following line in the newly generated rails application's Gemfile:<br>
-```ruby
-gem 'money'
-```
-_Note:_ this is a workaround for a known issue which is in the works to be fixed.
-4. Start the rails server:
+3. Start the rails server:
 
    `$ cd movement_name; source .env; rails s`
 
