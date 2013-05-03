@@ -291,7 +291,7 @@ module Porpoise
 
       json_response = JSON.parse(platform_response.body)
 
-      if json_response['success']
+      if platform_response.code.to_i == 201
         session[:member_id] = json_response['member_id'] if json_response['member_id'].present?
         next_page_identifier = json_response['next_page_identifier']
         redirect_to next_page_identifier.present? ? action_path(I18n.locale, next_page_identifier) : root_path
