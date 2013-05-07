@@ -18,9 +18,18 @@ module Porpoise
     end
 
     def member_info
-      request_url = "#{Platform.base_uri}movements/#{Platform.movement_id}/members.json?email=#{params[:email]}"
-      data = JSON.parse(open_on_platform(request_url).as_json.first)
+      data = JSON.parse(get_member_info_from_platform(params[:email]).as_json.first)
       render :json => JSON.parse(data.to_json(:only => ['first_name', 'last_name'])), :callback => params[:callback]
+    end
+
+    def get_member_info
+      result = get_member_info_from_platform(params[:member_info][:email])
+      JSON.parse(result.as_json.first)
+    end
+
+    def get_member_info_from_platform(email)
+      request_url = "#{Platform.base_uri}movements/#{Platform.movement_id}/members.json?email=#{email}"
+      open_on_platform(request_url)
     end
 
     def preview
@@ -313,12 +322,6 @@ module Porpoise
       render :show
     rescue ActiveResource::ClientError => error
       error.response.code.to_i == 406 ? render(:page_not_available) : raise(error)
-    end
-
-    def get_member_info
-      request_url = "#{Platform.base_uri}movements/#{Platform.movement_id}/members/member_info.json?email=#{params[:member_info][:email]}"
-      result = open_on_platform(request_url)
-      JSON.parse(result.as_json.first)
     end
 
   end
