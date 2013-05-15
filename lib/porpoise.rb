@@ -7,7 +7,7 @@ module Platform
   class << self
     DEFAULT_CACHE_EXPIRATION = 5 * 60
 
-    attr_writer :password, :movement_id, :movement_name, :cache_expiration
+    attr_writer :password, :movement_id, :movement_name, :cache_expiration, :default_language
 
     def password
       @password ||= ENV['MOVEMENT_BASIC_AUTH_PASSWORD']
@@ -26,15 +26,14 @@ module Platform
 
     def base_uri=(uri)
       @base_uri = uri
-      @full_uri = nil
-    end
-
-    def full_uri
-      @full_uri ||= [ self.base_uri.gsub(/\/$/, ''), 'movements', self.movement_id ].join('/')
     end
 
     def movement_name
       @movement_name ||= ENV['MOVEMENT_NAME']
+    end
+
+    def default_language
+      @default_language ||= ENV['DEFAULT_LANGUAGE']
     end
 
     def cache_expiration
@@ -56,8 +55,12 @@ module Platform
     private
 
     def apply_config
-      Platform::Movement.site = self.base_uri
-      Platform::Base.site = self.full_uri
+      Platform::Base.site = self.base_uri
+
+      Platform::Base.prefix = "movements/#{self.movement_id}/"
+      Platform::LocalizableResource.prefix = ":locale/movements/#{self.movement_id}/"
+      Platform::Movement.prefix = ':locale/'
+
       Platform::Base.user = self.movement_id
       Platform::Base.password = self.password
     end

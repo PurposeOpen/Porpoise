@@ -9,10 +9,6 @@ class Platform::Donation < Platform::Base
 
 	private
 	def self.find_by_subscription_id_path
-		base_uri = self.site.to_s
-		if !base_uri.match(/\/$/)
-			base_uri << '/'
-		end
-		URI.join(base_uri, 'donations').to_s
+		"#{prefix}#{collection_name}.#{format.extension}"
 	end
 end

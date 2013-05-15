@@ -43,5 +43,6 @@ Dummy::Application.configure do
     config.movement_id = 'testmovement'
     config.movement_name = 'testmovement'
     config.password = 'testmovement'
+    config.default_language = 'en'
   end
 end

@@ -6,15 +6,14 @@ require 'active_merchant'
 describe ActionsController do
 
   before do
-    stub_movement_request
-    FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/10.json", :body => { :title => "Save the Italian-speaking Turtles!", :content => "Save them!"}.to_json
-    @take_action_url_stub = "http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/10/take_action.json?id=10&locale=pt&member_info%5Bemail%5D=bob%40example.com&member_info%5Bfirst_name%5D=Bob&member_info%5Blast_name%5D=Johnson&movement_id=testmovement"
+    stub_movement_request('it')
+    FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/it/movements/testmovement/action_pages/10.json", :body => { :title => "Save the Italian-speaking Turtles!", :content => "Save them!"}.to_json
+    @take_action_url_stub = "http://testmovement:testmovement@example.com/api/pt/movements/testmovement/action_pages/10/take_action.json?id=10&locale=pt&member_info%5Bemail%5D=bob%40example.com&member_info%5Bfirst_name%5D=Bob&member_info%5Blast_name%5D=Johnson&movement_id=testmovement"
   end
 
   it "should return an action content based on the specified action name and language" do
     get :show, { :id => 10, :locale => 'it'}
 
-    Platform::ActionPage.headers['Accept-Language'].should eql 'it'
     assigns[:action_content].title.should eql "Save the Italian-speaking Turtles!"
     assigns[:action_content].content.should eql "Save them!"
     response.headers['Content-Language'].should eql 'it'
@@ -22,16 +21,15 @@ describe ActionsController do
   end
 
   it "should request post-join content when searching for an action page if the user has signed" do
-    FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/10.json?member_has_joined=true",
+    FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/it/movements/testmovement/action_pages/10.json?member_has_joined=true",
                          :body => {:title => "Title", :content => "Content with email!"}.to_json
     get :show, {:id => 10, :locale => 'it', :email => 'john@banana-hammock.com'}
 
-    Platform::ActionPage.headers['Accept-Language'].should eql 'it'
     assigns[:action_content].content.should eql "Content with email!"
   end
 
   it "should render page_not_available when the platform responds a 406 error" do
-    FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/notacceptable.json", :status => 406
+    FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/it/movements/testmovement/action_pages/notacceptable.json", :status => 406
 
     get :show, { :id => 'notacceptable', :locale => 'it' }
 
@@ -40,8 +38,8 @@ describe ActionsController do
 
   describe "#take_action" do
     before :each do
-      stub_movement_request
-      FakeWeb.register_uri :get, %r[http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/10.json], :body => { :id => 10, :title => "Save the Italian-speaking Turtles!", :content => "Save them!" }.to_json
+      stub_movement_request('pt')
+      FakeWeb.register_uri :get, %r[http://testmovement:testmovement@example.com/api/pt/movements/testmovement/action_pages/10.json], :body => { :id => 10, :title => "Save the Italian-speaking Turtles!", :content => "Save them!" }.to_json
       FakeWeb.register_uri :post, @take_action_url_stub, :body => { :next_page_identifier => nil, :member_id => 321 }.to_json, :status => 201
     end
 
@@ -124,7 +122,7 @@ describe ActionsController do
     describe "paypal express donations" do
       before do
         FakeWeb.register_uri :post, "http://testmovement:testmovement@example.com/api/movements/testmovement/email_tracking/email_clicked", {}
-        FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/testplan.json", :body => {:id => 10, :title => "Save the Italian-speaking Turtles!", :content => "Save them!"}.to_json
+        FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/pt/movements/testmovement/action_pages/testplan.json", :body => {:id => 'testplan', :title => "Save the Italian-speaking Turtles!", :content => "Save them!"}.to_json
         UUID.stub(:generate).and_return('generated-uuid')
         Platform.movement_name = 'testmovement'
       end
@@ -303,8 +301,9 @@ describe ActionsController do
 
       describe "completing paypal donations" do
         before do
+          stub_movement_request('pt')
           FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/testplan.json?locale=pt", :body => {:id => 'testplan', :title => "Save the Italian-speaking Turtles!", :content => "Save them!"}.to_json
-          FakeWeb.register_uri :post, "http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/10/donation_payment_error", :status => 200
+          FakeWeb.register_uri :post, "http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/testplan/donation_payment_error", :status => 200
         end
 
         it "should confirm the donation and post the data to the platform for one-time donations" do
@@ -315,7 +314,7 @@ describe ActionsController do
             .with('PaypalToken', 'Payer123', 'brl', '125', '501(c)3', false)
             .and_return(paypal_response)
 
-          FakeWeb.register_uri :post, "http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/testplan/take_action.json?action_info%5Bamount%5D=125&action_info%5Bconfirmed%5D=false&action_info%5Bcurrency%5D=brl&action_info%5Bfrequency%5D=one_off&action_info%5Border_id%5D=order123&action_info%5Bpayment_method%5D=paypal&action_info%5Btransaction_id%5D=PayPal+Transaction+ID&id=testplan&locale=pt&member_info%5Bcountry_iso%5D=Payer+Country&member_info%5Bemail%5D=Payer+Email&member_info%5Bfirst_name%5D=Payer+First+Name&member_info%5Blast_name%5D=Payer+Last+Name&member_info%5Bmobile_number%5D=Payer+Mobile+Number&member_info%5Bpostcode%5D=Payer+ZIP&member_info%5Bstreet_address%5D=Payer+Address&movement_id=testmovement&t=email_tracking_info", 
+          FakeWeb.register_uri :post, "http://testmovement:testmovement@example.com/api/pt/movements/testmovement/action_pages/testplan/take_action.json?action_info%5Bamount%5D=125&action_info%5Bconfirmed%5D=false&action_info%5Bcurrency%5D=brl&action_info%5Bfrequency%5D=one_off&action_info%5Border_id%5D=order123&action_info%5Bpayment_method%5D=paypal&action_info%5Btransaction_id%5D=PayPal+Transaction+ID&id=testplan&locale=pt&member_info%5Bcountry_iso%5D=Payer+Country&member_info%5Bemail%5D=Payer+Email&member_info%5Bfirst_name%5D=Payer+First+Name&member_info%5Blast_name%5D=Payer+Last+Name&member_info%5Bmobile_number%5D=Payer+Mobile+Number&member_info%5Bpostcode%5D=Payer+ZIP&member_info%5Bstreet_address%5D=Payer+Address&movement_id=testmovement&t=email_tracking_info", 
                                :body => { :member_id => 123, :next_page_identifier => 404 }.to_json,
                                :status => 201
 
@@ -332,7 +331,7 @@ describe ActionsController do
               }
 
           response.should redirect_to action_path('pt', 404)
-          FakeWeb.last_request.path.should match /\/api\/movements\/testmovement\/action_pages\/testplan\/take_action\.json/
+          FakeWeb.last_request.path.should match /\/api\/pt\/movements\/testmovement\/action_pages\/testplan\/take_action\.json/
         end
 
         it "should confirm the donation and post the data to the platform for recurring donations" do
@@ -343,7 +342,7 @@ describe ActionsController do
             .with('PaypalToken', 'Payer123', 'brl', '125', '501(c)3', true)
             .and_return(paypal_response)
 
-          FakeWeb.register_uri :post, "http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/testplan/take_action.json?action_info%5Bconfirmed%5D=false&action_info%5Bcurrency%5D=brl&action_info%5Bfrequency%5D=monthly&action_info%5Bpayment_method%5D=paypal&action_info%5Bsubscription_amount%5D=125&action_info%5Bsubscription_id%5D=PayPal+Subscription+ID&id=testplan&locale=pt&member_info%5Bcountry_iso%5D=Payer+Country&member_info%5Bemail%5D=Payer+Email&member_info%5Bfirst_name%5D=Payer+First+Name&member_info%5Blast_name%5D=Payer+Last+Name&member_info%5Bmobile_number%5D=Payer+Mobile+Number&member_info%5Bpostcode%5D=Payer+ZIP&member_info%5Bstreet_address%5D=Payer+Address&movement_id=testmovement&t=email_tracking_info", 
+          FakeWeb.register_uri :post, "http://testmovement:testmovement@example.com/api/pt/movements/testmovement/action_pages/testplan/take_action.json?action_info%5Bconfirmed%5D=false&action_info%5Bcurrency%5D=brl&action_info%5Bfrequency%5D=monthly&action_info%5Bpayment_method%5D=paypal&action_info%5Bsubscription_amount%5D=125&action_info%5Bsubscription_id%5D=PayPal+Subscription+ID&id=testplan&locale=pt&member_info%5Bcountry_iso%5D=Payer+Country&member_info%5Bemail%5D=Payer+Email&member_info%5Bfirst_name%5D=Payer+First+Name&member_info%5Blast_name%5D=Payer+Last+Name&member_info%5Bmobile_number%5D=Payer+Mobile+Number&member_info%5Bpostcode%5D=Payer+ZIP&member_info%5Bstreet_address%5D=Payer+Address&movement_id=testmovement&t=email_tracking_info", 
                                :body => { :member_id => 123, :next_page_identifier => 404 }.to_json,
                                :status => 201
 
@@ -360,7 +359,7 @@ describe ActionsController do
               }
 
           response.should redirect_to action_path('pt', 404)
-          FakeWeb.last_request.path.should match /\/api\/movements\/testmovement\/action_pages\/testplan\/take_action\.json/
+          FakeWeb.last_request.path.should match /\/api\/pt\/movements\/testmovement\/action_pages\/testplan\/take_action\.json/
         end
 
         it "should notify Platform when there is a problem confirming the donation with PayPal Express" do
@@ -376,7 +375,7 @@ describe ActionsController do
           Payment::PaypalService.any_instance.should_receive(:retrieve_transaction_details).with('PaypalToken', '501(c)3').and_return(transaction_details_response)
 
           ActionsController.any_instance.stub(:post_to_platform)
-            .with("http://example.com/api/movements/testmovement/action_pages/10/donation_payment_error", {
+            .with("http://example.com/api/movements/testmovement/action_pages/testplan/donation_payment_error", {
                 'member_info[email]' => 'Payer Email',
                 'member_info[first_name]' => 'Payer First Name',
                 'member_info[last_name]' => 'Payer Last Name',
@@ -389,8 +388,8 @@ describe ActionsController do
                 'payment_error_data[donation_currency]' => 'USD'
             })
 
-          post :complete_paypal_donation, :id => 10, :token => 'PaypalToken', :PayerID => 'Payer123', :currency => 'USD',
-              :amount => '125', :country_iso => 'br', :postcode => '12345', :classification => '501(c)3', :locale => 'de'
+          post :complete_paypal_donation, :id => 'testplan', :token => 'PaypalToken', :PayerID => 'Payer123', :currency => 'USD',
+              :amount => '125', :country_iso => 'br', :postcode => '12345', :classification => '501(c)3', :locale => 'pt'
         end
 
         it "should notify Platform when there is a problem confirming the donation with PayPal Express even if payer data cannot be retrieved" do
@@ -409,7 +408,7 @@ describe ActionsController do
           Payment::PaypalService.any_instance.should_receive(:retrieve_transaction_details).with('PaypalToken', '501(c)3').and_return(transaction_details_response)
 
           ActionsController.any_instance.stub(:post_to_platform)
-            .with("http://example.com/api/movements/testmovement/action_pages/10/donation_payment_error", {
+            .with("http://example.com/api/movements/testmovement/action_pages/testplan/donation_payment_error", {
                 'payment_error_data[error_code]' => 111111,
                 'payment_error_data[message]' => "Failure message\nAVS:\n---\n:code: P\n:message: AVS Result\n:street_match: X\n:postal_match: X\n\nCVV:\n---\n:code: E\n:message: CVV Result\n",
                 'payment_error_data[donation_payment_method]' => :paypal,
@@ -417,8 +416,8 @@ describe ActionsController do
                 'payment_error_data[donation_currency]' => 'USD'
             })
 
-          post :complete_paypal_donation, :id => 10, :token => 'PaypalToken', :PayerID => 'Payer123', :currency => 'USD',
-              :amount => '125', :country_iso => 'br', :postcode => '12345', :classification => '501(c)3', :locale => 'de'
+          post :complete_paypal_donation, :id => 'testplan', :token => 'PaypalToken', :PayerID => 'Payer123', :currency => 'USD',
+              :amount => '125', :country_iso => 'br', :postcode => '12345', :classification => '501(c)3', :locale => 'pt'
         end
 
         it "should show the action page with an error message when there is a problem confirming the donation with Paypal" do
@@ -431,11 +430,11 @@ describe ActionsController do
           ActiveMerchant::Billing::BogusGateway.any_instance.should_receive(:purchase).with(125, :currency => 'USD',
               :payer_id => 'Payer123', :token => 'PaypalToken').and_return(failed_response)
 
-          post :complete_paypal_donation, :id => 10, :token => 'PaypalToken', :PayerID => 'Payer123', :currency => 'USD',
-              :amount => '125', :country_iso => 'br', :postcode => '12345', :classification => '501(c)3', :locale => 'de'
+          post :complete_paypal_donation, :id => 'testplan', :token => 'PaypalToken', :PayerID => 'Payer123', :currency => 'USD',
+              :amount => '125', :country_iso => 'br', :postcode => '12345', :classification => '501(c)3', :locale => 'pt'
 
           response.should render_template 'actions/show'
-          response.headers['Content-Language'].should eql 'de'
+          response.headers['Content-Language'].should eql 'pt'
           flash[:error].should eql 'donation_information_error'
         end
       end
@@ -444,7 +443,7 @@ describe ActionsController do
     describe "credit card donations" do
       describe "donate_with_credit_card_one_time_trx" do
         before do
-          FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/10.json?locale=en", :body => {:id => 10, :title => "Save the Italian-speaking Turtles!", :content => "Save them!"}.to_json
+          FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/en/movements/testmovement/action_pages/10.json", :body => {:id => 10, :title => "Save the Italian-speaking Turtles!", :content => "Save them!"}.to_json
         end
 
         it "should call Recurly API using C3 account and notify Platform if transaction is successful for tax deductible donation" do
@@ -475,11 +474,11 @@ describe ActionsController do
           Recurly.should_receive(:api_key=).with('Recurly key for C3 associated PayPal account (one-off donation test)')
           Recurly::Transaction.should_receive(:create).with(params).and_return(transaction)
 
-          platform_post_url = 'http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/10/take_action.json?action_info%5Bamount%5D=12500&action_info%5Bconfirmed%5D=false&action_info%5Bcurrency%5D=USD&action_info%5Bfrequency%5D=one_off&action_info%5Border_id%5D=123&action_info%5Bpayment_method%5D=credit_card&action_info%5Btransaction_id%5D=10&id=10&locale=en&member_info%5Bcountry_iso%5D=us&member_info%5Bemail%5D=john.doe%40example.com&member_info%5Bfirst_name%5D=John&member_info%5Blast_name%5D=Doe&member_info%5Bpostcode%5D=123123&movement_id=testmovement'
+          platform_post_url = 'http://testmovement:testmovement@example.com/api/pt/movements/testmovement/action_pages/testplan/take_action.json?action_info%5Bamount%5D=12500&action_info%5Bconfirmed%5D=false&action_info%5Bcurrency%5D=USD&action_info%5Bfrequency%5D=one_off&action_info%5Border_id%5D=123&action_info%5Bpayment_method%5D=credit_card&action_info%5Btransaction_id%5D=10&id=testplan&locale=pt&member_info%5Bcountry_iso%5D=us&member_info%5Bemail%5D=john.doe%40example.com&member_info%5Bfirst_name%5D=John&member_info%5Blast_name%5D=Doe&member_info%5Bpostcode%5D=123123&movement_id=testmovement'
           FakeWeb.register_uri :post, platform_post_url, :body => { :next_page_identifier => 404 }.to_json, :status => 201
 
 
-          post :donate_with_credit_card, :id => 10, :locale => 'en',
+          post :donate_with_credit_card, :id => 'testplan', :locale => 'pt',
                :classification => '501(c)3',
                :member_info => {
                    :email => 'john.doe@example.com', :first_name => 'John', :last_name => 'Doe',
@@ -519,11 +518,11 @@ describe ActionsController do
           Recurly.should_receive(:api_key=).with('Recurly key for C4 associated PayPal account (one-off donation test)')
           Recurly::Transaction.should_receive(:create).with(params).and_return(transaction)
 
-          platform_post_url = 'http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/10/take_action.json?action_info%5Bamount%5D=12500&action_info%5Bconfirmed%5D=false&action_info%5Bcurrency%5D=USD&action_info%5Bfrequency%5D=one_off&action_info%5Border_id%5D=123&action_info%5Bpayment_method%5D=credit_card&action_info%5Btransaction_id%5D=10&id=10&locale=en&member_info%5Bcountry_iso%5D=us&member_info%5Bemail%5D=john.doe%40example.com&member_info%5Bfirst_name%5D=John&member_info%5Blast_name%5D=Doe&member_info%5Bpostcode%5D=123123&movement_id=testmovement'
+          platform_post_url = 'http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/testplan/take_action.json?action_info%5Bamount%5D=12500&action_info%5Bconfirmed%5D=false&action_info%5Bcurrency%5D=USD&action_info%5Bfrequency%5D=one_off&action_info%5Border_id%5D=123&action_info%5Bpayment_method%5D=credit_card&action_info%5Btransaction_id%5D=10&id=testplan&locale=en&member_info%5Bcountry_iso%5D=us&member_info%5Bemail%5D=john.doe%40example.com&member_info%5Bfirst_name%5D=John&member_info%5Blast_name%5D=Doe&member_info%5Bpostcode%5D=123123&movement_id=testmovement'
           FakeWeb.register_uri :post, platform_post_url, :body => { :next_page_identifier => 404}.to_json, :status => 201
 
 
-          post :donate_with_credit_card, :id => 10, :locale => 'en',
+          post :donate_with_credit_card, :id => 'testplan', :locale => 'pt',
                :classification => '501(c)4',
                :member_info => {
                    :email => 'john.doe@example.com', :first_name => 'John', :last_name => 'Doe',
@@ -543,9 +542,9 @@ describe ActionsController do
 
           Recurly::Transaction.should_receive(:create).and_raise(Payment::PaymentError.new(response))
 
-          ActionsController.any_instance.should_receive(:post_to_platform).with("http://example.com/api/movements/testmovement/action_pages/10/donation_payment_error", {"member_info[email]" => "john.doe@example.com", "member_info[first_name]" => "John", "member_info[last_name]" => "Doe", "member_info[country_iso]" => "us", "member_info[postcode]" => "123123", "payment_error_data[error_code]" => "error_code", "payment_error_data[message]" => "error_message", "payment_error_data[donation_payment_method]" => :recurly, "payment_error_data[donation_amount_in_cents]" => 12500, "payment_error_data[donation_currency]" => "USD"})
+          ActionsController.any_instance.should_receive(:post_to_platform).with("http://example.com/api/movements/testmovement/action_pages/testplan/donation_payment_error", {"member_info[email]" => "john.doe@example.com", "member_info[first_name]" => "John", "member_info[last_name]" => "Doe", "member_info[country_iso]" => "us", "member_info[postcode]" => "123123", "payment_error_data[error_code]" => "error_code", "payment_error_data[message]" => "error_message", "payment_error_data[donation_payment_method]" => :recurly, "payment_error_data[donation_amount_in_cents]" => 12500, "payment_error_data[donation_currency]" => "USD"})
 
-          post :donate_with_credit_card, :id => 10, :locale => 'en',
+          post :donate_with_credit_card, :id => 'testplan', :locale => 'pt',
                :member_info => {
                    :email => 'john.doe@example.com', :first_name => 'John', :last_name => 'Doe',
                    :country_iso => 'us', :postcode => '123123'},
@@ -563,9 +562,9 @@ describe ActionsController do
 
           Recurly::Transaction.should_receive(:create).and_raise(Payment::PaymentError.new(response))
 
-          ActionsController.any_instance.should_receive(:post_to_platform).with("http://example.com/api/movements/testmovement/action_pages/10/donation_payment_error", {"member_info[email]" => "john.doe@example.com", "member_info[first_name]" => "John", "member_info[last_name]" => "Doe", "member_info[country_iso]" => "us", "member_info[postcode]" => "123123", "payment_error_data[error_code]" => "error_code", "payment_error_data[message]" => "error_message", "payment_error_data[donation_payment_method]" => :recurly, "payment_error_data[donation_amount_in_cents]" => 12500, "payment_error_data[donation_currency]" => "USD"})
+          ActionsController.any_instance.should_receive(:post_to_platform).with("http://example.com/api/movements/testmovement/action_pages/testplan/donation_payment_error", {"member_info[email]" => "john.doe@example.com", "member_info[first_name]" => "John", "member_info[last_name]" => "Doe", "member_info[country_iso]" => "us", "member_info[postcode]" => "123123", "payment_error_data[error_code]" => "error_code", "payment_error_data[message]" => "error_message", "payment_error_data[donation_payment_method]" => :recurly, "payment_error_data[donation_amount_in_cents]" => 12500, "payment_error_data[donation_currency]" => "USD"})
 
-          post :donate_with_credit_card, :id => 10, :locale => 'en',
+          post :donate_with_credit_card, :id => 'testplan', :locale => 'pt',
                :member_info => {
                    :email => 'john.doe@example.com', :first_name => 'John', :last_name => 'Doe',
                    :country_iso => 'us', :postcode => '123123'},
@@ -575,7 +574,7 @@ describe ActionsController do
                    :card_expiration_year => 2020, :card_cvv2 => '123',
                    :is_recurring => 'false'}
 
-          response.should redirect_to action_path('en', 10)
+          response.should redirect_to action_path('pt', 'testplan')
           flash[:error].should eql 'credit_card_donation_error'
         end
       end
@@ -617,10 +616,10 @@ describe ActionsController do
           Recurly::Plan.should_receive(:find).with('testplan--monthly').and_return(true)
           Recurly::Subscription.should_receive(:create).with(params).and_return(transaction)
 
-          platform_post_url = 'http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/testplan/take_action.json?action_info%5Bconfirmed%5D=false&action_info%5Bcurrency%5D=USD&action_info%5Bfrequency%5D=monthly&action_info%5Bpayment_method%5D=credit_card&action_info%5Bsubscription_amount%5D=12500&action_info%5Bsubscription_id%5D=10&action_info%5Btransaction_id%5D=10&id=testplan&locale=en&member_info%5Bcountry_iso%5D=us&member_info%5Bemail%5D=john.doe%40example.com&member_info%5Bfirst_name%5D=John&member_info%5Blast_name%5D=Doe&member_info%5Bpostcode%5D=123123&movement_id=testmovement'
+          platform_post_url = 'http://testmovement:testmovement@example.com/api/pt/movements/testmovement/action_pages/testplan/take_action.json?action_info%5Bconfirmed%5D=false&action_info%5Bcurrency%5D=USD&action_info%5Bfrequency%5D=monthly&action_info%5Bpayment_method%5D=credit_card&action_info%5Bsubscription_amount%5D=12500&action_info%5Bsubscription_id%5D=10&action_info%5Btransaction_id%5D=10&id=testplan&locale=pt&member_info%5Bcountry_iso%5D=us&member_info%5Bemail%5D=john.doe%40example.com&member_info%5Bfirst_name%5D=John&member_info%5Blast_name%5D=Doe&member_info%5Bpostcode%5D=123123&movement_id=testmovement'
           FakeWeb.register_uri :post, platform_post_url, :body => { :next_page_identifier => 404}.to_json, :status => 201
 
-          post :donate_with_credit_card, :id => 'testplan', :action_internal_id => 'testplan', :locale => 'en',
+          post :donate_with_credit_card, :id => 'testplan', :action_internal_id => 'testplan', :locale => 'pt',
                :classification => '501(c)3',
                :member_info => {
                    :email => 'john.doe@example.com', :first_name => 'John', :last_name => 'Doe',
@@ -665,11 +664,10 @@ describe ActionsController do
           Recurly::Plan.should_receive(:find).with('testplan--monthly').and_return(true)
           Recurly::Subscription.should_receive(:create).with(params).and_return(transaction)
 
-          platform_post_url = 'http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/testplan/take_action.json?action_info%5Bconfirmed%5D=false&action_info%5Bcurrency%5D=USD&action_info%5Bfrequency%5D=monthly&action_info%5Border_id%5D=12345&action_info%5Bpayment_method%5D=credit_card&action_info%5Bsubscription_amount%5D=12500&action_info%5Bsubscription_id%5D=10&action_info%5Btransaction_id%5D=10&id=testplan&locale=en&member_info%5Bcountry_iso%5D=us&member_info%5Bemail%5D=john.doe%40example.com&member_info%5Bfirst_name%5D=John&member_info%5Blast_name%5D=Doe&member_info%5Bpostcode%5D=123123&movement_id=testmovement'
+          platform_post_url = 'ttp://testmovement:testmovement@example.com/api/pt/movements/testmovement/action_pages/testplan/take_action.json?action_info%5Bconfirmed%5D=false&action_info%5Bcurrency%5D=USD&action_info%5Bfrequency%5D=monthly&action_info%5Bpayment_method%5D=credit_card&action_info%5Bsubscription_amount%5D=12500&action_info%5Bsubscription_id%5D=10&action_info%5Btransaction_id%5D=10&id=testplan&locale=pt&member_info%5Bcountry_iso%5D=us&member_info%5Bemail%5D=john.doe%40example.com&member_info%5Bfirst_name%5D=John&member_info%5Blast_name%5D=Doe&member_info%5Bpostcode%5D=123123&movement_id=testmovement'
           FakeWeb.register_uri :post, platform_post_url, :body => { :next_page_identifier => 404}.to_json, :status => 201
 
-
-          post :donate_with_credit_card, :id => 'testplan', :action_internal_id => 'testplan', :locale => 'en',
+          post :donate_with_credit_card, :id => 'testplan', :action_internal_id => 'testplan', :locale => 'pt',
                :classification => '501(c)4',
                :member_info => {
                    :email => 'john.doe@example.com', :first_name => 'John', :last_name => 'Doe',
@@ -725,10 +723,10 @@ describe ActionsController do
 
           Recurly::Subscription.should_receive(:create).with(params).and_return(transaction)
 
-          platform_post_url = 'http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/testplan/take_action.json?action_info%5Bconfirmed%5D=false&action_info%5Bcurrency%5D=USD&action_info%5Bfrequency%5D=monthly&action_info%5Border_id%5D=12345&action_info%5Bpayment_method%5D=credit_card&action_info%5Bsubscription_amount%5D=12500&action_info%5Bsubscription_id%5D=10&id=testplan&locale=en&member_info%5Bcountry_iso%5D=us&member_info%5Bemail%5D=john.doe%40example.com&member_info%5Bfirst_name%5D=John&member_info%5Blast_name%5D=Doe&member_info%5Bpostcode%5D=123123&movement_id=testmovement'
+          platform_post_url = 'http://testmovement:testmovement@example.com/api/pt/movements/testmovement/action_pages/testplan/take_action.json?action_info%5Bconfirmed%5D=false&action_info%5Bcurrency%5D=USD&action_info%5Bfrequency%5D=monthly&action_info%5Bpayment_method%5D=credit_card&action_info%5Bsubscription_amount%5D=12500&action_info%5Bsubscription_id%5D=10&action_info%5Btransaction_id%5D=10&id=testplan&locale=pt&member_info%5Bcountry_iso%5D=us&member_info%5Bemail%5D=john.doe%40example.com&member_info%5Bfirst_name%5D=John&member_info%5Blast_name%5D=Doe&member_info%5Bpostcode%5D=123123&movement_id=testmovement'
           FakeWeb.register_uri :post, platform_post_url, :body => {:next_page_identifier => 404}.to_json, :status => 201
 
-          post :donate_with_credit_card, :id => 'testplan', :action_internal_id => 'testplan', :locale => 'en',
+          post :donate_with_credit_card, :id => 'testplan', :action_internal_id => 'testplan', :locale => 'pt',
                :classification => '501(c)4',
                :member_info => {
                    :email => 'john.doe@example.com', :first_name => 'John', :last_name => 'Doe',
@@ -750,7 +748,7 @@ describe ActionsController do
 
           ActionsController.any_instance.should_receive(:post_to_platform).with("http://example.com/api/movements/testmovement/action_pages/testplan/donation_payment_error", {"member_info[email]" => "john.doe@example.com", "member_info[first_name]" => "John", "member_info[last_name]" => "Doe", "member_info[country_iso]" => "us", "member_info[postcode]" => "123123", "payment_error_data[error_code]" => "error_code", "payment_error_data[message]" => "error_message", "payment_error_data[donation_payment_method]" => :recurly, "payment_error_data[donation_amount_in_cents]" => 12500, "payment_error_data[donation_currency]" => "USD"})
 
-          post :donate_with_credit_card, :id => 'testplan', :action_internal_id => 'testplan', :locale => 'en',
+          post :donate_with_credit_card, :id => 'testplan', :action_internal_id => 'testplan', :locale => 'pt',
                :member_info => {
                    :email => 'john.doe@example.com', :first_name => 'John', :last_name => 'Doe',
                    :country_iso => 'us', :postcode => '123123'},
@@ -771,7 +769,7 @@ describe ActionsController do
 
           ActionsController.any_instance.should_receive(:post_to_platform).with("http://example.com/api/movements/testmovement/action_pages/testplan/donation_payment_error", {"member_info[email]" => "john.doe@example.com", "member_info[first_name]" => "John", "member_info[last_name]" => "Doe", "member_info[country_iso]" => "us", "member_info[postcode]" => "123123", "payment_error_data[error_code]" => "error_code", "payment_error_data[message]" => "error_message", "payment_error_data[donation_payment_method]" => :recurly, "payment_error_data[donation_amount_in_cents]" => 12500, "payment_error_data[donation_currency]" => "USD"})
 
-          post :donate_with_credit_card, :id => 'testplan', :action_internal_id => 'testplan', :locale => 'en',
+          post :donate_with_credit_card, :id => 'testplan', :action_internal_id => 'testplan', :locale => 'pt',
                :member_info => {
                    :email => 'john.doe@example.com', :first_name => 'John', :last_name => 'Doe',
                    :country_iso => 'us', :postcode => '123123'},
@@ -781,7 +779,7 @@ describe ActionsController do
                    :card_expiration_year => 2020, :card_cvv2 => '123',
                    :is_recurring => 'true'}
 
-          response.should redirect_to action_path('en', 'testplan')
+          response.should redirect_to action_path('pt', 'testplan')
           flash[:error].should eql 'credit_card_donation_error'
         end
 
@@ -794,7 +792,7 @@ describe ActionsController do
           Recurly::Plan.should_receive(:find).with('testplan--monthly').and_return(true)
           Recurly::Subscription.should_receive(:create).and_return(subscription)
 
-          post :donate_with_credit_card, :id => 'testplan', :action_internal_id => 'testplan', :locale => 'en',
+          post :donate_with_credit_card, :id => 'testplan', :action_internal_id => 'testplan', :locale => 'pt',
                :member_info => {
                    :email => 'john.doe@example.com', :first_name => 'John', :last_name => 'Doe',
                    :country_iso => 'us', :postcode => '123123'},
@@ -804,7 +802,7 @@ describe ActionsController do
                    :card_expiration_year => 2020, :card_cvv2 => '123',
                    :is_recurring => 'true'}
 
-          response.should redirect_to action_path('en', 'testplan')
+          response.should redirect_to action_path('pt', 'testplan')
           flash[:error].should eql 'duplicated_subscription_error'
         end
       end
@@ -830,11 +828,10 @@ describe ActionsController do
 
   describe "GET preview" do
     it "should return preview for action page which are unpublished" do
-      FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/movements/testmovement/action_pages/10/preview.json",
+      FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/it/movements/testmovement/action_pages/10/preview.json?locale=it",
                            :body => {:title => "Title", :content => "Content with email!"}.to_json
       get :preview, {:id => 10, :locale => 'it'}
 
-      Platform::ActionPage.headers['Accept-Language'].should eql 'it'
       assigns[:action_content].content.should eql "Content with email!"
       assigns[:action_content].title.should eql "Title"
       assigns[:member].should be_kind_of(Platform::Member)

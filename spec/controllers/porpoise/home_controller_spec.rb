@@ -3,7 +3,7 @@ require 'spec_helper'
 describe HomeController do
   it "should return movement" do
     content = stub_movement.merge(:message => "Happy body")
-    FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/movements/testmovement.json",
+    FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/en/movements/testmovement.json",
                          :body => { :content => content }.to_json
     I18n.stub(:available_locales).and_return [:en, :fr]
 
@@ -18,7 +18,7 @@ describe HomeController do
 
   it "should return movement for preview" do
     stub_movement_request
-    FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/movements/testmovement.json?draft_homepage_id=45",
+    FakeWeb.register_uri :get, "http://testmovement:testmovement@example.com/api/en/movements/testmovement.json?draft_homepage_id=45",
       :body => stub_movement.merge(:join_headline => "Preview headline").to_json
 
     get :preview, :locale => "en", :draft_homepage_id => 45

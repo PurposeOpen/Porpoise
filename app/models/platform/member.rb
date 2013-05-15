@@ -1,4 +1,5 @@
 class Platform::Member < Platform::Base
+
   self.element_name = 'member'
 
   schema do

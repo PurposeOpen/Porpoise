@@ -32,7 +32,7 @@ module PlatformStubs
   def stub_movement_request(default_language = DEFAULT_LANGUAGE)
     Rails.cache.clear
     content = stub_movement(default_language)
-    FakeWeb.register_uri :get, %r[http://testmovement:testmovement@example.com/api/movements/testmovement.json], :body => {:content => content}.to_json
+    FakeWeb.register_uri :get, %r[http://testmovement:testmovement@example.com/api/#{default_language}/movements/testmovement.json], :body => {:content => content}.to_json
   end
 
   def stub_create_member(options={})

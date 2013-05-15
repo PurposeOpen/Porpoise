@@ -1,4 +1,4 @@
-class Platform::ActionPage < Platform::Base
+class Platform::ActionPage < Platform::LocalizableResource
 
   cache!
 
@@ -7,6 +7,6 @@ class Platform::ActionPage < Platform::Base
   end
 
   def self.find_preview(id)
-    find(:one, from: preview_element_path(id))
+    find(:one, from: preview_element_path(id, :locale => I18n.locale))
   end
 end

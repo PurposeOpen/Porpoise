@@ -7,7 +7,7 @@ module Porpoise
     end
 
     def create
-      @member = Platform::Member.new(params[:member_info])
+      @member = Platform::Member.new(params[:member_info].merge({'language' => I18n.locale}))
       @member.save!
 
       session[:member_id] = @member.attributes['member_id'].to_i if @member.attributes['member_id'].present?

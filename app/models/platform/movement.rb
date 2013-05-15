@@ -1,4 +1,4 @@
-class Platform::Movement < Platform::Base
+class Platform::Movement < Platform::LocalizableResource
 
   cache!
 

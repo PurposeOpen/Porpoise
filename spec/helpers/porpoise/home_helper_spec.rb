@@ -13,7 +13,8 @@ require 'spec_helper'
 describe Porpoise::HomeHelper do
   it "should display the list of languages in alphabetical order" do
     stub_movement_request 'pt'
-    sorted_languages = helper.sorted_languages Platform::Movement.find("testmovement").languages
+
+    sorted_languages = helper.sorted_languages Platform::Movement.find("testmovement", :params=>{:locale=>'pt'}).languages
 
     sorted_languages[0].iso_code.should == "pt"
     sorted_languages[1].iso_code.should == "en"

@@ -13,9 +13,6 @@ class PorpoiseApplicationController < ActionController::Base
 
   protected
 
-  ANY_LANGUAGE = '*'
-
-
   def track_email_click
     if(params[:t].present?)
       email_tracking_uri = "#{Platform.base_uri}movements/#{Platform.movement_id}/email_tracking/email_clicked"
@@ -24,17 +21,16 @@ class PorpoiseApplicationController < ActionController::Base
   end
 
   def set_locale_load_content
+    set_remote_resources_headers
+    
     if params[:locale].blank?
-      set_accept_language_headers ANY_LANGUAGE
-      load_movement_content
+      load_movement_content(Platform.default_language)
       params[:locale] = (@available_languages.select { |lang| lang.is_default == true})[0].iso_code
       set_locale(params[:locale])
     else
       set_locale(params[:locale])
-      set_accept_language_headers I18n.locale.to_s
       load_movement_content
     end
-    # FIXME: Need to set Globalize.locale if we use Globalize3
   end
 
   def set_locale(param)
@@ -42,16 +38,15 @@ class PorpoiseApplicationController < ActionController::Base
     headers["Content-Language"] = param
   end
 
-  def load_movement_content
-    @movement = Platform::Movement.find(Platform.movement_id) #, :params=>{:locale=>I18n.locale})
+  def load_movement_content(locale=nil)
+    @movement = Platform::Movement.find(Platform.movement_id, :params => {:locale => locale.nil? ? I18n.locale : locale})
     @available_languages = @movement.languages
     @recommended_languages_to_display = @movement.recommended_languages_to_display
   end
 
   #TODO: BUG: NOT THREADSAFE OR EVEN SAFE!!! Look at Platform::Base.headers to see current thread fix but should still look for something else?
-  def set_accept_language_headers(accept_language)
+  def set_remote_resources_headers
     self.remote_resources.each do |resource|
-      resource.headers['Accept-Language'] = accept_language
       resource.headers['X-Original-Request-UUID'] = request.uuid unless Rails.env.test?
       resource.headers['X-Original-Request-IP'] = request.ip unless Rails.env.test?
     end

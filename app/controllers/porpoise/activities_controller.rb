@@ -1,6 +1,5 @@
 module Porpoise
   class ActivitiesController < ApplicationController
-    BASE_URI = "#{Platform.base_uri}movements/#{Platform.movement_id}/activity.json"
 
     skip_before_filter :set_locale_load_content
     caches_action :show, :expires_in => 5.minutes, :cache_path => lambda { |_|
@@ -9,7 +8,8 @@ module Porpoise
 
     def show
       # Proxy the activity feed so we don't have to expose anything about the platform API.
-      response = open_on_platform(BASE_URI + "?#{request.query_string}", "Accept-Language" => params[:locale])
+      base_uri = "#{Platform.base_uri}/#{I18n.locale}/movements/#{Platform.movement_id}/activity.json"
+      response = open_on_platform(base_uri + "?#{request.query_string}")
 
       self.response_body = response
       self.response.headers["Content-Type"] = response.meta['content-type']

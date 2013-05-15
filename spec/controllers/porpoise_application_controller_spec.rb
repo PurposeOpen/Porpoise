@@ -15,7 +15,7 @@ describe 'TestApplicationControllerWithoutResource' do
   end
 
   before :each do
-    stub_movement_request
+    stub_movement_request('pt')
   end
 
   it "should not break" do
@@ -86,30 +86,22 @@ describe 'TestApplicationControllerWithResource' do
     def show; head :ok; end
     def create; head :ok; end
   end
-
-  before :each do
+  
+  it "should set first movement language as locale if one is not provided in request" do
     stub_movement_request('en')
-  end
-
-  it "should default the Accept-Language header to en for every resource" do
-    I18n.locale = ''
     post :create
-
-    TestResource.headers['Accept-Language'].should eql '*'
+    
+    I18n.locale.should == :en
+    response.headers['Content-Language'].should == 'en'
   end
 
-  it "should set the Accept-Language header based on the request for every resource" do
+  it "should set locale with value provided in request" do
+    stub_movement_request('it')
+
     post :create, :locale => 'it'
-
-    TestResource.headers['Accept-Language'].should eql "it"
-  end
-
-  it "should set default language", :type => :request do
-    stub_movement_request("pt")
-
-    get :show, :id => 'testmovement id'
-
-    response.headers['Content-Language'].should == 'pt'
+    
+    I18n.locale.should == :it
+    response.headers['Content-Language'].should == 'it'
   end
 end
 

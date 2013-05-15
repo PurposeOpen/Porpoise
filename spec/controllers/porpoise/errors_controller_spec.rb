@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ErrorsController do
   before do
-    stub_movement_request
+    stub_movement_request('en')
   end
   it "page_not_found should redirect to page_not_found url" do
     get :page_not_found

@@ -30,10 +30,10 @@ describe MembersController do
         end
 
         it "persists the new member object to the platform" do
-          member = mock("member", :email => "lemmy@kilmister.com", :attributes => {'next_page_identifier' => ''})
+          member = mock("member", :email => "lemmy@kilmister.com", :first_name => 'Lemmy', :last_name => 'Kilmister', :country => 'UK', :suburb => 'London', :attributes => {'next_page_identifier' => ''})
           member.should_receive(:save!).and_return true
-          Platform::Member.stub(:new).and_return member
-          post 'create', :locale => "en", :member_info => {:email => "lemmy@kilmister.com"}
+          Platform::Member.stub(:new).with({'email' => "lemmy@kilmister.com", 'first_name' => 'Lemmy', 'last_name' => 'Kilmister', 'country' => 'UK', 'suburb' => 'London', 'language' => :en}).and_return member
+          post 'create', :locale => "en", :member_info => {:email => "lemmy@kilmister.com", :first_name => 'Lemmy', :last_name => 'Kilmister', :country => 'UK', :suburb => 'London'}
         end
 
         it "persists the new member object to the platform and returns the member id, and puts the member id in the session" do
