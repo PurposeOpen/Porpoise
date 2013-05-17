@@ -4,7 +4,7 @@ module Porpoise
     
     remote_resource_class Platform::ActionPage
 
-    MEMBER_FIELDS_URI = [Platform.base_uri, "movements/#{Platform.movement_id}/action_pages/"].join(Platform.base_uri.ends_with?("/") ? "" : "/")
+    MEMBER_FIELDS_URI = [Platform.base_uri, "#{I18n.locale}/movements/#{Platform.movement_id}/action_pages/"].join(Platform.base_uri.ends_with?("/") ? "" : "/")
 
     def show
       cookies[:user_language] = I18n.locale
