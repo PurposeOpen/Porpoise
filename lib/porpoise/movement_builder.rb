@@ -3,7 +3,12 @@ require 'optparse'
 class ::AppBuilder < Rails::AppBuilder
   def config
     super
-    inside("config"){ create_constants_file }
+    inside("config") do
+      create_constants_file
+      inside "environments" do
+        add_porpoise_assets_to_precompilation
+      end
+    end
   end
 
   def app
@@ -80,5 +85,11 @@ test:
   auth_password: "testmovement"
   web_timeout: 90
       CONSTANTS
+  end
+
+  def add_porpoise_assets_to_precompilation
+    production_config = File.read('production.rb')
+    production_config = production_config.gsub(/# config\.assets\.precompile \+= %w\( search\.js \)/, 'config.assets.precompile += %w( porpoise/libs/modernizr.js )')
+    File.write('production.rb', production_config)
   end
 end
