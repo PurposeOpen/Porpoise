@@ -12,12 +12,12 @@ en:
   home: 'Home'
   follow_us: 'Follow us'
   have_joined_the_movement: "have joined the movement"
+  page_not_available: "<p>This petition is not available in your language.</p><p>Check out <a href='/en'>the homepage</a> for other ways to take action."
   continue: 'Continue'
-  page_not_available: "<p>This petition is not available in your language.</p><p>Check out the <a href='/en'>home page</a> for other ways to act."
   links:
-    facebook: '//www.facebook.com/testmovementOrg?ref=ts'
-    twitter: '//twitter.com/#!/testmovement'
-    youtube: '//www.youtube.com/user/testmovementorg'
+    facebook: '//www.facebook.com/AllOutOrg?ref=ts'
+    twitter: '//twitter.com/#!/allout'
+    youtube: '//www.youtube.com/user/AllOutorg'
   fields:
     first_name: 'First Name'
     last_name: 'Last Name'
@@ -26,10 +26,14 @@ en:
     country: 'Country'
     phone: 'Phone'
     mobile: 'Mobile Phone'
+    street_address: 'Street Address'
     zipcode: 'Post Code'
     comment: 'Comment'
     privacy: 'Privacy'
     city: 'City'
+  unsubscribe:
+    changed_your_mind: 'Changed your mind?'
+    return_to_homepage: 'Return to our homepage to browse our campaigns.'
   petitions:
     character_counter:
       200_characters: '200 Characters'
@@ -63,6 +67,7 @@ en:
         twitter_button_title: 'TWITTER'
         email_button_text: 'EMAIL YOUR FRIENDS'
         email_button_title: 'EMAIL'
+        share_text: 'SHARES'
     email_targets:
       to: 'TO:'
       subject: 'Subject'
@@ -70,9 +75,11 @@ en:
       send_me_a_copy: 'Send me a copy of this e-mail'
     donations:
       donation_message: 'Donation of %{amount} to %{movement_name}.'
-      monthly_donation_message: 'Monthly donation of %{amount} to %{movement_name}.'
       donation_amount: 'Donation Amount'
       payment: 'Payment'
+      one_time_donation: 'One-time donation'
+      monthly_donation: 'Make donation monthly'
+      monthly: 'monthly'
       suggested_amount_other: 'Other'
       name_on_card: 'Name on card'
       card_number: 'Card Number'
@@ -121,7 +128,7 @@ en:
       action_join: 'joined the Movement'
       action_signed: 'signed %{petition}'
       action_ago: '%{time} ago'
-      twitter_account: 'testmovement'
+      twitter_account: 'allout'
     about:
       about: "About"
       fact_1:
@@ -140,7 +147,7 @@ en:
         top: "Only"
         number: '10'
         right: "countries in the world recognize marriage equality"
-      why_go_testmovement: "Why it's Time to go All Out"
+      why_go_allout: "Why it's Time to go All Out"
       read_more: "Read More"
       what_we_do: "What We Do"
       our_campaigns: "Our Campaigns"
@@ -166,12 +173,16 @@ en:
     email_invalid: 'Email is invalid'
     country_required: 'Country is required'
     post_code_required: 'Post Code is required'
+    post_code_invalid: 'Post Code is invalid'
+    mobile_invalid: 'Phone number invalid'
     currency_required: 'Currency is required'
     amount_required: 'Amount is required'
+    amount_invalid: 'Please only use whole values'
     name_on_card_required: 'Name on card is required'
     card_type_required: 'Card type is required'
     card_number_required: 'Card Number is required'
     card_number_invalid: 'Card Number is invalid'
+    card_number_invalid_amex: 'American Express will only process donations in USD'
     cvv2_required: 'CVV2 is required'
     cvv2_not_a_number: 'CVV2 is not a number'
     cc_month_required: 'Month required'
@@ -180,33 +191,34 @@ en:
     email_subject_required: 'Subject is required'
     email_body_required: 'Email body is required'
   errors:
+    duplicated_subscription_error: "It looks like you've already made a monthly donation on this page. If you want to change your donation amount, please email donate@allout.org."
     duplicate_action_taken_error: "We're sorry but it seems like you've already taken this action!"
     credit_card_donation_error: 'An error occurred processing your donation; please re-check your credit card information and try again.'
     paypal_initialization_error: 'Error initializing transaction with paypal, please retry'
     donation_information_error: 'An error occurred processing your donation; please re-check your donation information and try again'
   action_taken:
     PetitionModule:
-      message_before_threshold_reached: "Help us reach our goal"
+      message_before_threshold_reached: "Help us reach our goal of %{goal} signatures"
       steps_taken: '%{counter} people support this campaign. Help us get to %{goal}'
-      goal_reached: '%{counter} petitions signed. Thank you for your support'
+      goal_reached: '%{counter} people have supported this campaign'
       goal: 'GOAL'
     EmailTargetsModule:
-      message_before_threshold_reached: "Help us reach our goal of %{goal}"
-      steps_taken: '%{counter} people have sent emails. Help us get to %{goal}'
-      goal_reached: '%{counter} people have sent emails. Thank you for your support'
+      message_before_threshold_reached: "Help us reach our goal of %{goal} messages"
+      steps_taken: '%{counter} people support this campaign. Help us get to %{goal}'
+      goal_reached: '%{counter} people have supported this campaign'
       goal: 'GOAL'
     DonationModule:
-      message_before_threshold_reached: "Help us reach our goal"
-      steps_taken: 'Help us reach our goal'
-      goal_reached: ''
+      message_before_threshold_reached: "Help us reach our goal of %{goal} donations"
+      steps_taken: '%{counter} people have donated. Help us to get %{goal}'
+      goal_reached: '%{counter} people have donated'
       goal: 'GOAL'
     NonTaxDeductibleDonationModule:
-      message_before_threshold_reached: 'Help us reach our goal'
-      steps_taken: 'Help us reach our goal'
-      goal_reached: ''
+      message_before_threshold_reached: "Help us reach our goal of %{goal} donations"
+      steps_taken: '%{counter} people have donated. Help us to get %{goal}'
+      goal_reached: '%{counter} people have donated'
       goal: 'GOAL'
     TaxDeductibleDonationModule:
-      message_before_threshold_reached: 'Help us reach our goal'
-      steps_taken: 'Help us reach our goal'
-      goal_reached: ''
+      message_before_threshold_reached: "Help us reach our goal of %{goal} donations"
+      steps_taken: '%{counter} people have donated. Help us to get %{goal}'
+      goal_reached: '%{counter} people have donated'
       goal: 'GOAL'

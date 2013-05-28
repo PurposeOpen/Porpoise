@@ -8,6 +8,7 @@
 //= require ./libs/jquery-ui-1.8.20.custom.min
 //= require ./libs/jquery.validate
 //= require ./libs/jquery.metadata
+//= require ./libs/jquery.cookie
 //= require ./libs/jquery.charCount
 //= require ./libs/jquery.zclip
 //= require ./libs/jquery.selectBox

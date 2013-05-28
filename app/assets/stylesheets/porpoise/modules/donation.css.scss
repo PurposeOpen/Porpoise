@@ -14,61 +14,40 @@
       &.active {
         background-color: #F3F3F3;
       }
-
-      &:last-of-type {
-        margin-top: 40px;
-        padding: 0;
-        border-top: 1px solid #F0F0F0;
-
-        &:before {
-          position: absolute;
-          content: "";
-          top: -20px;
-          left: 0;
-          width: 100%;
-          height: 1px;
-          background-color: #F0F0F0;
-        }
-        &:after {
-          position: absolute;
-          content: attr(data-title);
-          text-align: center;
-          width: 30px;
-          height: 20px;
-          line-height: 20px;
-          background-color: white;
-          top: -30px;
-          left: 50%;
-          margin-left: -10px;
-        }
-      }
     }
 
     .cc_flags {
-      margin-top: 5px;
+      float: right;
+      margin-right: 10px;
+      margin-bottom: 5px;
+
+      .card-image .nomatch { opacity: .25; }
+      .card-image .match { opacity: 1; }
+      img {margin-right: 6px;}
     }
 
     #donation_type {
       margin: 5px 0 10px 0;
       width: 100%;
       input {
-          float: left;
+        float: left;
       }
       .donation_type_label {
-          display: inline-block;
-          float: left;
-          font-weight: bold;
-          padding-bottom: 0;
-          padding-left: 8px;
-          padding-right: 0;
-          padding-top: 4px;
-          width: 170px;
+        display: inline-block;
+        float: left;
+        font-weight: bold;
+        padding-bottom: 0;
+        padding-left: 8px;
+        padding-right: 0;
+        padding-top: 4px;
+        width: 170px;
       }
     }
 
     .suggested_amounts_wrapper {
       clear: both;
       display: none;
+      padding-bottom: 7px;
       .suggested_amount {
         display: inline-block;
         margin-right: 15px;
@@ -78,7 +57,7 @@
         vertical-align: middle;
       }
     }
-    
+
     .suggested_amount_other {
       display: inline-block;
       & input[type="number"] {
@@ -94,7 +73,7 @@
         width: $large-field-width;
       }
     }
-    
+
     .expiration_date {
       float: left;
       clear: both;
@@ -132,34 +111,6 @@
       margin-bottom: 10px;
     }
 
-    #paypal_donation {
-      $pink: #f0284f;
-      $light-pink: #f65479;
-
-      color: $pink;
-      border: 1px solid transparent;
-      display: block;
-      width: 100%;
-      height: 65px;
-      line-height:65px;
-      text-align: center;
-      text-decoration: none;
-      font-size: 14px;
-      outline: none;
-
-      &:hover {
-        color: $light-pink;
-        border-color: $light-pink;
-      }
-      span {
-        margin-right: 10px;
-      }
-
-      img {
-        vertical-align: middle;
-      }
-    }
-    
     .field_wrapper.card_expiration_month {
       clear: both;
     }
@@ -188,66 +139,69 @@
     }
   }
 
-}
+  #paypal_donation_form {
+    fieldset {
+      @include form_block(white);
+      @include soft_box_shadow();
+      padding-bottom: 4px;
+      position: relative;
+      border-top: 1px solid #F0F0F0;
 
-#paypal_overlay_mask {
-  display: none;
-}
+      &:last-of-type {
+        margin-top: 40px;
+        padding: 0;
+        border-top: 1px solid #F0F0F0;
 
-#colorbox {
-  overflow: visible !important;
-  #paypal_donation_popup {
-    @include label_overlay;
-    @include field_wrapper_and_label;
-    padding: 20px;
-    width: 420px;
-    color: $off_black;
-    
-    fieldset legend {
-      position: static;
-      font-family: "league-gothic-1","league-gothic-2",sans-serif;
-      font-size: 32px;
-      font-style: italic;
-      font-weight: normal;
-      text-transform: uppercase;
-      color: #eb2954;
-      display: block;
-      width: 100%;
-    }
-
-    #paypal_donate_button {
-      @include member_action_submit($margin: 0px 0px 0px 0px);
-      &:hover { @include member_action_button_hover; }
-      float: none;
-    }
-
-    .suggested_amounts_wrapper {
-      margin-bottom: 24px;
-      float: left;
-      width: 210px;
-      .suggested_amount {
-        display: inline-block;
-        margin-right: 10px;
-      }
-      .suggested_amount_other {
-        display: inline-block;
-        & input[type="number"] {
-          width: 50px;
-          height: 15px;
+        &:before {
+          position: absolute;
+          content: "";
+          top: -20px;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background-color: #F0F0F0;
+        }
+        &:after {
+          position: absolute;
+          content: attr(data-title);
+          text-align: center;
+          width: 30px;
+          height: 20px;
+          line-height: 20px;
+          background-color: white;
+          top: -30px;
+          left: 50%;
+          margin-left: -10px;
         }
       }
-      input, label {
+    }
+
+    #paypal_donation {
+      $pink: #f0284f;
+      $light-pink: #f65479;
+
+      color: $pink;
+      border: 1px solid transparent;
+      display: block;
+      width: 100%;
+      height: 65px;
+      line-height:65px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+      outline: none;
+
+      &:hover {
+        color: $light-pink;
+        border-color: $light-pink;
+      }
+      span {
+        margin-right: 10px;
+      }
+
+      img {
         vertical-align: middle;
       }
-    }
-    fieldset.actions {
-      text-align: center;
-      position: relative;
-    }
-    .cancel {
-      position: absolute;
-      top: 15px;
-      right: 75px;
     }
   }
 

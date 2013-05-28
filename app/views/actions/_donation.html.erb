@@ -8,97 +8,171 @@
     <%= render :partial => "form_errors" %>
 
     <%= form_for @member, :as => "member_info", :url => donate_with_credit_card_action_path(I18n.locale.to_s), :method => :post,
-          :html => {:id => 'action_form', :class => 'donation'} do |f| %>
+                 :html => {:id => 'action_form', :class => 'donation'} do |f| %>
 
-      <fieldset>
-        <%= render :partial => "actions/action_form/user_details", :locals =>
-            { :action_content => @action_content, :content_module => content_module, :f => f } %>
-      </fieldset>
-    
-      <%= fields_for "action_info" do |fai| %>
         <fieldset>
-          <%= hidden_field_tag "classification", content_module.classification if content_module.respond_to? :classification %>
-
-          <%= field_tag :currency do %>
-            <%= fai.select(:currency, options_for_currency_select(content_module), {},
-                {:required => true, :title => t('validations.currency_required')}) %>
-          <% end %>
-
-          <% content_module.options.suggested_amounts.attributes.each do |currency_code, amounts| %>
-            <% default_amount = content_module.options.default_amount.attributes[currency_code] %>
-            <% currency = Money::Currency.new(currency_code) %>
-            <div class="suggested_amounts_wrapper amounts_for_currency_<%= currency_code %>">
-              <% amounts.split(",").each do |amount| %>
-                <span class="suggested_amount">
-                  <%= radio_button_tag "action_info[amount_for_#{currency_code}]", amount, (amount == default_amount) %>
-                  <%= label_tag "action_info[amount_for_#{currency_code}]_#{amount}", Money.from_numeric(amount.to_f, currency).format(:no_cents_if_whole => true), :class => "label_for_radio" %>
-                </span>
-              <% end %>
-              <span class="suggested_amount_other">
-                <%= label_tag "action_info[amount_for_#{currency_code}]_other", :class => "label_for_radio" do %>
-                  <%= radio_button_tag "action_info[amount_for_#{currency_code}]", "other" %>
-                  <%= t('actions.donations.suggested_amount_other') %>
-                  <%= currency.symbol %>
-                  <%= text_field_tag "action_info[other_amount_for_#{currency_code}]", {}, :type => "number", :step => "0.01", :min => "0.01" %>
-                <% end %>
-              </span>
-            </div>
-          <% end %>
+          <%= render :partial => "actions/action_form/user_details", :locals =>
+                  { :action_content => @action_content, :content_module => content_module, :f => f } %>
         </fieldset>
 
-        <fieldset>
-          <%= field_tag :card_type do %>
+        <%= fields_for "action_info" do |fai| %>
+            <fieldset>
+              <%= hidden_field_tag "classification", content_module.classification if content_module.respond_to? :classification %>
+              <%= hidden_field_tag "action_internal_id", @action_content.id %>
+
+
+              <% one_time = !content_module.options.suggested_amounts.attributes.values.reject { |a| a.empty? }.empty? %>
+              <% monthly = !content_module.options.recurring_suggested_amounts.monthly.attributes.values.reject { |a| a.empty? }.empty? %>
+
+              <section id="donation_type" <% if one_time && !monthly || !one_time && monthly %>style='display:none;'<% end %>>
+                <% if one_time %>
+                    <%= radio_button_tag "action_info[is_recurring]", false, default_donation_frequency?(content_module, :one_off) %>
+                    <%= label_tag "action_info[donation_is_recurring_false]", t('actions.donations.one_time_donation'), :class => "donation_type_label" %>
+                <% end %>
+                <% if monthly %>
+                    <%= radio_button_tag "action_info[is_recurring]", true, default_donation_frequency?(content_module, :monthly), {:class => "donation_is_recurring_true"} %>
+                    <%= label_tag "action_info[donation_is_recurring_true]", t('actions.donations.monthly_donation'), :class => "donation_type_label" %>
+                <% end %>
+                <div class="clear"></div>
+              </section>
+
+              <%= field_tag :currency do %>
+                  <%= fai.select(:currency, options_for_currency_select(content_module), {},
+                                 {:required => true, :title => t('validations.currency_required')}) %>
+              <% end %>
+
+              <% if one_time %>
+                  <% content_module.options.suggested_amounts.attributes.each do |currency_code, amounts| %>
+                      <% default_amount = content_module.options.default_amount.attributes[currency_code] %>
+                      <% currency = Money::Currency.new(currency_code) %>
+                      <div class="suggested_amounts_wrapper amounts_for_currency_<%= currency_code %>_one_time">
+                        <% amounts.split(",").each do |amount| %>
+                  <span class="suggested_amount">
+                    <%= radio_button_tag "action_info[amount_for_#{currency_code}]", amount, false, {:'data-default' => (amount == default_amount)} %>
+                    <%= label_tag "action_info[amount_for_#{currency_code}]_#{amount}", Money.from_numeric(amount.to_f, currency).format(:no_cents_if_whole => true), :class => "label_for_radio" %>
+                  </span>
+                        <% end %>
+                        <span class="suggested_amount_other">
+                  <%= label_tag "action_info[amount_for_#{currency_code}]_other", :class => "label_for_radio" do %>
+                    <%= radio_button_tag "action_info[amount_for_#{currency_code}]", "other" %>
+                              <%= t('actions.donations.suggested_amount_other') %>
+                              <%= currency.symbol %>
+                  <% end %>
+                          <%= text_field_tag "action_info[other_amount_for_#{currency_code}]", nil, :type => "number",
+                                             :step => "1",
+                                             :min => "1",
+                                             :data => { :validation => {
+                                                     :messages => { :patternAttribute => t('validations.amount_invalid'),
+                                                                    :number => t('validations.amount_invalid'),
+                                                                    :min    => t('validations.amount_invalid') }
+                                             }.to_json } %>
+                </span>
+                      </div>
+                  <% end %>
+              <% end %>
+              <% if monthly %>
+                  <% content_module.options.recurring_suggested_amounts.monthly.attributes.each do |currency_code, amounts| %>
+                      <% default_amount = content_module.options.recurring_default_amount.monthly.attributes[currency_code] %>
+                      <% currency = Money::Currency.new(currency_code) %>
+                      <div class="suggested_amounts_wrapper amounts_for_currency_<%= currency_code %>_monthly">
+                        <% amounts.split(",").each do |amount| %>
+                  <span class="suggested_amount">
+                    <%= radio_button_tag "action_info[amount_for_#{currency_code}]", amount, false, {:'data-default' => (amount == default_amount)} %>
+                    <%= label_tag "action_info[amount_for_#{currency_code}]_#{amount}", Money.from_numeric(amount.to_f, currency).format(:no_cents_if_whole => true) + " " + t('actions.donations.monthly'), :class => "label_for_radio" %>
+                  </span>
+                        <% end %>
+                        <span class="suggested_amount_other">
+                  <%= label_tag "action_info[amount_for_#{currency_code}]_recurring_other", :class => "label_for_radio" do %>
+                    <%= radio_button_tag "action_info[amount_for_#{currency_code}]", "recurring_other" %>
+                              <%= t('actions.donations.suggested_amount_other') %>
+                              <%= currency.symbol %>
+                  <% end %>
+                          <%= text_field_tag "action_info[recurring_other_amount_for_#{currency_code}]", nil, :type => "number",
+                                             :step => "1",
+                                             :min => "1",
+                                             :data => { :validation => {
+                                                     :messages => { :patternAttribute => t('validations.amount_invalid'),
+                                                                    :number => t('validations.amount_invalid'),
+                                                                    :min => t('validations.amount_invalid')
+                                                     }
+                                             }.to_json } %>
+                          <%= label_tag "action_info[recurring_other_amount_for_#{currency_code}]", t('actions.donations.monthly') %>
+                </span>
+                      </div>
+                  <% end %>
+              <% end %>
+            </fieldset>
+
+            <fieldset>
+              <!--<%= field_tag :card_type do %>
             <%= fai.select(:card_type, options_for_card_type_select, {},
-                :required => true, :title => t('validations.card_type_required')) %>
-          <% end %>
+                           :required => true, :title => t('validations.card_type_required')) %>
+          <% end %>-->
 
-          <%= image_tag 'cc_flags.png', :class => 'cc_flags' %>
-          
-          <%= field_tag :name_on_card do %>
-            <%= fai.text_field :name_on_card, :required => true, :title => t('validations.name_on_card_required')  %>
-            <%= fai.label :name_on_card, t('actions.donations.name_on_card') %>
-          <% end %>
+              <div id="card-types" class="cc_flags">
+                <p class="card-image">
+                  <%= image_tag 'credit_cards/visa.png', :alt => 'Visa' %>
+                  <%= image_tag 'credit_cards/mastercard.png', :alt => 'MasterCard' %>
+                  <%= image_tag 'credit_cards/american_express.png', :alt => 'American Express' %>
+                  <%= image_tag 'credit_cards/discover.png', :alt => 'Discover' %>
+                </p>
+              </div>
 
-          <%= field_tag :card_number do %>
-            <%= fai.text_field :card_number, :type => 'creditcard', :required => true, :autocomplete => 'off' %>
-            <%= fai.label :card_number, t('actions.donations.card_number') %>
-          <% end %>
-          
-          <span class="expiration_date">
+              <%= field_tag :name_on_card do %>
+                  <%= fai.text_field :name_on_card, :required => true, :title => t('validations.name_on_card_required') %>
+                  <%= fai.label :name_on_card, t('actions.donations.name_on_card') %>
+              <% end %>
+
+              <%= field_tag :card_number do %>
+                  <%= fai.text_field :card_number, :type => 'creditcard',
+                                     :data => { :validation => {
+                                             :messages => { :creditcard => t('validations.card_number_invalid') }
+                                     }.to_json },
+                                     :required => true, :autocomplete => 'off', :title => t('validations.card_number_required'), :invalid_msg =>t('validations.card_number_invalid_amex')  %>
+                  <%= fai.label :card_number, t('actions.donations.card_number') %>
+              <% end %>
+
+              <span class="expiration_date">
             <%= t('actions.donations.expiration_date') %>
           </span>
 
-          <%= field_tag :card_expiration_month do %>
-            <%= fai.select(:card_expiration_month, options_for_month_select, {}, :required => true,
-                :title => t('validations.cc_month_required')) %>
-          <% end %>
+              <%= field_tag :card_expiration_month do %>
+                  <%= fai.select(:card_expiration_month, options_for_month_select, {}, :required => true,
+                                 :title => t('validations.cc_month_required')) %>
+              <% end %>
 
-          <%= field_tag :card_expiration_year do %>
-            <%= fai.select(:card_expiration_year, options_for_year_select, {}, :required => true,
-                :title => t('validations.cc_year_required')) %>
-          <% end %>
+              <%= field_tag :card_expiration_year do %>
+                  <%= fai.select(:card_expiration_year, options_for_year_select, {}, :required => true,
+                                 :title => t('validations.cc_year_required')) %>
+              <% end %>
 
-          <%= field_tag :card_cvv2 do %>
-            <%= fai.text_field :card_cvv2, :required => true, :title => t('validations.cvv2_required') %>
-            <%= fai.label :card_cvv2, t('actions.donations.card_cvv2') %>
-          <% end %>
+              <%= field_tag :card_cvv2 do %>
+                  <%= fai.text_field :card_cvv2, :type => 'number',
+                                     :data => { :validation => {
+                                             :messages => { :number => t('validations.cvv2_not_a_number') }
+                                     }.to_json },:required => true, :title => t('validations.cvv2_required') %>
+                  <%= fai.label :card_cvv2, t('actions.donations.card_cvv2') %>
+              <% end %>
 
-          <span class="cvv2_hint">
+              <span class="cvv2_hint">
             <%= t('actions.donations.cvv2_hint') %>
           </span>
-            
-          <p id="optin"><%= raw t('petitions.show.optin') %></p>
-          <%= f.submit content_module.options.button_text, :id => "action_submit", :disable_with => t('please_wait') %>
-          <%= image_tag 'ssl_digicert.png', :class => 'ssl_digicert' %>
 
-        </fieldset>
-      <% end %>
-      
-      <fieldset data-title="<%= t('or') %>">
-        <a href="#paypal_donation_popup" id="paypal_donation"><span><%= t('actions.donations.pay_through_paypal_express') %></span><%= image_tag 'paypal.png' %></a>
-      </fieldset>
+              <p id="optin"><%= raw t('petitions.show.optin') %></p>
+              <%= f.submit content_module.options.button_text, :id => "action_submit", :disable_with => t('please_wait') %>
+              <%= image_tag 'ssl_digicert.png', :class => 'ssl_digicert' %>
+
+            </fieldset>
+        <% end %>
     <% end %>
 
-    <%= render :partial => 'actions/donations/paypal_form', :locals => { :content_module => content_module } %>
+    <%= form_for 'paypal_donation', :url => setup_paypal_donation_action_path(I18n.locale.to_s), :html => {:id => 'paypal_donation_form'} do |f| %>
+        <fieldset data-title="<%= t('or') %>">
+          <%= hidden_field_tag "t", params[:t] %>
+          <div id="hidden_paypal_donation_fields" style="display:none;"></div>
+          <a href="#paypal_donation_popup" id="paypal_donation"><span><%= t('actions.donations.pay_through_paypal_express') %></span><%= image_tag 'paypal.png' %></a>
+        </fieldset>
+    <% end %>
+
   </section>
 </section>
