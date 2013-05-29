@@ -35,6 +35,7 @@ class ::AppBuilder < Rails::AppBuilder
     existing_contents = File.readlines('Gemfile')
     existing_contents << "gem 'porpoise', :git => 'git://github.com/PurposeOpen/Porpoise.git', :tag => 'v0.8.7'\n"
     existing_contents << "gem 'money'\n"
+    existing_contents << "gem 'uuid'\n"
     existing_contents << "gem 'purpose_country_select', :git => 'https://github.com/PurposeOpen/country_select.git'\n"
     File.write('Gemfile', existing_contents.join)
   end
