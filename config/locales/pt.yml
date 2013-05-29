@@ -166,11 +166,13 @@ pt:
     country_required: 'Favor indicar o país'
     post_code_required: 'Favor indicar o código postal'
     currency_required: "Favor indicar a moeda."
+    amount_invalid: 'Por favor, utilize números inteiros'
     amount_required: "Favor indicar o valor da doação."
     name_on_card_required: "Favor indicar o nome no cartão."
     card_type_required: "Favor indicar o tipo de cartão."
     card_number_required: "Favor indicar o número do cartão."
     card_number_invalid: "O número do cartão é inválido"
+    card_number_invalid_amex: "A American Express só processa doações em dólares norte-americanos."
     cvv2_required: "Favor indicar o código CVV."
     cvv2_not_a_number: "O código CVV não é um número"
     cc_month_required: "Favor indicar o mês."

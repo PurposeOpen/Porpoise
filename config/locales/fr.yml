@@ -166,10 +166,12 @@ fr:
     post_code_required: "Merci d'indiquer votre code postal"
     currency_required: "Merci d'indiquer la devise de votre choix"
     amount_required: "Merci d'indiquer un montant"
+    amount_invalid: 'Merci de choisir un nombre entier'
     name_on_card_required: "Merci d'indiquer le nom du titulaire de la carte de crédit"
     card_type_required: "Merci d'indiquer le type de carte utilisé"
     card_number_required: "Merci de fournir votre numéro de carte"
     card_number_invalid: "Le numéro de votre carte est invalide"
+    card_number_invalid_amex: "American Express ne nous permet de recevoir que les dons en dollars américains"
     cvv2_required: "Merci d'indiquer le code de sécurité"
     cvv2_not_a_number: "Le code de sécurité pour votre carte n'est pas un nombre"
     cc_month_required: "Merci d'indiquer le mois"
