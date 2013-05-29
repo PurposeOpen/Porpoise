@@ -12,20 +12,24 @@ es:
   home: "Inicio"
   follow_us: 'Síguenos'
   have_joined_the_movement: "se han unido al movimiento"
-  page_not_available: "<p>This petition is not available in your language.</p><p>Check out the <a href='/es'>home page</a> for other ways to act."
+  page_not_available: "<p>Esta petición no se encuentra disponible en su idioma.</p><p>Dirígise a <a href='/es'>la página principal</a> para otras formas de actuar."
   links:
-    facebook: '//www.facebook.com/testmovementOrg?ref=ts'
+    facebook: '//www.facebook.com/testmovement?ref=ts'
     twitter: '//twitter.com/#!/testmovement'
-    youtube: '//www.youtube.com/user/testmovementorg'
+    youtube: '//www.youtube.com/user/testmovement'
   fields:
     first_name: 'Nombre'
     last_name: 'Apellido'
     full_name: 'Nombre completo'
-    email: 'Email'
+    email: 'Correo electrónico'
     country: 'País'
     phone: 'Teléfono'
+    street_address: 'Dirección'
     zipcode: 'Código postal'
     comment: 'Comentario'
+  unsubscribe:
+    changed_your_mind: '¿Cambiaste de idea?'
+    return_to_homepage: 'Regresa a la página principal para más informaciones sobre nuestras campañas.'
   petitions:
     character_counter:
       200_characters: '200 caracteres'
@@ -35,11 +39,11 @@ es:
       have_joined: 'ya se unieron'
       the_movement: 'al movimiento'
       required_fields: 'áreas requeridas'
-      join_comment_label: '¿Cuentanos por que tú vas “All Out”?'
-      optin: 'testmovement.org protegerá tu <a href="/es/privacy" target="_blank">privacidad</a> y te mantendrá al tanto de esta y otras campañas'
+      join_comment_label: '¿Cuentanos por que?'
+      optin: 'Test movement Out protegerá tu <a href="/es/privacy" target="_blank">privacidad</a> y te mantendrá al tanto de esta y otras campañas.'
     show:
       help_reach_goal: 'Ayúdanos a llegar a nuestra meta global de %{goal} firmas'
-      optin: 'testmovement.org protegerá tu <a href="/es/privacy" target="_blank">privacidad</a> y te mantendrá al tanto de esta y otras campañas'
+      optin: 'Test movement protegerá tu <a href="/es/privacy" target="_blank">privacidad</a> y te mantendrá al tanto de esta y otras campañas.'
       comment_description: "%{name} de %{country} hace %{time}"
       goal: 'META '
       people_support_this_campaign: '%{number_of_member_actions} personas apoyan esta campaña.'
@@ -52,12 +56,13 @@ es:
       from: 'de'
     show:
       taf:
-        fb_button_text: 'Compartir'
+        fb_button_text: 'COMPARTIR'
         fb_button_title: 'Facebook'
-        twitter_button_title: 'Twitter'
-        twitter_button_text: 'Twitter '
-        email_button_text: 'Email tus amigos'
+        twitter_button_title: 'TWITTER'
+        twitter_button_text: 'TUITEAR'
+        email_button_text: 'ENVIAR EMAIL'
         email_button_title: 'Email'
+        share_text: 'VECES'
     email_targets:
       to: "PARA:"
       subject: "Asunto:"
@@ -65,17 +70,20 @@ es:
       send_me_a_copy: "Envíenme una copia de este correo"
     donations:
       donation_message: 'Donación de %{amount} para %{movement_name}:'
-      monthly_donation_message: 'Donación mensual de %{amount} para %{movement_name}.'
+      monthly_donation_message: 'Donation de %{amount} mensuales para %{movement_name}.'
       donation_amount: 'Monto donado'
       payment: 'Forma de pago'
+      one_time_donation: 'Donación única'
+      monthly_donation: 'Donación recurrente'
+      monthly: 'mensual'
       suggested_amount_other: 'Otro'
       name_on_card: "Nombre que figura en la tarjeta de crédito"
       card_number: 'Número de tarjeta'
       card_type: 'Tipo de tarjeta'
       expiration_date: 'Fecha de expiración'
       card_cvv2: 'CVV2'
-      cvv2_hint: 'Código de 3 o 4 dígitos que figura atrás de la tarjeta'
-      pay_through_paypal_express: Hacer su donación a través de
+      cvv2_hint: '3 o 4 dígitos que figuran atrás de la tarjeta'
+      pay_through_paypal_express: 'Hacer su donación a través de'
       interstitial_form_header: '¡Ya casi termina!'
       interstitial_form_body: "Presione el siguiente botón para completar su donación. Por favor, espere mientras el pago se procesa. <br/>Usted será redirigido/a automaticamente."
       interstitial_header: "Por favor, espere..."
@@ -118,7 +126,7 @@ es:
       action_ago: 'hace %{time}'
       twitter_account: 'testmovement'
     about:
-      about: "Sobre nosotros"
+      about: "Quiénes somos"
       fact_1:
         top: "En"
         number: "76"
@@ -135,7 +143,6 @@ es:
         top: "Solamente"
         number: "10"
         right: "países que permiten el matrimonio igualitario"
-      why_go_testmovement: 'Por qué ya es Hora de irte "All Out"'
       read_more: "Lee más"
       what_we_do: "Que hacemos"
       our_campaigns: "Nuestras campañas"
@@ -148,25 +155,29 @@ es:
   layouts:
     application:
       contact_us: 'Contáctanos'
-      about: 'Sobre nosotros'
+      about: 'Quiénes somos'
       privacy: 'Política de privacidad'
       jobs: 'Puestos de trabajo'
       partners: 'Socios'
       campaigns: 'Campañas'
-      donate: 'Contribuye'
+      donate: 'Donar'
   validations:
-    first_name: 'Nombre requerido'
-    last_name: 'Sobrenombre requerido'
-    email_required: 'Email requerido'
-    email_invalid: 'Email requerido'
-    country_required: 'País es requerido'
-    post_code_required: 'Código postal requerido'
+    first_name: 'Se requiere el nombre'
+    last_name: 'Se requiere el apellido'
+    email_required: 'Se requiere ingresar email'
+    email_invalid: 'El email es inválido'
+    country_required: 'Se requiere indicar el país'
+    post_code_required: 'Se reqiere indicar el Código Postal'
     currency_required: "Favor de indicar la moneda."
+    post_code_invalid: 'Código postal no válido'
+    mobile_invalid: 'Teléfono inválido'
     amount_required: "Favor de indicar el monto de la donación."
+    amount_invalid: 'Por favor, utiliza números enteros'
     name_on_card_required: "Favor de indicar el nombre que figura en la tarjeta."
     card_type_required: "Favor de indicar el tipo de tarjeta."
     card_number_required: "Favor de indicar el número de la tarjeta."
     card_number_invalid: "El número de la tarjeta es inválido."
+    card_number_invalid_amex: "American Express procesará las donaciones unicamente en dólares estadounidenses"
     cvv2_required: "Favor de indicar el código CVV2."
     cvv2_not_a_number: "El código CVV2 no es un número."
     cc_month_required: "Indicar el mes."
@@ -175,35 +186,37 @@ es:
     email_subject_required: "Indicar el asunto."
     email_body_required: "Favor de completar el cuerpo del email."
   errors:
+    duplicated_subscription_error: "Parece que ya hiciste una donación mensual en esta página. Si deseas cambiar el monto de tu donación, envía un e-mail a donate@testmovement.org"
     duplicate_action_taken_error: "¡Lo sentimos mucho! Parece ser que Usted ya ha realizado esta acción."
     credit_card_donation_error: "Ocurrió un error procesando su donación. Por favor, chequee los datos de su tarjeta de crédito y vuelva a intentarlo."
     paypal_initialization_error: "Error al inicializar la transacción con PayPal. Por favor, inténtelo nuevamente."
     donation_information_error: "Ocurrió un error procesando su donación. Por favor, chequee los datos de su donacioón y vuelva a intentarlo."
   action_taken:
     PetitionModule:
-      message_before_threshold_reached: "Help us reach our goal of %{goal}"
-      steps_taken: '%{counter} people support this campaign. Help us get to %{goal}'
-      goal_reached: '%{counter} people have sent emails. Thank you for your support'
-      goal: 'GOAL'
+      message_before_threshold_reached: "Ayúdanos a llegar a %{goal} firmas."
+      steps_taken: '%{counter} personas apoyan esta campaña. Ayúdanos a llegar a %{goal} firmas.'
+      goal_reached: '%{counter} personas apoyaron esta campaña.'
+      goal: 'META'
     EmailTargetsModule:
-      steps_taken: '%{counter} people have sent emails. Help us get to %{goal}'
-      goal_reached: '%{counter} people have donated.'
-      goal: 'GOAL'
+      message_before_threshold_reached: "Ayúdanos a llegar a %{goal} mensajes enviados.."      
+      steps_taken: '%{counter} personas apoyan esta campaña. Ayúdanos a llegar a %{goal} mensajes enviados.'
+      goal_reached: '%{counter} personas apoyaron esta campaña.'
+      goal: 'META'
     DonationModule:
-      message_before_threshold_reached: "Help us reach %{goal}"
-      steps_taken: 'Help us reach %{goal}'
-      goal_reached: ''
-      goal: 'GOAL'
+      message_before_threshold_reached: "Ayúdanos a llegar a %{goal} donaciones."
+      steps_taken: '%{counter} personas donaron. Ayúdanos a llegar a %{goal} donaciones.'
+      goal_reached: '%{counter} personas donaron'
+      goal: 'META'
     NonTaxDeductibleDonationModule:
-      message_before_threshold_reached: "Help us reach %{goal}"
-      steps_taken: 'Help us reach %{goal}'
-      goal_reached: ''
-      goal: 'GOAL'
+      message_before_threshold_reached: "Ayúdanos a llegar a %{goal} donaciones."
+      steps_taken: '%{counter} personas donaron. Ayúdanos a llegar a %{goal} donaciones.'
+      goal_reached: '%{counter} personas donaron'
+      goal: 'META'
     TaxDeductibleDonationModule:
-      message_before_threshold_reached: "Help us reach %{goal}"
-      steps_taken: 'Help us reach %{goal}'
-      goal_reached: ''
-      goal: 'GOAL'
+      message_before_threshold_reached: "Ayúdanos a llegar a %{goal} donaciones."
+      steps_taken: '%{counter} personas donaron. Ayúdanos a llegar a %{goal} donaciones.'
+      goal_reached: '%{counter} personas donaron'
+      goal: 'META'
   number:
     format:
       delimiter: .

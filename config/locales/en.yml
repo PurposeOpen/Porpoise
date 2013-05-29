@@ -15,9 +15,9 @@ en:
   page_not_available: "<p>This petition is not available in your language.</p><p>Check out <a href='/en'>the homepage</a> for other ways to take action."
   continue: 'Continue'
   links:
-    facebook: '//www.facebook.com/AllOutOrg?ref=ts'
-    twitter: '//twitter.com/#!/allout'
-    youtube: '//www.youtube.com/user/AllOutorg'
+    facebook: '//www.facebook.com/testmovement?ref=ts'
+    twitter: '//twitter.com/#!/testmovement'
+    youtube: '//www.youtube.com/user/testmovement'
   fields:
     first_name: 'First Name'
     last_name: 'Last Name'
@@ -43,7 +43,7 @@ en:
       have_joined: 'have joined'
       the_movement: 'the movement'
       required_fields: 'required fields'
-      join_comment_label: "Tell us why you're going going all out (optional)"
+      join_comment_label: "Tell us why"
       optin: 'We will protect your <a href="/privacy" target="_blank">privacy</a> and keep you up-to-date on our campaigns.'
     show:
       help_reach_goal: 'Help us reach our goal of %{goal} signatures'
@@ -75,6 +75,7 @@ en:
       send_me_a_copy: 'Send me a copy of this e-mail'
     donations:
       donation_message: 'Donation of %{amount} to %{movement_name}.'
+      monthly_donation_message: 'Donation of %{amount} monthly to %{movement_name}.'
       donation_amount: 'Donation Amount'
       payment: 'Payment'
       one_time_donation: 'One-time donation'
@@ -128,7 +129,7 @@ en:
       action_join: 'joined the Movement'
       action_signed: 'signed %{petition}'
       action_ago: '%{time} ago'
-      twitter_account: 'allout'
+      twitter_account: 'testmovement'
     about:
       about: "About"
       fact_1:
@@ -147,7 +148,6 @@ en:
         top: "Only"
         number: '10'
         right: "countries in the world recognize marriage equality"
-      why_go_allout: "Why it's Time to go All Out"
       read_more: "Read More"
       what_we_do: "What We Do"
       our_campaigns: "Our Campaigns"
@@ -191,7 +191,7 @@ en:
     email_subject_required: 'Subject is required'
     email_body_required: 'Email body is required'
   errors:
-    duplicated_subscription_error: "It looks like you've already made a monthly donation on this page. If you want to change your donation amount, please email donate@allout.org."
+    duplicated_subscription_error: "It looks like you've already made a monthly donation on this page. If you want to change your donation amount, please email donate@testmovement.org."
     duplicate_action_taken_error: "We're sorry but it seems like you've already taken this action!"
     credit_card_donation_error: 'An error occurred processing your donation; please re-check your credit card information and try again.'
     paypal_initialization_error: 'Error initializing transaction with paypal, please retry'
