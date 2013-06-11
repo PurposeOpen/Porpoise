@@ -90,7 +90,7 @@ test:
 
   def add_porpoise_assets_to_precompilation
     production_config = File.read('production.rb')
-    production_config = production_config.gsub(/# config\.assets\.precompile \+= %w\( search\.js \)/, 'config.assets.precompile += %w( porpoise/libs/modernizr.js )')
+    production_config = production_config.gsub(/# config\.assets\.precompile \+= %w\( search\.js \)/, 'config.assets.precompile += %w( porpoise/libs/modernizr.js porpoise/libs/jquery-1.7.1.min.js porpoise/libs/jquery.blockUI.js porpoise/libs/breakpoint.js porpoise/libs/tinynav-ti.js porpoise/libs/mobile.js porpoise/layout.js porpoise/layout-taf.js porpoise/handheld.css )')
     File.write('production.rb', production_config)
   end
 end
