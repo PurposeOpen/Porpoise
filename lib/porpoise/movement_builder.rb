@@ -33,7 +33,7 @@ class ::AppBuilder < Rails::AppBuilder
 
   def add_porpoise
     existing_contents = File.readlines('Gemfile')
-    existing_contents << "gem 'porpoise', :git => 'git://github.com/PurposeOpen/Porpoise.git', :tag => 'v0.8.9'\n"
+    existing_contents << "gem 'porpoise', :git => 'git://github.com/PurposeOpen/Porpoise.git', :tag => 'v0.8.10'\n"
     existing_contents << "gem 'money'\n"
     existing_contents << "gem 'uuid'\n"
     existing_contents << "gem 'purpose_country_select', :git => 'https://github.com/PurposeOpen/country_select.git'\n"
