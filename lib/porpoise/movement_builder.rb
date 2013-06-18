@@ -58,7 +58,7 @@ export MOVEMENT_ID=#{options[:movement_id]}
 export MOVEMENT_NAME='#{options[:movement_name]}'
 export MOVEMENT_BASIC_AUTH_PASSWORD=#{options[:movement_password]}
 export ACTION_CACHING_EXPIRATION=0
-export PLATFORM_BASE_URI="http://localhost:5000/api"
+export PLATFORM_BASE_URI="http://localhost:5000/api/"
     ENV
   end
 
