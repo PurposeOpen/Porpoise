@@ -2,6 +2,8 @@ module Porpoise
   class ActivitiesController < ApplicationController
 
     skip_before_filter :set_locale_load_content
+    before_filter :set_locale_without_default
+
     caches_action :show, :expires_in => 5.minutes, :cache_path => lambda { |_|
       request.fullpath
     }
@@ -16,6 +18,13 @@ module Porpoise
       self.response.headers["Content-Language"] = response.meta['content-language']
       self.response.headers["Expires"] = response.meta['expires']
     end
+
+    private
+
+    def set_locale_without_default
+      set_locale(params[:locale])
+    end
+
   end
 end
 
