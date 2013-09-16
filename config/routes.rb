@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
   get '/beacon.gif' => "beacon#index"
-  match "/404", :to => "errors#page_not_found"
-  match "/500", :to => "errors#went_wrong"
+  get "/404", :to => "errors#page_not_found"
+  get "/500", :to => "errors#went_wrong"
 
-  match 'notifications/:classification' => 'payment_notifications#create', :via => :post
-  match 'notifications/paypal/:classification' => 'payment_notifications#create_from_paypal', :via => :post
+  post 'notifications/:classification' => 'payment_notifications#create'
+  post 'notifications/paypal/:classification' => 'payment_notifications#create_from_paypal'
 
   scope "/:locale", :locale => /(..){1}/ do
     root :to => "home#index", :as => 'home'
@@ -23,9 +23,9 @@ Rails.application.routes.draw do
       get :member_fields
       get :member_info
     end
-    match 'preview' => 'home#preview'
-    match ":content_page" => "content_pages#show", :via => :get, :as => :content_page
-    match ":content_page/preview" => "content_pages#preview", :via => :get, :as => :content_page_preview
+    get 'preview' => 'home#preview'
+    get ":content_page" => "content_pages#show", :as => :content_page
+    get ":content_page/preview" => "content_pages#preview", :as => :content_page_preview
   end
 
   resources :shares, :only => [:create]
@@ -36,5 +36,5 @@ Rails.application.routes.draw do
     get "dashboard(.:format)" => "health_dashboard#index"
   end
 
-  match '*path' => "home#redirect"
+  get '*path' => "home#redirect"
 end
