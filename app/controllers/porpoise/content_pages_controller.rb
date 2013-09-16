@@ -2,24 +2,22 @@ module Porpoise
   class ContentPagesController < ApplicationController
     remote_resource_class Platform::ContentPage
 
-    caches_action :show, :expires_in => AppConstants.action_caching_expiration, :cache_path => lambda { |_|
-      request.fullpath
-    }
-
     def show
-      @page = Platform::ContentPage.find(params[:content_page])
-      @member = Platform::Member.new
-      possible_template = "content_pages/#{params[:content_page]}"
-      @resource_type = params[:content_page]
-      if(@page.type == 'ActionPage')
-        redirect_to action_path(params[:content_page], :locale => params[:locale])
-        return
-      end
+      fetch_cache(request.fullpath) do
+        @page = Platform::ContentPage.find(params[:content_page])
+        @member = Platform::Member.new
+        possible_template = "content_pages/#{params[:content_page]}"
+        @resource_type = params[:content_page]
+        if(@page.type == 'ActionPage')
+          redirect_to action_path(params[:content_page], :locale => params[:locale])
+          return
+        end
 
-      if template_exists?(possible_template)
-        render :template => possible_template
-      else
-        render :template => "content_pages/show"
+        if template_exists?(possible_template)
+          render :template => possible_template
+        else
+          render :template => "content_pages/show"
+        end
       end
     end
 

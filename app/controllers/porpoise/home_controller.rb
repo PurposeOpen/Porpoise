@@ -2,14 +2,11 @@ module Porpoise
   class HomeController < ApplicationController
     remote_resource_class Platform::Movement
 
-    caches_action :index, :expires_in => AppConstants.action_caching_expiration, :cache_path => lambda { |c|
-      c.params.delete_if { |p| p == 't' }
-    }
-
-
     def index
-      @member = Platform::Member.new
-      render
+      fetch_cache(request.path) do
+        @member = Platform::Member.new
+        render
+      end
     end
 
     def preview

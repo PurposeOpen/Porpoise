@@ -11,6 +11,16 @@ class PorpoiseApplicationController < ActionController::Base
   prepend_before_filter :set_locale_load_content
   prepend_before_filter :render_maint_if_pre_launch
 
+  def fetch_cache(key, &block)
+    cached_contents = Rails.cache.fetch(key)
+    return cached_contents if cached_contents
+    if block_given?
+      content = yield
+      Rails.cache.write(key, content, :expires_in => AppConstants.action_caching_expiration)
+      return content
+    end
+  end
+
   protected
 
   def track_email_click

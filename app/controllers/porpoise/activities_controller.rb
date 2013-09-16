@@ -1,12 +1,7 @@
 module Porpoise
   class ActivitiesController < ApplicationController
-
     skip_before_filter :set_locale_load_content
     before_filter :set_locale_without_default
-
-    caches_action :show, :expires_in => 5.minutes, :cache_path => lambda { |_|
-      request.fullpath
-    }
 
     def show
       # Proxy the activity feed so we don't have to expose anything about the platform API.
