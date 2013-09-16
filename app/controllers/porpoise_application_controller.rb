@@ -12,12 +12,8 @@ class PorpoiseApplicationController < ActionController::Base
   prepend_before_filter :render_maint_if_pre_launch
 
   def fetch_cache(key, &block)
-    cached_contents = Rails.cache.fetch(key)
-    return cached_contents if cached_contents
-    if block_given?
-      content = yield
-      Rails.cache.write(key, content, :expires_in => AppConstants.action_caching_expiration)
-      return content
+    Rails.cache.fetch(key, :expires_in => AppConstants.action_caching_expiration) do
+      yield
     end
   end
 
@@ -32,7 +28,7 @@ class PorpoiseApplicationController < ActionController::Base
 
   def set_locale_load_content
     set_remote_resources_headers
-    
+
     if params[:locale].blank?
       load_movement_content(Platform.default_language)
       params[:locale] = (@available_languages.select { |lang| lang.is_default == true})[0].iso_code
