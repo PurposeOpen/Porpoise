@@ -127,9 +127,9 @@ describe Porpoise::ActionsHelper do
 
         currency_options = options_for_currency_select(content_module)
 
-        currency_options.should match /value="usd" selected="selected"/
-        currency_options.should match /value="gbp"/
-        currency_options.should match /value="cad"/
+        currency_options.should have_tag('option', :with => {:selected => 'selected', :value => 'usd'})
+        currency_options.should have_tag('option', :with => {:value => 'gbp'})
+        currency_options.should have_tag('option', :with => {:value => 'cad'})
       end
 
       it "should display currency options from recurring if one-off is not available" do
@@ -147,9 +147,9 @@ describe Porpoise::ActionsHelper do
 
         currency_options = options_for_currency_select(content_module)
 
-        currency_options.should match /value="usd" selected="selected"/
-        currency_options.should match /value="gbp"/
-        currency_options.should match /value="cad"/
+        currency_options.should have_tag('option', :with => {:selected => 'selected', :value => 'usd'})
+        currency_options.should have_tag('option', :with => {:value => 'gbp'})
+        currency_options.should have_tag('option', :with => {:value => 'cad'})
 
         empty_suggested_amounts = OpenStruct.new
         empty_suggested_amounts.attributes = { }
@@ -161,9 +161,9 @@ describe Porpoise::ActionsHelper do
                                     })
         currency_options = options_for_currency_select(content_module)
 
-        currency_options.should match /value="usd" selected="selected"/
-        currency_options.should match /value="gbp"/
-        currency_options.should match /value="cad"/
+        currency_options.should have_tag('option', :with => {:selected => 'selected', :value => 'usd'})
+        currency_options.should have_tag('option', :with => {:value => 'gbp'})
+        currency_options.should have_tag('option', :with => {:value => 'cad'})
       end
 
       it "should display currency options from one-off even if recurring is available" do
@@ -185,9 +185,9 @@ describe Porpoise::ActionsHelper do
 
         currency_options = options_for_currency_select(content_module)
 
-        currency_options.should match /value="usd" selected="selected"/
-        currency_options.should match /value="gbp"/
-        currency_options.should match /value="cad"/
+        currency_options.should have_tag('option', :with => {:selected => 'selected', :value => 'usd'})
+        currency_options.should have_tag('option', :with => {:value => 'gbp'})
+        currency_options.should have_tag('option', :with => {:value => 'cad'})
       end
 
       it "should return correct frequency option" do
