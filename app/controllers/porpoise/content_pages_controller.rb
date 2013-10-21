@@ -2,6 +2,8 @@ module Porpoise
   class ContentPagesController < ApplicationController
     remote_resource_class Platform::ContentPage
 
+    after_filter :allow_preview_from_other_domains, only: :preview
+
     def show
       fetch_cache(request.fullpath) do
         @page = Platform::ContentPage.find(params[:content_page])

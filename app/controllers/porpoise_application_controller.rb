@@ -66,6 +66,10 @@ class PorpoiseApplicationController < ActionController::Base
     redirect_to(root_path(:locale => I18n.locale))
   end
 
+  def allow_preview_from_other_domains
+    response.headers["X-Frame-Options"] = "ALLOW-FROM http://any-other-site.com"
+  end
+
   private
 
   def email_tracking_params

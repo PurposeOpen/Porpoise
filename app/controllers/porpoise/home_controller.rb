@@ -2,6 +2,8 @@ module Porpoise
   class HomeController < ApplicationController
     remote_resource_class Platform::Movement
 
+    after_filter :allow_preview_from_other_domains, only: :preview
+
     def index
       fetch_cache(request.path) do
         @member = Platform::Member.new

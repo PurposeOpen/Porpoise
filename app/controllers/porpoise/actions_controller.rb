@@ -1,8 +1,10 @@
 module Porpoise
   class ActionsController < ApplicationController
     include RecurlyConfigurationHelper
-    
+
     remote_resource_class Platform::ActionPage
+
+    after_filter :allow_preview_from_other_domains, only: :preview
 
     MEMBER_FIELDS_URI = [Platform.base_uri, "#{I18n.locale}/movements/#{Platform.movement_id}/action_pages/"].join(Platform.base_uri.ends_with?("/") ? "" : "/")
 
