@@ -6,7 +6,7 @@ gemspec
 gem 'rails', '~> 4.0.0'
 gem 'uuid'
 
-# gem 'purpose_country_select', :git => 'https://github.com/PurposeOpen/country_select.git'
+gem 'purpose_country_select', :git => 'https://github.com/PurposeOpen/country_select.git', :tag => 'v0.1.0'
 
 
 group :development, :test do
