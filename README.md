@@ -4,28 +4,34 @@ A client library for the Purpose Platform
 
 [![Build Status](https://travis-ci.org/PurposeOpen/Porpoise.png?branch=master)](https://travis-ci.org/PurposeOpen/Porpoise)
 
+
+### Try it!
+
+Try a demo of the Purpose Platform and a movement site running on it (using Porpoise) here:
+
+Platform:  
+[https://platform-dev-demo.herokuapp.com](https://platform-dev-demo.herokuapp.com)  
+login: `admin@example.com`  
+password: `developers3x`
+
+Movement:  
+[https://movement-dev-demo.herokuapp.com](http://movement-dev-demo.herokuapp.com)
+
+These apps may need a minute to warm up on your first request because they are running on Heroku's free tier.
+
+
 ### Creating a new movement
 
-1. Create a new rails application for the movement using:
-   
-   ~~~~~~~~~
-   $ rails new movement_name --skip-active-record --builder='<path-to-porpoise-movement-builder>' --movement_password='movement-password'
-   ~~~~~~~~~~
-   * for _path-to-porpoise-movement-builder_, specify the path to movement_builder.rb file (found in lib/porpoise directory) or the github raw url of the file.
-   * _skip-active-record_ option is used as we dont require database for this project.
-   * _builder_ adds the porpoise library to the rails project and also creates the required configuration files.
-   * Movement specific constants ( _movement_name_, _movement_id_, _movement_password_ ) have to be passed as options.
+1. Clone the template movement site: [github.com/PurposeOpen/Movement](https://github.com/PurposeOpen/Movement)
 
-2. Create your movement in the Platform admin (with the same name you used above)
-3. Start the rails server:
+2. [Run it locally](https://github.com/PurposeOpen/Movement#getting-started)
 
-   `$ cd movement_name; source .env; rails s`
+2. Customize it however you want! The template movement is released under the [MIT license](https://github.com/PurposeOpen/Movement/wiki/License).
 
- The new movement now runs at rails default port 3000. (http://localhost:3000)
 
 ### Contributing
 
-1. Fork it
+1. Fork it this repo
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
