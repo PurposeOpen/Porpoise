@@ -1,13 +1,13 @@
 # Porpoise
 
-A client library for the Purpose Platform
+A client library for the [Purpose Platform](https://github.com/PurposeOpen/Platform)
 
 [![Build Status](https://travis-ci.org/PurposeOpen/Porpoise.png?branch=master)](https://travis-ci.org/PurposeOpen/Porpoise)
 
 
 ### Try it!
 
-Try a demo of the Purpose Platform and a movement site running on it (using Porpoise) here:
+Try a demo of the [Purpose Platform](https://github.com/PurposeOpen/Platform) and a [movement site](https://github.com/PurposeOpen/Movement) running on it (using Porpoise) here:
 
 Platform:  
 [https://platform-dev-demo.herokuapp.com](https://platform-dev-demo.herokuapp.com)  
