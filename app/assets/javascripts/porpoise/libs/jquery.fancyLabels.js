@@ -13,7 +13,6 @@
       var label = $(this);
       var input = findInputField(label);
       if (!input) {
-        console.log("Couldn't find input for label " + label.text());
         return;
       }
 
