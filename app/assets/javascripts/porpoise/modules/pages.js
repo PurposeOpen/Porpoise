@@ -96,7 +96,6 @@ $AO.home = {
 
             hideRemoteEmailLabelIfFieldHasValue:function () {
                 $('#remote_join_email').each(function () {
-                    console.log("####################### " + $(this).val());
                     if (!$(this).val() == '') {
                         $(this).siblings('label.field_name').hide();
                     }
