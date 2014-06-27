@@ -6,6 +6,8 @@
 
 <div class="clear"></div>
 
+<%= opt_in_fields(f) %>
+
 <%= labeled_field_group action_content, :email do |is_required| %>
   <%= f.text_field :email, :type => 'email', :required => is_required, :title => t('validations.email_required'),
       :data => { :validation => {
