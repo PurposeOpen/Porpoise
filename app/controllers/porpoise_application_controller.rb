@@ -55,6 +55,8 @@ class PorpoiseApplicationController < ActionController::Base
     self.remote_resources.each do |resource|
       resource.headers['X-Original-Request-UUID'] = request.uuid unless Rails.env.test?
       resource.headers['X-Original-Request-IP'] = request.ip unless Rails.env.test?
+      resource.headers['Accept'] = ENV["API_VERSION_HEADER"] if
+                                                      ENV["API_VERSION_HEADER"]
     end
   end
 
