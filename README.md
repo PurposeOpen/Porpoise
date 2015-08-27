@@ -4,22 +4,6 @@ A client library for the [Purpose Platform](https://github.com/PurposeOpen/Platf
 
 [![Build Status](https://travis-ci.org/PurposeOpen/Porpoise.png?branch=master)](https://travis-ci.org/PurposeOpen/Porpoise)
 
-
-### Try it!
-
-Try a demo of the [Purpose Platform](https://github.com/PurposeOpen/Platform) and a [movement site](https://github.com/PurposeOpen/Movement) running on it (using Porpoise) here:
-
-Platform:  
-[https://platform-dev-demo.herokuapp.com](https://platform-dev-demo.herokuapp.com)  
-login: `admin@example.com`  
-password: `developers3x`
-
-Movement:  
-[https://movement-dev-demo.herokuapp.com](http://movement-dev-demo.herokuapp.com)
-
-These apps may need a minute to warm up on your first request because they are running on Heroku's free tier.
-
-
 ### Creating a new movement
 
 1. Clone the template movement site: [github.com/PurposeOpen/Movement](https://github.com/PurposeOpen/Movement)
